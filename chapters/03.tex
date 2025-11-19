@@ -1,9 +1,94 @@
-\chapter{Wymagania i narzędzia}
-\label{ch:wymagania-i-narzedzia}
+\chapter{Część projektowa}
+% \label{ch:wymagania-i-narzedzia} % nie wiem do czego to służy więc nie usuwam póki co
 
+\section{System mikroprocesorowy}
+Ze względu na wymaganą komunikację sieciową projektu, zdecydowano się na użycie prostego mikrokontrolera z
+rodziny ESP32. Głównymi zadaniami użytego mikrokontrolera jest obsługa dwóch linii adresowalnych diod LED, obsługa 17 przycisków 
+wraz z enkoderem, kontrola podświetlenia LED oraz hosting strony internetowej.
+
+Ze względu na dostępność, popularność, bogatą dokumentację oraz niską cenę zdecydowano się na użycie mikrokontrolera 
+\textit{ESP32-S3-WROOM-1} firmy \textit{Espressif Systems}
+\\
+
+Własności układu
 \begin{itemize}
-\item wymagania funkcjonalne i niefunkcjonalne
-\item przypadki użycia (diagramy UML) -- dla prac, w których mają zastosowanie
-\item opis narzędzi, metod eksperymentalnych, metod modelowania itp.
-\item metodyka pracy nad projektowaniem i implementacją -- dla prac, w których ma to zastosowanie
+    \item dwurdzeniowy 32-bitowy mikroprocesor \textit{Xtensa LX7},
+    \item 16MB pamięci flash,
+    \item 16MB pamięci PSRAM,
+    \item 512MB pamięci SRAM,
+    \item 36 portów GPIO,
+    \item komunikacja 2.4GHz WiFi (802.11b/g/n) oraz Bluetooth 5,
+    \item wbudowana antena,
+    \item wsparcie dla: I2C, LED PWM, USB Serial,
+    \item zasilanie napięciem 3.3V.
 \end{itemize}
+
+\clearpage
+\section{Adresowalne diody LED}
+Projekt zakładał wizualizację wielu informacji na znaczących rozmiarów modelu Maszyny W.
+Przewidywana liczba pojedyńczych diod LED przekracza 600. Oznaczać to może znaczące spadki
+napięcia na długiej linii LED.
+
+Podczas wstępnych testów linii 5V zaobserwowano zauważalny spadek jakości odwzorowania kolorów.
+\\
+
+Biorąc pod uwagę wyżej wymienione wymagania zdecydowano się na użycie adresowalnych diod 
+\textit{WS2815B-V1} firmy WORLDSEMI.
+Wybrany model diod pozwala na indywidualne zadawanie wartości Red, Green oraz Blue każdej z nich.
+Wyższe napięcie zasilania eliminuje powstałe w wyniku spadków napięcia zmiany barwy.
+\\
+
+Własności elementu
+\begin{itemize}
+    \item napięcie pracy 12V,
+    \item obudowa 5050,
+    \item montaż SMD,
+    \item częstotliwość odświeżania 4kHz.
+\end{itemize}
+
+
+\section{Przyciski}
+W celu zapewnienia pełnej obsługi Maszyny W potrzebne jest wykorzystanie 17 monostabilnych przycisków.
+Symulator w wersji podstawowej udostępnia użytkownikowi 16 możliwych sygnałów: 
+\textit{czyt, wys, wei, il, wyad, weak, pisz, przep, wel, wyl, dod, ode, wes, weja, wyak, wea}. Do wymienionych sygnałów 
+należy również wliczyć przycisk \textit{takt}, który zapewni możliwość wykonania zadanego rozkazu.
+\\
+
+Zdecydowano się na wykorzystanie przełączników \textit{MX Blue} firmy \textit{Cherry}. Według dokumentacji producenta
+wyżej wymieniony przełącznik klawiaturowy pozwala na 50 milionów kliknięć. Pozwoli to na długoletnią, niezawodną działalność.
+Wykorzystanie przycisków typu \textit{Blue} oferujących słyszalny odgłos kliknięcia przy wciskaniu. Daje to użytkownikowi
+informację zwrotną o stanie przełącznika.
+\\
+
+Wykorzystanie tak dużej liczby przycisków wymaga użycia multipleksera 16:4. Z uwagi na niską cenę, łatwą dostępność
+oraz niewielki wymiar wybrano model \textit{CD74HC4067M} firmy \textit{Texas Instruments}.
+
+
+\clearpage
+\section{Podświetlenie LED}
+Chcąc zapewnić przyjazny wizualnie wygląd modelu SWIM zdecydowano się na podświetlenie następujących elementów:
+\begin{itemize}
+    \item licznik rozkazów,
+    \item akumulator,
+    \item rejestr instrukcji,
+    \item rejestry A oraz S,
+    \item logo Politechniki Śląskiej.
+\end{itemize}
+
+Wykorzystano do tego 12V linie diod LED.
+
+\textit{TODO skończyć tekst PODŚWIETLENIA LED}
+
+\section{Enkoder}
+Do wprowadzania danych liczbowych w lokalnym trybie działania urządzenia zastosowano enkoder obrotowy z przyciskiem.
+Wykorzystanie enkodera:
+\begin{itemize}
+    \item zwiększanie/zmniejszanie wartości liczbowych w zależności od kierunku obrotu,
+    \item aktywacja trybu wprowadzania danych poprzez przytrzymanie przycisku,
+    \item przełączanie między polami wprowadzania danych przy użyciu szybkich kliknięć.
+\end{itemize}
+Enkoder pozwala użytkownikowi w prosty i intuicyjny sposób sterować parametrami urządzenia bez korzystania z interfejsu sieciowego.
+
+\section{Przełącznik trybów}
+Jednym z założeń dodatkowych projektu jest możliwość przełączania SWIM między trybami lokalnym oraz sieciowym. 
+Aby zapewnić taką możliwość bezpośrednio z poziomu modelu wykorzystano przełącznik bistabilny. 

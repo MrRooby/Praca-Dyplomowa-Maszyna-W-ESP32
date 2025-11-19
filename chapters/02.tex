@@ -1,31 +1,41 @@
-\chapter{[Analiza tematu]}
+\chapter{Przykładowa realizacja systemu wizualizacji}
 
+\section{Założenia realizacyjne}
+Pierwszym etapem budowy systemu wizualizacji danych jest projektowanie, które powinno być poprzedzone przemyśleniami
+dotyczącymi możliwych realizacji oraz wyborem tych, które są optymalne i spełniają przyjęte założenia. Założenia dodatkowe
+nie są bezwzględnie wymagane, ale mogą poszerzyć tworzone rozwiązanie o alternatywne sposoby działania.
+\\
+
+
+Założenia podstawowe:
 \begin{itemize}
-\item sformułowanie problemu
-\item osadzenie tematu w kontekście aktualnego stanu wiedzy (\english{state of the art}) o poruszanym problemie
-\item  studia literaturowe \cite{bib:artykul,bib:ksiazka,bib:konferencja,bib:internet} -  opis znanych rozwiązań (także opisanych naukowo, jeżeli problem jest poruszany w publikacjach naukowych), algorytmów, 
+    \item dedykowany układ dla mikrokontrolera z odpowiednimi wyprowadzeniami,
+    \item dedykowany układ dla LED-owych wyświetlaczy siedmiosegmentowych,
+    \item konstrukcja kompletnego układu elektronicznego z układów mikrokontrolera, wyświetlaczy LED oraz przycisków,
+    \item hosting strony internetowej bezpośrednio na urządzeniu wraz z przesyłem danych pomiędzy urządzeniem a stroną,
+    \item wizualizacja informacji pobieranych ze strony internetowej na adresowalnych diodach LED,
+    \item przesył informacji o wciśniętych przyciskach do strony internetowej,
+    \item obsługa podświetlenia modelu Maszyny W diodami LED.
 \end{itemize}
 
 
-Wzory  
-\begin{align}
-y = \frac{\partial x}{\partial t}
-\end{align}
-jak i pojedyncze symbole $x$ i $y$  składa się w trybie matematycznym.
+Założenia dodatkowe:
+\begin{itemize}
+    \item lokalna symulacja Maszyny W na mikrokontrolerze,
+    \item obsługa enkodera do wprowadzania wartości liczbowych.
+\end{itemize}
+
+% \clearpage  % nowa strona 
+\section{Schemat blokowy}
+Na rysunku poniżej (Rys. \ref{fig:schemat-blokowy}) przedstawiono przykładowy schemat blokowy systemu wizualizacji 
+interfejsu maszyny (SWIM).
+Schemat uwzględnia zarówno bloki spełniające założenia podstawowe, jak i dodatkowe. 
+\\
 
 
-%\begin{Definition}\label{def:1}
-%Definicja to zdanie (lub układ zdań) odpowiadające na pytanie o strukturze „co to jest a?”. Definicja normalna jest zdaniem złożonym z 2 członów: definiowanego (łac. definiendum) i definiującego (łac. definiens), połączonych spójnikiem definicyjnym („jest to”, „to tyle, co” itp.). 
-%\end{Definition}
-%
-%\begin{Theorem}[Pitagorasa]\label{t:pitagoras}
-%W dowolnym trójkącie prostokątnym suma kwadratów długości przyprostokątnych jest równa kwadratowi długości przeciwprostokątnej tego trójkąta. 
-%\end{Theorem}
-%
-%\begin{Example}[generalizacja]\label{ex:generalizacja}
-%Przykładem generalizacji jest para: zwierzę i pies. Pies jest zwierzęciem. Pies jest uszczegółowieniem pojęcia zwierzę. Zwierzę jest uogólnieniem pojęcia pies.
-%\end{Example}
-
-%%%%%%%%%%%%%%%%%%%%%%%%
-
-
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{./graf/schemat-blokowy-1.png}
+\caption{Schemat blokowy SWIM}
+\label{fig:schemat-blokowy}
+\end{figure}
