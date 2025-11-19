@@ -1,8 +1,8 @@
-PWD /media/bartek/LEXAR/SUT/PRACA_DYPLOMOWA/polsl-aei-theses/szablony-polskie/szablon-inz-latex/multi-file/config
+PWD /media/bartek/LEXAR/SUT/PRACA_DYPLOMOWA/LaTeX/Praca-Dyplomowa-Maszyna-W/config
 INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
 INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
 INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
-INPUT /media/bartek/LEXAR/SUT/PRACA_DYPLOMOWA/polsl-aei-theses/szablony-polskie/szablon-inz-latex/multi-file/config/settings.tex
+INPUT /media/bartek/LEXAR/SUT/PRACA_DYPLOMOWA/LaTeX/Praca-Dyplomowa-Maszyna-W/config/settings.tex
 OUTPUT settings.log
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/book.cls
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/book.cls
