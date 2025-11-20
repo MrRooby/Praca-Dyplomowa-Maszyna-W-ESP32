@@ -1,65 +1,83 @@
-\chapter{[Właściwy dla kierunku -- np. Specyfikacja wewnętrzna]}
+\chapter{Część konstrukcyjna}
 \label{ch:05}
 
+\section{Obwody drukowane}
+  Obwody drukowane zostały wykonane na specjalne zamówienie przez zewnętrzną firmę \textit{JLCPCB}.
+  Mozaikę ścieżek płytek drukowanych zaprojektowano wykorzystując do tego program \textit{KiCAD}.
+  Odpowiednie rysunki przedstawiające warstwę górną oraz dolną płytek drukowanych 
+  przedstawiono w rozdziale \ref{circ:01} oraz \ref{circ:02}.
 
-Jeśli „Specyfikacja wewnętrzna”:
-\begin{itemize}
-\item przedstawienie idei
-\item architektura systemu
-\item opis struktur danych (i organizacji baz danych)
-\item komponenty, moduły, biblioteki, przegląd ważniejszych klas (jeśli występują)
-\item przegląd ważniejszych algorytmów (jeśli występują)
-\item szczegóły implementacji wybranych fragmentów, zastosowane wzorce projektowe
-\item diagramy UML
-\end{itemize}
+  \subsection{Płyta główna}
+    \label{circ:01}
 
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
-% Pakiet minted wymaga importu: \usepackage{minted}                 %
-% i specjalnego kompilowania:                                       %
-% pdflatex -shell-escape main                                       %
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{./graf/plyta-glowna-pcb-front.png}
+    \caption{Widok warstwy górnej płyty głównej}
+    \label{fig:plyta-glowna-pcb-front}
+    \end{figure}
 
-
-Krótka wstawka kodu w linii tekstu jest możliwa, np.  \lstinline|int a;| (biblioteka \texttt{listings})% lub  \mintinline{C++}|int a;| (biblioteka \texttt{minted})
-. 
-Dłuższe fragmenty lepiej jest umieszczać jako rysunek, np. kod na rys \ref{fig:pseudokod:listings}% i rys. \ref{fig:pseudokod:minted}
-, a naprawdę długie fragmenty – w załączniku.
-
-
-\begin{figure}
-\centering
-\begin{lstlisting}
-class test : public basic
-{
-    public:
-      test (int a);
-      friend std::ostream operator<<(std::ostream & s, 
-                                     const test & t);
-    protected:
-      int _a;  
-      
-};
-\end{lstlisting}
-\caption{Pseudokod w \texttt{listings}.}
-\label{fig:pseudokod:listings}
-\end{figure}
-
-%\begin{figure}
-%\centering
-%\begin{minted}[linenos,frame=lines]{c++}
-%class test : public basic
-%{
-%    public:
-%      test (int a);
-%      friend std::ostream operator<<(std::ostream & s, 
-%                                     const test & t);
-%    protected:
-%      int _a;  
-%      
-%};
-%\end{minted}
-%\caption{Pseudokod w \texttt{minted}.}
-%\label{fig:pseudokod:minted}
-%\end{figure}
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{./graf/plyta-glowna-pcb-back.png}
+    \caption{Widok warstwy dolnej płyty głównej}
+    \label{fig:plyta-glowna-pcb-rewers}
+    \end{figure}
 
 
+
+  \clearpage
+  \subsection{Wyświetlacze siedmiosegmentowe}
+    \label{circ:02}
+
+    % TRZYCYFROWY
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{./graf/wysw-trzy-front.png}
+    \caption{Widok warstwy dolnej wyświetlacza trzycyfrowego}
+    \label{fig:wysw-trzy-front}
+    \end{figure}
+
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{./graf/wysw-trzy-back.png}
+    \caption{Widok warstwy dolnej wyświetlacza trzycyfrowego}
+    \label{fig:wysw-trzy-rewers}
+    \end{figure}
+
+    % DWUCYFROWY
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{./graf/wysw-dwu-front.png}
+    \caption{Widok warstwy dolnej wyświetlacza dwucyfrowego}
+    \label{fig:wysw-dwu-front}
+    \end{figure}
+
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{./graf/wysw-dwu-back.png}
+    \caption{Widok warstwy dolnej wyświetlacza dwucyfrowego}
+    \label{fig:wysw-dwu-rewers}
+    \end{figure}
+
+\section{Opis złącz}
+  \subsection{Płyta główna}
+    \subsubsection{Złącze zasilania}
+      Urządzenie jest wyposażone w 2-pinową listwę zaciskową. Złącze zasilania przyjmuje napięcie 12V. Układ 
+      elektryczny został wyposażony w zabezpieczenie przed odwrotną polaryzacją podłączanych
+      przewodów. Wybrany model złącza wspiera napięcia do 250V oraz prąd znamionowy do 18A. 
+  \subsubsection{Złącze USB-C}
+      W celu zapewnienia łatwego programowania obecnego na płycie głównej mikroprocesora układ został wyposażony 
+      w złącze USB typu C. 
+
+
+      TODOOO
+  \subsubsection{Złącze enkodera}
+  \subsubsection{Złącza przycisków}
+  \subsubsection{Złącze przełącznika trybów}
+  \subsubsection{Złącza linii LED}
+  \subsubsection{Złącza zasilania podświetlenia modelu}
+  \subsubsection{Złącza dodatkowego wprowadzania zasilania}
+
+\section{Wyświetlacze segmentowe}
+  \subsubsection{Złącza wejścia/wyjścia}
