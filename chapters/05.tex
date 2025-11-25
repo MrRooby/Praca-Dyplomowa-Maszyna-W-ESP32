@@ -1,11 +1,14 @@
+
+% SPRAWDZONO ort, styl oraz interp
+
 \chapter{Część konstrukcyjna}
 \label{ch:05}
 
 \section{Obwody drukowane}
   Obwody drukowane zostały wykonane na specjalne zamówienie przez zewnętrzną firmę \textit{JLCPCB}.
-  Mozaikę ścieżek płytek drukowanych zaprojektowano wykorzystując do tego program \textit{KiCAD}.
+  Mozaikę ścieżek płytek drukowanych zaprojektowano wykorzystując program \textit{KiCAD}.
   Odpowiednie rysunki przedstawiające warstwę górną oraz dolną płytek drukowanych 
-  przedstawiono w rozdziale \ref{circ:01} oraz \ref{circ:02}.
+  przedstawiono w podrozdziałach \ref{circ:01} oraz \ref{circ:02}.
 
   \subsection{Płyta główna}
     \label{circ:01}
@@ -30,11 +33,11 @@
   \subsection{Wyświetlacze siedmiosegmentowe}
     \label{circ:02}
 
-    % TRZYCYFROWY
+    %%%%%%%%%%%%%%%%%%%%%%%% TRZYCYFROWY %%%%%%%%%%%%%%%%%%%%%%%%
     \begin{figure}[H]
     \centering
     \includegraphics[width=0.55\textwidth]{./graf/wysw-trzy-front.png}
-    \caption{Widok warstwy dolnej wyświetlacza trzycyfrowego}
+    \caption{Widok warstwy górnej wyświetlacza trzycyfrowego}
     \label{fig:wysw-trzy-front}
     \end{figure}
 
@@ -45,11 +48,11 @@
     \label{fig:wysw-trzy-rewers}
     \end{figure}
 
-    % DWUCYFROWY
+    %%%%%%%%%%%%%%%%%%%%%%%% DWUCYFROWY %%%%%%%%%%%%%%%%%%%%%%%%
     \begin{figure}[H]
     \centering
     \includegraphics[width=0.4\textwidth]{./graf/wysw-dwu-front.png}
-    \caption{Widok warstwy dolnej wyświetlacza dwucyfrowego}
+    \caption{Widok warstwy górnej wyświetlacza dwucyfrowego}
     \label{fig:wysw-dwu-front}
     \end{figure}
 
@@ -60,24 +63,78 @@
     \label{fig:wysw-dwu-rewers}
     \end{figure}
 
+
 \section{Opis złącz}
   \subsection{Płyta główna}
+
     \subsubsection{Złącze zasilania}
-      Urządzenie jest wyposażone w 2-pinową listwę zaciskową. Złącze zasilania przyjmuje napięcie 12V. Układ 
-      elektryczny został wyposażony w zabezpieczenie przed odwrotną polaryzacją podłączanych
-      przewodów. Wybrany model złącza wspiera napięcia do 250V oraz prąd znamionowy do 18A. 
-  \subsubsection{Złącze USB-C}
-      W celu zapewnienia łatwego programowania obecnego na płycie głównej mikroprocesora układ został wyposażony 
-      w złącze USB typu C. 
+      Urządzenie jest wyposażone w 2-pinową listwę zaciskową typu \textit{ARK}. 
+      Złącze pełni funkcję głównego wejścia zasilania i przyjmuje napięcie 12~V. 
+      Układ elektryczny wyposażono w zabezpieczenie przed odwrotną polaryzacją, 
+      uniemożliwiające uszkodzenie płytki w przypadku błędnego podłączenia przewodów. 
+      Wybrany model złącza wspiera napięcia do 250~V oraz prąd znamionowy do 18~A. 
 
+    \subsubsection{Złącze USB-C}
+      W celu umożliwienia łatwego programowania i komunikacji z mikroprocesorem, 
+      płytkę wyposażono w złącze USB typu C (tryb USB 2.0 Device).
+      Wyprowadzone są jedynie linie \textit{D+} oraz \textit{D−}. Linie zasilania 
+      \textit{VBUS} są wykorzystywane do zasilania sekcji USB oraz wykrywania 
+      podłączenia komputera. Pozostałe piny USB-C niewykorzystywane przez układ 
+      zostały pozostawione niepodłączone, zgodnie ze specyfikacją.
 
-      TODOOO
-  \subsubsection{Złącze enkodera}
-  \subsubsection{Złącza przycisków}
-  \subsubsection{Złącze przełącznika trybów}
-  \subsubsection{Złącza linii LED}
-  \subsubsection{Złącza zasilania podświetlenia modelu}
-  \subsubsection{Złącza dodatkowego wprowadzania zasilania}
+    \subsubsection{Złącze enkodera}
+      Do podłączenia impulsatora zastosowano 5-pinowe złącze typu \textit{JST-ZH} o rastrze 1.5~mm.
+      Wyprowadzone sygnały:
+      \begin{itemize}
+        \item \textit{+3V3} -- zasilanie elementu,
+        \item \textit{GND} -- masa układu,
+        \item \textit{CLK} -- pierwszy kanał kwadraturowy enkodera,
+        \item \textit{DT} -- drugi kanał kwadraturowy enkodera, 
+        \item \textit{SW} -- złącze przycisku enkodera
+      \end{itemize}
+      Sygnały prowadzone są do wejść cyfrowych mikroprocesora. Redukcja drgań styków 
+      zapewniono z poziomu oprogramowania.
 
-\section{Wyświetlacze segmentowe}
-  \subsubsection{Złącza wejścia/wyjścia}
+    \subsubsection{Złącza przycisków}
+      Każdy przycisk posiada dedykowane 2-pinowe złącze typu \textit{JST-ZH} o rastrze 1.5~mm. 
+      Jeden pin każdego złącza podłączony jest do masy \textit{GND}, drugi -- do wejścia cyfrowego mikroprocesora.
+      Linie sygnałowe wyposażono w podciągnięcie napięcia z poziomu wbudowanych w mikroprocesor 
+      rezystorów podciągających. Filtrację sygnałów zapewniono od strony oprogramowania.
+
+    \subsubsection{Złącze przełącznika trybów}
+      Przełącznik trybów posiada dedykowane 2-pinowe złącze typu \textit{JST-ZH} o rastrze 1.5~mm.
+      Jeden pin złącza podłączony jest do masy \textit{GND}, drugi -- do wejścia cyfrowego mikroprocesora wykorzystującego
+      wbudowany w mikroprocesor rezystor podciągający. Filtrację sygnałów zapewniono od strony oprogramowania.
+
+    \subsubsection{Złącza linii LED}
+      Dwa wyprowadzenia linii LED wykorzystują 3-pinowe złącza typu \textit{JST-XH} o rastrze 2.5~mm, 
+      prowadzące sygnały do linii diod LED typu \textit{WS2815B-V1}.
+      Piny:
+      \begin{itemize}
+        \item \textit{+5V} -- zasilanie diod,
+        \item \textit{DATA} -- linia danych,
+        \item \textit{GND} -- masa układu.
+      \end{itemize}
+      Dodatkowo zastosowano kondensator filtrujący do uziemienia na każdej z adresowalnych diod obecnych na płytkach
+      drukowanych, zgodnie z dokumentacją producenta.
+
+    \subsubsection{Złącza zasilania podświetlenia modelu}
+      Płytka zawiera dodatkowe dwa 2-pinowe złącza typu \textit{JST-XH} o rastrze 2.5~mm. 
+      Każde złącze wspiera kontrolę zasilania 12~V z poziomu mikroprocesora. W tym celu
+      zostały wykorzystane tranzystory typu \textit{MOSFET}.
+    
+    \subsubsection{Złącza dodatkowego wprowadzania zasilania}
+      Projekt układu przewiduje potrzebę dodatkowego wprowadzania zasilania na linie adresowalnych diod LED. 
+      W tym celu płytkę wyposażono w 9 złącz typu \textit{JST-XH} o rastrze 2.5~mm. Każde złącze zapewnia 
+      zasilanie 12~V.
+
+  \subsection{Wyświetlacze segmentowe}
+    \subsubsection{Złącza wejścia/wyjścia}
+      Każdy z wyświetlaczy segmentowych (zarówno trzycyfrowe, jak i dwucyfrowe) posiadają dwa złącza \textit{JST\_IN} oraz \textit{JST\_OUT}
+      typu \textit{JST-XH} o rastrze 2.5~mm. Złącza umożliwiają łączenie wyświetlaczy w ciągłe linie.
+      Piny:
+      \begin{itemize}
+        \item \textit{+5V} -- zasilanie diod,
+        \item \textit{DATA\_IN/DATA\_OUT} -- wejście/wyjście linii danych,
+        \item \textit{GND} -- masa układu.
+      \end{itemize}
