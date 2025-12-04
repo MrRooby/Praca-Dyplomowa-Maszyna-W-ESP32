@@ -2,15 +2,46 @@
 % \label{ch:wymagania-i-narzedzia} % nie wiem do czego to służy więc nie usuwam póki co
 
 \section{System mikroprocesorowy}
-  Ze względu na wymaganą komunikację sieciową projektu, zdecydowano się na użycie prostego mikrokontrolera z
-  rodziny ESP32. Głównymi zadaniami użytego mikrokontrolera jest obsługa dwóch linii adresowalnych diod LED, obsługa 17 przycisków 
-  wraz z enkoderem, kontrola podświetlenia LED oraz hosting strony internetowej.
+  Ze względu na wymaganą komunikację sieciową projektu, wysoką złożoność rozwiązania oraz zapotrzebowanie na wiele portów wejścia/wyjścia
+  należało wybrać system mikroprocesorowy zapewniający poniższe możliwości:
+  \begin{itemize}
+    \item obsługa dwóch kanałów dla adresowalnych diod LED RGB,
+    \item obsługa 17 przycisków wraz z enkoderem,
+    \item zapewnienie punktu dostępu internetu,
+    \item przechowywanie danych w pamięci nieulotnej,
+    \item serwowanie strony internetowej.
+  \end{itemize}
+  
+  Zwracając uwagę na powyżej wymienione wymagania rozważono dwie możliwości: mikrokomputer z rodziny \textit{Raspberry Pi} lub 
+  mikrokontroler z rodziny \textit{ESP32}. Zarówno mikrokomputer jak i mikrokontroler spełniają wszystkie ww. założenia. Urządzenia 
+  z rodziny \textit{Raspberry Pi} są proste w użytku, posiadają system operacyjny oparty na jądrze \textit{Linux'a} oraz pozwalają na 
+  programowanie w językach \textit{Python} oraz \textit{C++}. System operacyjny pozwala również na łatwe przechowywanie danych
+  w pamięci nieulotnej urządzenia z uwagi na obecny w nim system plików. Obecny na urządzeniach \textit{Raspberry Pi} system operacyjny
+  \textit{Raspbian} będący pochodną popularnej dystrybucji \textit{Debiana} pozwala na tworzenie własnych \textit{daemonów}
+  (procesy działające w tle). 
+  
 
-  Ze względu na dostępność, popularność, bogatą dokumentację oraz niską cenę zdecydowano się na użycie mikrokontrolera 
-  \textit{ESP32-S3-WROOM-1} firmy \textit{Espressif Systems}
-  \\
+  Mikrokontrolery z rodziny \textit{ESP32} nie posiadają systemu operacyjnego, a ich programowanie jest możliwe przy użyciu języków takich jak \textit{C} oraz 
+  \textit{C++}. Służą do tego specjalnie przygotowane środowiska programistyczne takie jak \textit{Visual Studio Code} z rozszerzeniem \textit{PlatformIO} a także
+  \textit{Arduino IDE}. Ich przewagą nad mikrokomputerami są: brak systemu operacyjnego, niższa cena, mniejsza złożoność oraz mniejsze zużycie energii. 
+  
+  \clearpage
+  Po rozważeniu obu opcji decydowano się na użycie mikrokontrolera z rodziny ESP32. Wybór został podyktowany pozwalającym na pełną kontrolę urządzenia
+  językiem \textit{C++}, niższą ceną, brakiem systemu operacyjnego, dostępnością oraz bogatą dokumentacją. Z katalogu firmy \textit{Espressif Systems} 
+  wybrano urządzenie \textit{ESP32-S3-WROOM-1}.
 
-  Własności układu
+
+  Poniższy rysunek (Rys. \ref{fig:schemat-blokowy-esp32}) z dokumentacji producenta przedstawia schemat funkcjonalny wybranego układu
+
+  \begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{./graf/schemat-esp32.png}
+  \caption{Schemat blokowy funkcjonalny układu ESP32-S3}
+  \label{fig:schemat-blokowy-esp32}
+  \end{figure}
+
+
+  Własności wybranego układu:
   \begin{itemize}
     \item dwurdzeniowy 32-bitowy mikroprocesor \textit{Xtensa LX7},
     \item 16MB pamięci flash,
@@ -25,7 +56,7 @@
 
 \clearpage
 \section{Adresowalne diody LED}
-  Projekt zakładał wizualizację wielu informacji na znaczących rozmiarów modelu Maszyny W.
+  Zakładano wizualizację wielu informacji na znaczących rozmiarów modelu Maszyny W.
   Przewidywana liczba pojedynczych diod LED przekracza 600. Oznaczać to może znaczące spadki
   napięcia na długiej linii LED.
 
