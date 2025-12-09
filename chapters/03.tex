@@ -1,7 +1,8 @@
 \chapter{Część projektowa}
 % \label{ch:wymagania-i-narzedzia} % nie wiem do czego to służy więc nie usuwam póki co
 
-\section{System mikroprocesorowy}
+\section{System mikroprocesorowy}\
+\label{sec:esp32}
   Ze względu na wymaganą komunikację sieciową projektu, wysoką złożoność rozwiązania oraz zapotrzebowanie na wiele portów wejścia/wyjścia
   należało wybrać system mikroprocesorowy zapewniający poniższe możliwości:
   \begin{itemize}
@@ -16,7 +17,7 @@
   mikrokontroler z rodziny \textit{ESP32}. Zarówno mikrokomputer jak i mikrokontroler spełniają wszystkie ww. założenia. Urządzenia 
   z rodziny \textit{Raspberry Pi} są proste w użytku, posiadają system operacyjny oparty na jądrze \textit{Linux'a} oraz pozwalają na 
   programowanie w językach \textit{Python} oraz \textit{C++}. System operacyjny pozwala również na łatwe przechowywanie danych
-  w pamięci nieulotnej urządzenia z uwagi na obecny w nim system plików. Obecny na urządzeniach \textit{Raspberry Pi} system operacyjny
+  w pamięci nieulotnej urządzenia z uwagi na obecny w nim syWyświetlacze segmentostem plików. Obecny na urządzeniach \textit{Raspberry Pi} system operacyjny
   \textit{Raspbian} będący pochodną popularnej dystrybucji \textit{Debiana} pozwala na tworzenie własnych \textit{daemonów}
   (procesy działające w tle). 
   
@@ -54,6 +55,7 @@
 
 \clearpage
 \section{Adresowalne diody LED}
+\label{sec:led-rgb}
   Zakładano wizualizację interfejsu Maszyny W na tablicy złożonej z diod LED RGB. Adresowalne diody LED RGB pozwalają
   na sekwencyjne zadanie kolorów każdej z 3 diod (czerwonej, zielonej oraz niebieskiej) elementu, połączonych w ciągłą linię.
   Przewidywana liczba pojedynczych diod LED podłączonych do SWIM przekracza 600. Znaczna liczba elementów może doprowadzać do
@@ -86,6 +88,7 @@
 
 
 \section{Przyciski}
+\label{sec:przyciski}
   W celu zapewnienia pełnej obsługi Maszyny W potrzebne jest wykorzystanie 17 przycisków.
   Symulator w wersji podstawowej udostępnia użytkownikowi 16 możliwych sygnałów: 
   \textit{czyt, wys, wei, il, wyad, weak, pisz, przep, wel, wyl, dod, ode, wes, weja, wyak, wea}. Do wymienionych sygnałów 
@@ -111,7 +114,7 @@
     \label{fig:schemat-mux}
   \end{figure}
   
-  Poniższa tabela (Tab. \ref{tab:mux-truth-table}) prawdy przedstawia odczyt stanu przycisków
+  Poniższa tabela (Tab. \ref{tab:mux-truth-table}) prawdy przedstawia odczyt stanu przycisków.
   \begin{table}[H]
     \centering
     \caption{Tablica prawdy multipleksera}
@@ -229,16 +232,105 @@
   przełącznika bezpośrednio do systemu mikroprocesorowego pozwala na wykorzystanie przerwań w celu natychmiastowej
   zmiany trybu pracy urządzenia. Korekta drgań styków urządzenia została zapewniona z poziomu oprogramowania. 
 
-\section{Serwer}
+\clearpage
+\section{Serwer} %żródło kto zrobił stronę
+\label{sec:serwer}
+  Na potrzebę modernizacji narzędzia dydaktycznego, jakim jest Maszyna W, została stworzona strona 
+  internetowa (rozdział \ref{sec:strona-internetowa}) symulująca działanie modelu komputera. Projekt oraz wykonanie ww. strony internetowej nie jest
+  częścią poniższej pracy dyplomowej. Sieciowy symulator Maszyny W został wykonany przez (AUTORZY !!!). Zadamiem SWIM
+  jest serwowanie ww. strony internetowej na lokalnej sieci utworzonej przez mikroprocesor.
 
+
+  Mikroprocesor wybrany w rozdziale \ref{sec:esp32} umożliwia serwowanie złożonych stron internetowych z poziomu urządzenia.
+  Aby było to możliwe planowano wykorzystać biblioteki takie jak:
+  \begin{itemize}
+    \item \textit{WiFi} - obsługa połączeń i konfiguracji interfejsu sieci bezprzewodowej,
+    \item \textit{AsyncTCP} - asynchroniczna, nieblokująca komunikacja TCP,
+    \item \textit{AsyncWebServer} - asynchroniczna obsługa serwera HTTP,
+    \item \textit{LittleFS} - system plików dla pamięci flash mikrokontrolera (przechowywanie plików strony)
+    \item \textit{DNSServer} - lokalna obsługa i przekierowywanie zapytań serwera nazw domen.
+  \end{itemize} 
+
+
+  Wykorzystanie owych bibliotek pozwala na:
+  \begin{itemize}
+    \item kontrolę połączeń z użytkownikami oraz ograniczenie ich liczby,
+    \item komunikację przy wykorzystaniu protokołu sieciowego TCP,
+    \item przechowywanie złożonej strony internetowej Maszyny W bezpośrednio w pamięci flash mikroprocesora,
+    \item wykorzystanie portalu przechwytującego zapytania DNS w celu przekierowania użytkowników na wybraną stronę.
+  \end{itemize} 
 
 \section{Punkt dostępowy}
+  Kreacja urządzenia sieciowego wymaga zabezpieczenia rozwiązania przed niechcianym dostępem oraz atakami.
+  Spośród dwóch możliwych rozwiązań: serwowaniu strony internetowej w globalnej sieci lub sieci lokalnej zdecydowano na rozwiązanie w pełni lokalne.
+  Aby było to możliwe mikroprocesor tworzy własną sieć internetową na której następnie serwuje stronę internetową. 
+  
 
+  Tworzenie własnego punktu dostępu oraz izolacja go od sieci globalnej zapewnia bezpieczeństwo oraz kontrolę dostępu dla urządzenia.
+  Bibioteki wymienione w rozdziale \ref{sec:serwer} umożliwiają zadanie hasła punktowi dostępu oraz ograniczenie liczby połączonych na raz użytkowników.
 
 \section{Strona internetowa}
+  Poniższa praca dyplomowa wykorzystuje wykonaną na potrzeby projektu PBL, którego SWIM również był częścią, stronę 
+  modernizującą symulator Maszyny W. Niezwykle ważnym jest zaznaczyć, iż projekt oraz wykonanie ww. strony internetowej
+  nie są częścią poniższej pracy dyplomowej. Została ona stworzona przez (AUTORZY STRONY !!!). Mając na uwadze autorów tej części projektu
+  należy zrozumieć jej działanie, aby w odpowiedni sposób wdrożyć ją do projektu. 
+  \\
 
+  Strona umożliwia naukę działania Maszyny W w intuicyjny oraz łatwo dostępny sposób. Na Rys. \ref{fig:maszyna-web} widnieje 
+  strona główna symulatora.
+  \begin{figure}[H]
+  \centering
+  \includegraphics[width=1\textwidth]{./graf/maszyna-web.png}
+  \caption{Strona główna sieciowego symulatora Maszyny W}
+  \label{fig:maszyna-web}
+  \end{figure}
 
+  Zakłada się wizualizację obecnych na powyższym rysunku elementów symulatora, takich jak: licznik, akumulator, czy pamięć operacyjna
+  przy pomocy wymienionych w rodziale \ref{sec:led-rgb} wyświetlaczy. Kontrolę sygnałów takich jak: czyt, wys, wei, itd. umożliwią 
+  opisane w rozdziale \ref{sec:przyciski} przyciski. 
+
+\clearpage
 \section{Interfejs komunikacyjny}
+  Niezbędnym elementem poniższego projektu jest możliwość komunikacji pomiędzy mikroprocesorem, a serwowaną na nim stroną w czasie rzeczywistym.
+  Wyjściowo, nie jest możliwe przesyłanie informacji o aktualnie znajdujących się wartościach w polach tekstowych strony internetowej, lub o
+  aktualnie wybranych sygnałach. 
+  
+  Standardowa implementacja serwera posiada jedynie możliwość komunikacji za pomocą protokołu \textit{HTTP}. Wykorzystanie
+  takiego rozwiązania wymagałoby wysyłania cyklicznych żądań do serwera co powodowałoby wysokie zużycie zasobów oraz opóźnienia w działaniu.  
+  W celu zapewnienia wydajnej oraz szybkiej komunikacji pomiędzy stroną internetową a serwerem wykorzystano technologię \textit{Websocketów}.
+  \\
+
+  \textit{Websocket} jest dwukierunkowym protokołem komunikacyjnym. Działa zarówno w warstwie aplikacji (strona internetowa) oraz 
+  na serwerze (mikroprocesor). Umożliwia wymianę danych w czasie rzeczywistym, bez konieczności każdorazowego inicjowania żądania przez użytkownika.
+  Wykorzystuje asynchroniczną komunikację, co pozwala na nieblokujące odbieranie i nadawanie złożonych informacji.
 
 
+  Poniższy schemat ilustruje przebieg komunikacji \textit{WebSocket}, pomiędzy klientem (stroną internetową), a serwerem.
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{./graf/websocket-graph.pdf}
+    \caption{Schemat komunikacji przy wykorzystaniu protokołu \textit{Websocket}} %https://www.scaler.com/topics/computer-network/websocket/
+    \label{fig:websocket-graph}
+  \end{figure} 
+
+\clearpage
 \section{Zasilanie}
+  Mając na uwadze wszystkie wymienione w powyższym rozdziale elementy SWIM, dokonano analizy wymagań energetycznych układu w celu dobrania 
+  odpowiedniego zasilacza. Adresowalne diody LED oraz podświetlenie wymagały zasilania napięciem 12V, natomiast mikrokontroler ESP32 
+  oraz multiplekser korzystały z napięcia 3,3V.
+
+  Przeprowadzono szacunkowe obliczenia maksymalnego poboru prądu:
+  \begin{itemize}
+    \item dla linii diod LED WS2815B-V1, przy założeniu pełnej jasności każdej z trzech diod RGB oraz wykorzystaniu 600 elementów, przewidziano maksymalny pobór prądu na poziomie około 9A,
+    \item dla podświetlenia LED przewidziano pobór prądu rzędu 0,5A, uwzględniając wszystkie elementy podświetlane jednocześnie,
+    \item dla mikrokontrolera ESP32-S3 oraz układów towarzyszących przewidziano pobór prądu około 600mA przy pełnym obciążeniu interfejsów peryferyjnych i aktywnym WiFi.
+  \end{itemize}
+
+Na podstawie powyższych obliczeń dobrano zasilacz impulsowy o napięciu wyjściowym 12V i mocy minimalnej 330W, co zapewniało bezpieczny 
+margines względem przewidywanego maksymalnego poboru prądu. Zastosowanie zasilacza o większej mocy umożliwiało również stabilne działanie 
+układu przy chwilowych skokach poboru prądu przez linie LED.
+
+Zasilanie mikrokontrolera ESP32 oraz innych układów niskonapięciowych realizowano przy użyciu przetwornicy DC-DC obniżającej napięcie z 12V do 3,3V.
+Rozwiązanie to zapewniało izolację układów niskonapięciowych od wysokoprądowych linii LED oraz stabilne napięcie zasilania, eliminując spadki i 
+zakłócenia w pracy mikrokontrolera. Dodatkowo, w celu ochrony układu przed odwrotną polaryzacją, należy zapewnić odpowiednią ochronę. 
+Takie podejście zapewniło bezpieczne i niezawodne działanie całego systemu SWIM.

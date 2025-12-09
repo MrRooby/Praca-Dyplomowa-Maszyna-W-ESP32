@@ -6,25 +6,36 @@
 
 \section{Obwody drukowane}
   Obwody drukowane zostały wykonane na specjalne zamówienie przez zewnętrzną firmę \textit{JLCPCB}.
-  Mozaikę ścieżek płytek drukowanych zaprojektowano wykorzystując program \textit{KiCAD}.
+  Mozaikę ścieżek płytek drukowanych zaprojektowano na bazie schematów z rozdziału \ref{ch:04}. Wykorzystano 
+  w tym celu program \textit{KiCAD}.
   Odpowiednie rysunki przedstawiające warstwę górną oraz dolną płytek drukowanych 
   przedstawiono w podrozdziałach \ref{circ:01} oraz \ref{circ:02}.
 
+
+  \clearpage
   \subsection{Płyta główna}
     \label{circ:01}
+    Na rysunkach \ref{fig:plyta-glowna-pcb-front} oraz \ref{fig:plyta-glowna-pcb-rewers} przedstawiono mozaiki obwodów drukowanych
+    płyty głównej SWIM.
+    \\
 
+    Front płytki zapewnia możliwość przymocowania elementów urządzenia wyłączając wyprowadzenia oraz porty.
+    Rysunek \ref{fig:plyta-glowna-pcb-front} przedstawia płytkę pomniejszoną dwukrotnie względem wymiarów rzeczywistych.
     \begin{figure}[H]
-    \centering
-    \includegraphics[width=0.7\textwidth]{./graf/plyta-glowna-pcb-front.png}
-    \caption{Widok warstwy górnej płyty głównej}
-    \label{fig:plyta-glowna-pcb-front}
+      \centering
+      \includegraphics[scale=0.5]{./graf/plyta-glowna-pcb-front.pdf}
+      \caption{Widok warstwy górnej płyty głównej}
+      \label{fig:plyta-glowna-pcb-front}
     \end{figure}
 
+    Rewers płytki zapewnia możliwość przymocowania wyprowadzeń oraz portów urządzenia. Umożliwia również podłączenie
+    dodatkowych elementów przy wykorzystaniu dostępnych wyprowadzeń dodatkowych.
+    Rysunek \ref{fig:plyta-glowna-pcb-front} przedstawia płytkę pomniejszoną dwukrotnie względem wymiarów rzeczywistych.
     \begin{figure}[H]
-    \centering
-    \includegraphics[width=0.7\textwidth]{./graf/plyta-glowna-pcb-back.png}
-    \caption{Widok warstwy dolnej płyty głównej}
-    \label{fig:plyta-glowna-pcb-rewers}
+      \centering
+      \includegraphics[scale=0.5]{./graf/plyta-glowna-pcb-back.pdf}
+      \caption{Widok warstwy dolnej płyty głównej}
+      \label{fig:plyta-glowna-pcb-rewers}
     \end{figure}
 
 
@@ -33,37 +44,53 @@
   \subsection{Wyświetlacze siedmiosegmentowe}
     \label{circ:02}
 
-    %%%%%%%%%%%%%%%%%%%%%%%% TRZYCYFROWY %%%%%%%%%%%%%%%%%%%%%%%%
+    Na rysunkach \ref{fig:wysw-trzy-front} oraz \ref{fig:wysw-trzy-rewers} przedstawiono mozaiki obwodów drukowanych
+    wyświetlacza trzycyfrowego. 
+    \\
+    
+    Front płytki zapewnia możliwość przymocowania
+    diod LED. Rysunek \ref{fig:wysw-trzy-front} przedstawia płytkę w rzeczywistych wymiarach.
     \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{./graf/wysw-trzy-front.png}
+    \includegraphics[scale=1]{./graf/wysw-trzy-back.pdf}
     \caption{Widok warstwy górnej wyświetlacza trzycyfrowego}
     \label{fig:wysw-trzy-front}
     \end{figure}
 
+    Rewers płytki zapewnia możliwość przymocowania kondensatorów filtrujących.
+    Rysunek \ref{fig:wysw-trzy-rewers} przedstawia płytkę w rzeczywistych wymiarach.
     \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{./graf/wysw-trzy-back.png}
+    \includegraphics[scale=1]{./graf/wysw-trzy-front.pdf}
     \caption{Widok warstwy dolnej wyświetlacza trzycyfrowego}
     \label{fig:wysw-trzy-rewers}
     \end{figure}
 
-    %%%%%%%%%%%%%%%%%%%%%%%% DWUCYFROWY %%%%%%%%%%%%%%%%%%%%%%%%
+
+    \clearpage
+    Na rysunkach \ref{fig:wysw-dwu-front} oraz \ref{fig:wysw-dwu-rewers} przedstawiono mozaiki obwodów drukowanych
+    wyświetlacza dwucyfrowego. 
+    \\
+
+    Front płytki zapewnia możliwość przymocowania
+    diod LED. Rysunek \ref{fig:wysw-dwu-front} przedstawia płytkę w rzeczywistych wymiarach.
     \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\textwidth]{./graf/wysw-dwu-front.png}
+    \includegraphics[scale=1]{./graf/wysw-dwu-back.pdf}
     \caption{Widok warstwy górnej wyświetlacza dwucyfrowego}
     \label{fig:wysw-dwu-front}
     \end{figure}
 
+    Rewers płytki zapewnia możliwość przymocowania kondensatorów filtrujących.
+    Rysunek \ref{fig:wysw-dwu-rewers} przedstawia płytkę w rzeczywistych wymiarach.
     \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\textwidth]{./graf/wysw-dwu-back.png}
+    \includegraphics[scale=1]{./graf/wysw-dwu-back.pdf}
     \caption{Widok warstwy dolnej wyświetlacza dwucyfrowego}
     \label{fig:wysw-dwu-rewers}
     \end{figure}
 
-
+\clearpage
 \section{Opis złącz}
   \subsection{Płyta główna}
 
