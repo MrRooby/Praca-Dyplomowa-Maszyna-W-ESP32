@@ -28,7 +28,8 @@
 \contentsline {figure}{\numberline {5.5}{\ignorespaces Widok warstwy górnej wyświetlacza dwucyfrowego\relax }}{26}{figure.caption.23}%
 \contentsline {figure}{\numberline {5.6}{\ignorespaces Widok warstwy dolnej wyświetlacza dwucyfrowego\relax }}{26}{figure.caption.24}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces Diagram zależności klas obsługujących diody LED\relax }}{30}{figure.caption.34}%
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Diagram sekwencji działania menadżera diod LED\relax }}{31}{figure.caption.34}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Wizualizacja schematu działania wyświetlaczy segmentowych\relax }}{32}{figure.caption.35}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

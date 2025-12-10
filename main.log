@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2025.9.16)  9 DEC 2025 16:30
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2025.9.16)  10 DEC 2025 18:06
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1946,11 +1946,14 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 ]
 Rozdział 5.
 [23]
+Underfull \hbox (badness 10000) in paragraph at lines 18--21
+
+ []
+
 File: ./graf/plyta-glowna-pcb-front.pdf Graphic file (type pdf)
 <use ./graf/plyta-glowna-pcb-front.pdf>
 File: ./graf/plyta-glowna-pcb-back.pdf Graphic file (type pdf)
 <use ./graf/plyta-glowna-pcb-back.pdf>
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1962,7 +1965,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [24
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 39--42
+Underfull \hbox (badness 10000) in paragraph at lines 47--50
 
  []
 
@@ -1981,14 +1984,14 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [25
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 63--66
+Underfull \hbox (badness 10000) in paragraph at lines 71--74
 
  []
 
 File: ./graf/wysw-dwu-back.pdf Graphic file (type pdf)
 <use ./graf/wysw-dwu-back.pdf>
-File: ./graf/wysw-dwu-back.pdf Graphic file (type pdf)
-<use ./graf/wysw-dwu-back.pdf>
+File: ./graf/wysw-dwu-front.pdf Graphic file (type pdf)
+<use ./graf/wysw-dwu-front.pdf>
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -2000,11 +2003,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [26
 
 ]
-Overfull \hbox (7.78264pt too wide) in paragraph at lines 124--127
-[]\TU/lmr/m/n/12 Przełącznik trybów posiada dedykowane 2-pinowe złącze typu \TU
-/lmr/m/it/12 JST-ZH \TU/lmr/m/n/12 o rastrze 1.5 mm.
- []
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -2026,15 +2024,27 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [28]
 Rozdział 6.
-File: ./graf/display-manager-uml.pdf Graphic file (type pdf)
-<use ./graf/display-manager-uml.pdf>
+[29
 
-Underfull \vbox (badness 5490) has occurred while \output is active []
+]
+Underfull \hbox (badness 10000) in paragraph at lines 33--38
 
- [29
+ []
 
-])
-(./chapters/07.tex
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[30
+
+]
+File: ./graf/display-manager-flow-chart.pdf Graphic file (type pdf)
+<use ./graf/display-manager-flow-chart.pdf>
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -2046,29 +2056,34 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[30]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[31]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[32
+[31
 
 ]
-Rozdział 7.
-) [33]
+File: ./graf/segment-display.pdf Graphic file (type pdf)
+<use ./graf/segment-display.pdf>
+
+Underfull \hbox (badness 10000) in paragraph at lines 76--80
+
+ []
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[32]) (./chapters/07.tex
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[33]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -2080,15 +2095,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [34
 
 ]
-
-LaTeX Warning: Empty bibliography on input line 179.
-
-[35
-
-
-] [36] (./chapters/08.tex) (./chapters/09.tex [37
-
-]
+Rozdział 7.
+) [35]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -2097,9 +2105,18 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[38
+[36
 
-]) (./chapters/10.tex [39]
+]
+
+LaTeX Warning: Empty bibliography on input line 179.
+
+[37
+
+
+] [38] (./chapters/08.tex) (./chapters/09.tex [39
+
+]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -2110,13 +2127,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [40
 
-]
-Overfull \hbox (3.10394pt too wide) in paragraph at lines 8--9
-[]\TU/lmr/m/n/12 film pokazujący działanie opracowanego oprogramowania lub zapr
-ojektowanego i wy-
- []
-
-) [41]
+]) (./chapters/10.tex [41]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -2127,11 +2138,13 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [42
 
-] (./main.lof)
-\tf@lof=\write9
-\openout9 = `main.lof'.
+]
+Overfull \hbox (3.10394pt too wide) in paragraph at lines 8--9
+[]\TU/lmr/m/n/12 film pokazujący działanie opracowanego oprogramowania lub zapr
+ojektowanego i wy-
+ []
 
- [43]
+) [43]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -2142,6 +2155,21 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [44
 
+] (./main.lof)
+\tf@lof=\write9
+\openout9 = `main.lof'.
+
+ [45]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[46
+
 ] (./main.lot)
 \tf@lot=\write10
 \openout10 = `main.lot'.
@@ -2151,23 +2179,23 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 Package caption Warning: Unused \captionsetup[listing] on input line 61.
 See the caption package documentation for explanation.
 
-[45] (./main.aux)
+[47] (./main.aux)
 
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: D53FF01C6B1DF60F44023EC939D28D4D;7431.
+(rerunfilecheck)             Checksum: 9D0B5D8EEBB30D42F8988DDF145364D2;7540.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 52256 strings out of 476696
- 1175585 string characters out of 5806955
+ 52276 strings out of 476696
+ 1176225 string characters out of 5806955
  1990678 words of memory out of 6000000
- 71634 multiletter control sequences out of 15000+600000
+ 71652 multiletter control sequences out of 15000+600000
  523315 words of font info for 96 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  89i,11n,92p,1946b,5524s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (51 pages).
+Output written on main.pdf (53 pages).

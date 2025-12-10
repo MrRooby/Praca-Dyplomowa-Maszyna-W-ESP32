@@ -1,36 +1,113 @@
 \chapter{Opis oprogramowania}
 \label{ch:06}
 
-\section{Program mikrokontrolera}
-  Program mikrokontrolera ESP32 został napisany w języku \textit{C++} za pomocą aplikacji
-  \textit{Visual Studio Code}. Kod wynikowy zajmuje około 900kB.
-  Mikrokontroler ma do zrealizowania następujące zadaniami:
+Program mikrokontrolera ESP32 został napisany w języku \textit{C++} za pomocą aplikacji
+\textit{Visual Studio Code} wykorzystującej, dedykowane programowaniu mikrokontrolerów,
+rozszerzenie \textit{PlatformIO}. Kod wynikowy zajmuje około 900kB. 
+Mikrokontroler ma do zrealizowania następujące zadania:
+\begin{itemize}
+  \item obsługa adresowalnych diod LED,
+  \item obsługa przycisków, enkodera oraz przełącznika trybów,
+  \item obsługa pamięci nieulotnej/systemu plików,
+  \item obsługa trybu sieciowego SWIM,
+  \item obsługa trybu lokalnego SWIM,
+  \item kontrola podświetlenia LED.
+\end{itemize}
+Kompletny kod źródłowy mikrokontrolera wraz z instrukcją instalacji został zamieszczony w dodatku (TODO Dodatek z kodem źródłowym).
+
+\clearpage
+\section{Obsługa adresowalnych diod LED} 
+\label{sec:obsluga-led}
+  Stworzenie wydajnego oraz łatwego w rozbudowie oprogramowania wymagało zaprojektowania odpowiedniej architektury kodu.
+  W tym celu stworzono obiekt \textit{DisplayManager}. Jest on odpowiedzialny za zarządzanie wszystkimi adresowalnymi diodami LED urządzenia.
+  Implementacja obejmuje następującą funkcjonalność:
   \begin{itemize}
-    \item obsługa linii adresowalnych diod LED,
-    \item obsługa przycisków, enkodera oraz przełącznika trybów,
-    \item obsługa pamięci nieulotnej/systemu plików,
-    \item obsługa trybu sieciowego SWIM,
-    \item obsługa trybu lokalnego SWIM,
-    \item kontrola podświetlenia LED SWIM,
-    \item obsługa enkodera.
+    \item tworzenie/usuwanie wyświetlaczy,
+    \item zmianę koloru poszczególnych elementów,
+    \item zadawanie wartości do wyświetlenia elementom,
+    \item odświeżanie koloru wszystkich elementów naraz,
+    \item wyświetlanie animacji testowych/ładowanie.
   \end{itemize}
-  Kompletny kod źródłowy mikrokontrolera wraz z instrukcją instalacji został zamieszczony w publicznym
-  repozytorium pod adresem: \textit{TODO adres repo}. 
-
-  \subsection{Obsługa linii adresowalnych diod LED}
-    \begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{./graf/display-manager-uml.pdf}
-    \caption{Diagram zależności klas obsługujących diody LED}
-    \label{fig:display-manager-uml}
-    \end{figure}
-
-    TODO opis części kodu z przykładowymi funkcjami itp
-
-  \subsection{Obsługa przycisków, enkodera oraz przełącznika trybów}
   
-  \subsection{Obsługa pamięci nieulotnej/systemu plików}
+  
+  Podczas tworzenia implementacji dla obsługi diod zdecydowano się na abstrakcyjne rozwiązanie problemu wielu różnych typów wyświetlanych wartości.
+  Powstała w tym celu klasa wirtualna \textit{LedElement} pozwala na proste odnalezienie elementu w linii diod LED, dynamiczne
+  zarządzanie pamięcią urządzenia oraz tworzenie klas pochodnych dla specyficznych wartości takich jak: sygnał, magistrala, czy pamięć operacyjna. 
+  Sposób wyświetlania wartości liczbowych przy użyciu diod LED opisano w rodziale \ref{sec:segment-display}. 
+  \\
 
-  \subsection{Obsługa trybu sieciowego SWIM}
 
-  \subsection{Obsługa trybu lokalnego SWIM}
+  Wykorzystanie abstrakcyjnego podejścia przy kreacji architektury oprogramowania pozwoliło w łatwy sposób odizolować i wykryć błędy. Pozwala na łatwą 
+  rozbudowę lub modyfikację układu wyświetlaczy. Implementacja menadżera w ostatecznej wersji oprogramowania wywołuje metodę odświeżającą wszystkie 
+  diody LED zgodnie z poniższym schematem blokowym (Rys. \ref{fig:display-manager-flow-chart}). Widoczny na rysunku schemat ma na celu prezentację 
+  podstawowych funkcji zarządzania diodami LED.
+
+  \clearpage
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{./graf/display-manager-flow-chart.pdf}
+    \caption{Diagram sekwencji działania menadżera diod LED}
+    \label{fig:display-manager-flow-chart}
+  \end{figure}
+
+\section{Obsługa wyświetlaczy segmentowych}
+\label{sec:segment-display}
+  Stworzenie czytelnego oraz łatwego w obsłudze oprogramowania wymagało specjalnego obiektu 
+  zarządzającego diodami LED wyświetlającymi wartości liczbowe. Model Maszyny W został 
+  skonstruowany z 9 wyświetlaczy 3-cyfrowych oraz 8 wyświetlaczy 2-cyfrowych. Zarządzanie 43 cyframi 
+  wymagało stworzenia obiektu przechowującego indeksy diod odpowiedzialnych za daną wartość liczbową. 
+
+  Powyżej opisany problem należało rozwiązać na etapie konstrukcji schematów elektrycznych 
+  wyświetlaczy (rozdziały \ref{sec:trzyseg-wysw} oraz \ref{sec:trzyseg-wysw}). Rysunek \ref{fig:segment-display}
+  przedstawia kolejność połączenia diod w wyświetlaczu segmentowym. Wyjście ostatniej diody segmentu jest podłączone do
+  wejścia pierwszej diody kolejnego segmentu lub elementu wyświetlacza. 
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.65\textwidth]{./graf/segment-display.pdf}
+    \caption{Wizualizacja schematu działania wyświetlaczy segmentowych}
+    \label{fig:segment-display}
+  \end{figure} 
+
+  Obiekt \textit{Segment} obecny w oprogramowaniu SWIM jest odpowiedzialny za zarządzanie diodami LED wchodzącymi
+  w skład segmentu. Przechowuje indeksy diod, oraz zawiera implementację metody wyświetlania cyfr. 
+  
+
+\section{Obsługa przycisków, enkodera, diod płyty głównej oraz przełącznika trybów}
+  Podobnie jak w przypadku obsługi diod LED (rozdział \ref{sec:obsluga-led}), przygotowano rozwiązanie umożliwiające 
+  zarządzanie wszystkimi elementami sterującymi. W tym celu utworzono obiekt \textit{HumanInterface} nakładający warstwę abstrakcji na 
+  niskopoziomowe operacje związane z obsługą wejść urządzenia. 
+  \\
+
+  Obiekt \textit{HumanInterface} jest odpowiedzialny za ustawienie wyprowadzeń mikroprocesora. Przy inizjalizacji ustawia wyprowadzenia jako wyjście
+  dla multipleksera, przycisku \textit{takt}, przełącznika trybów oraz enkodera. Inicjalizowane również są wyprowadzenia dla dwóch 
+  diod LED obecnych na płycie głównej. 
+
+  Obiekt posiada dedykowane metody do obsługi następujących funkcji urządzenia:
+  \begin{itemize}
+    \item obrót enkodera,
+    \item zwracanie stanu przycisku enkodera,
+    \item multipleksowanie przycisków,
+    \item zwracanie stanu przycisków,
+    \item zwracanie stanu przełącznika trybów,
+    \item eliminacja drgań styków,
+    \item kontrola diod LED płyty głównej,
+    \item kontrola podświetlenia LED modelu.
+  \end{itemize}
+ 
+
+\section{Obsługa pamięci nieulotnej/systemu plików}
+  Rozmiar plików strony internetowej serwowanej przez urządzenie oraz potrzeba aktualizacji strony wymagała stworzenia 
+  sposobu na zapis plików w pamięci nieulotnej urządzenia.
+  Dodatkowo wykorzystanie diod LED RGB pozwala na personalizację kolorów poszczególnych elementów SWIM. Strona internetowa
+  posiada opcję ustawienia koloru dla: wyświetlaczy segmentowych, sygnałów oraz magistrali. Aby zapewnić możliwość przechowywania
+  wybranej konfiguracji również należało zapisać wartości w pamięci nieulotnej urządzenia.
+
+  Wyżej wymienione powody wymagały wykorzystania zewnętrznej biblioteki \textit{LittleFS}. Pozwala ona stworzyć osobną partycję w 
+  pamięci flash urządzenia dla systemu plików. Zapisane w ten sposób dane nie ulegają usunięciu po odłączeniu zasilania urządzenia.
+
+
+\section{Obsługa trybu sieciowego SWIM}
+
+
+
+\section{Obsługa trybu lokalnego SWIM}

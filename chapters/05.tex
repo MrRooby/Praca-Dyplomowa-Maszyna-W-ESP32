@@ -85,7 +85,7 @@
     Rysunek \ref{fig:wysw-dwu-rewers} przedstawia płytkę w rzeczywistych wymiarach.
     \begin{figure}[H]
     \centering
-    \includegraphics[scale=1]{./graf/wysw-dwu-back.pdf}
+    \includegraphics[scale=1]{./graf/wysw-dwu-front.pdf}
     \caption{Widok warstwy dolnej wyświetlacza dwucyfrowego}
     \label{fig:wysw-dwu-rewers}
     \end{figure}
@@ -95,22 +95,23 @@
   \subsection{Płyta główna}
 
     \subsubsection{Złącze zasilania}
-      Urządzenie jest wyposażone w 2-pinową listwę zaciskową typu \textit{ARK}. 
-      Złącze pełni funkcję głównego wejścia zasilania i przyjmuje napięcie 12~V. 
+      Urządzenie jest wyposażone w 2-wyprowadzeniową listwę zaciskową typu \textit{ARK}. 
+      Złącze pełni funkcję głównego wejścia zasilania i przyjmuje napięcie 12V. 
       Układ elektryczny wyposażono w zabezpieczenie przed odwrotną polaryzacją, 
-      uniemożliwiające uszkodzenie płytki w przypadku błędnego podłączenia przewodów. 
-      Wybrany model złącza wspiera napięcia do 250~V oraz prąd znamionowy do 18~A. 
+      uniemożliwiające uszkodzenie płytki w przypadku błędnego podłączenia przewodów.
 
     \subsubsection{Złącze USB-C}
       W celu umożliwienia łatwego programowania i komunikacji z mikroprocesorem, 
       płytkę wyposażono w złącze USB typu C (tryb USB 2.0 Device).
       Wyprowadzone są jedynie linie \textit{D+} oraz \textit{D−}. Linie zasilania 
       \textit{VBUS} są wykorzystywane do zasilania sekcji USB oraz wykrywania 
-      podłączenia komputera. Pozostałe piny USB-C niewykorzystywane przez układ 
+      podłączenia komputera. Aby zapewnić zabezpieczenie przed prądem wstecznym
+      wykorzystano diodę \textit{Schottky'ego} połączoną w kierynku zaporowym na linii zasilania.
+      Pozostałe wyprowadzenia USB-C niewykorzystywane przez układ 
       zostały pozostawione niepodłączone, zgodnie ze specyfikacją.
 
     \subsubsection{Złącze enkodera}
-      Do podłączenia impulsatora zastosowano 5-pinowe złącze typu \textit{JST-ZH} o rastrze 1.5~mm.
+      Do podłączenia impulsatora zastosowano 5-wyprowadzeniowe złącze typu \textit{JST-ZH} o rastrze 1.5mm.
       Wyprowadzone sygnały:
       \begin{itemize}
         \item \textit{+3V3} -- zasilanie elementu,
@@ -123,43 +124,44 @@
       zapewniono z poziomu oprogramowania.
 
     \subsubsection{Złącza przycisków}
-      Każdy przycisk posiada dedykowane 2-pinowe złącze typu \textit{JST-ZH} o rastrze 1.5~mm. 
-      Jeden pin każdego złącza podłączony jest do masy \textit{GND}, drugi -- do wejścia cyfrowego mikroprocesora.
-      Linie sygnałowe wyposażono w podciągnięcie napięcia z poziomu wbudowanych w mikroprocesor 
-      rezystorów podciągających. Filtrację sygnałów zapewniono od strony oprogramowania.
+      Każdy przycisk posiada dedykowane 2-wyprowadzeniowe złącze typu \textit{JST-ZH} o rastrze 1.5mm. 
+      Jedno wyprowadzenie każdego złącza podłączone jest do masy \textit{GND}, drugie -- do wejścia cyfrowego mikroprocesora.
+      Linie sygnałowe wyposażono w rezystor polaryzujący do zasilania z poziomu wbudowanych w mikroprocesor 
+      rezystorów. Filtrację sygnałów zapewniono od strony oprogramowania.
 
     \subsubsection{Złącze przełącznika trybów}
-      Przełącznik trybów posiada dedykowane 2-pinowe złącze typu \textit{JST-ZH} o rastrze 1.5~mm.
-      Jeden pin złącza podłączony jest do masy \textit{GND}, drugi -- do wejścia cyfrowego mikroprocesora wykorzystującego
-      wbudowany w mikroprocesor rezystor podciągający. Filtrację sygnałów zapewniono od strony oprogramowania.
+      Przełącznik trybów posiada dedykowane 2-wyprowadzeniowe złącze typu \textit{JST-ZH} o rastrze 1.5mm.
+      Jedno wyprowadzenie złącza podłączone jest do masy \textit{GND}, drugie -- do wejścia cyfrowego mikroprocesora 
+      wykorzystującego wbudowany w mikroprocesor rezystor polaryzujący do zasilania. 
+      Filtrację sygnałów zapewniono od strony oprogramowania.
 
     \subsubsection{Złącza linii LED}
-      Dwa wyprowadzenia linii LED wykorzystują 3-pinowe złącza typu \textit{JST-XH} o rastrze 2.5~mm, 
+      Dwa wyprowadzenia linii LED wykorzystują 3-wyprowadzeniowe złącza typu \textit{JST-XH} o rastrze 2.5mm, 
       prowadzące sygnały do linii diod LED typu \textit{WS2815B-V1}.
-      Piny:
+      Wyprowadzenia:
       \begin{itemize}
         \item \textit{+5V} -- zasilanie diod,
         \item \textit{DATA} -- linia danych,
         \item \textit{GND} -- masa układu.
       \end{itemize}
-      Dodatkowo zastosowano kondensator filtrujący do uziemienia na każdej z adresowalnych diod obecnych na płytkach
+      Dodatkowo zastosowano kondensator filtrujący do masy na każdej z adresowalnych diod obecnych na płytkach
       drukowanych, zgodnie z dokumentacją producenta.
 
     \subsubsection{Złącza zasilania podświetlenia modelu}
-      Płytka zawiera dodatkowe dwa 2-pinowe złącza typu \textit{JST-XH} o rastrze 2.5~mm. 
-      Każde złącze wspiera kontrolę zasilania 12~V z poziomu mikroprocesora. W tym celu
+      Płytka zawiera dodatkowe dwa 2-wyprowadzeniowe złącza typu \textit{JST-XH} o rastrze 2.5mm. 
+      Każde złącze wspiera kontrolę zasilania 12V z poziomu mikroprocesora. W tym celu
       zostały wykorzystane tranzystory typu \textit{MOSFET}.
     
     \subsubsection{Złącza dodatkowego wprowadzania zasilania}
       Projekt układu przewiduje potrzebę dodatkowego wprowadzania zasilania na linie adresowalnych diod LED. 
-      W tym celu płytkę wyposażono w 9 złącz typu \textit{JST-XH} o rastrze 2.5~mm. Każde złącze zapewnia 
-      zasilanie 12~V.
+      W tym celu płytkę wyposażono w 9 złącz typu \textit{JST-XH} o rastrze 2.5mm. Każde złącze zapewnia 
+      zasilanie 12V.
 
   \subsection{Wyświetlacze segmentowe}
     \subsubsection{Złącza wejścia/wyjścia}
       Każdy z wyświetlaczy segmentowych (zarówno trzycyfrowe, jak i dwucyfrowe) posiadają dwa złącza \textit{JST\_IN} oraz \textit{JST\_OUT}
-      typu \textit{JST-XH} o rastrze 2.5~mm. Złącza umożliwiają łączenie wyświetlaczy w ciągłe linie.
-      Piny:
+      typu \textit{JST-XH} o rastrze 2.5mm. Złącza umożliwiają łączenie wyświetlaczy w ciągłe linie.
+      Wyprowadzenia:
       \begin{itemize}
         \item \textit{+5V} -- zasilanie diod,
         \item \textit{DATA\_IN/DATA\_OUT} -- wejście/wyjście linii danych,
