@@ -14,6 +14,24 @@ Mikrokontroler ma do zrealizowania następujące zadania:
   \item kontrola podświetlenia LED.
 \end{itemize}
 Kompletny kod źródłowy mikrokontrolera wraz z instrukcją instalacji został zamieszczony w dodatku (TODO Dodatek z kodem źródłowym).
+\\
+
+
+Poniższe rozdziały opisują w szczegółowy sposób działanie oprogramowania urządzenia. Rozdziały \ref{sec:obsluga-led},
+\ref{sec:hum-inter} oraz \ref{sec:filesystem} opisują działanie elementów oprogramowania funkcjonujących zarówno 
+w trybie sieciowym, jak i lokalnym urządzenia. Opis działania owych elementów jest kluczowy do zrozumienia funkcjonowania
+obu trybów. Metody zarządzania ww. elementami oraz sposób działania obu trybów SWIM zostały omówione w rozdziałach 
+\ref{sec:w-server} oraz \ref{sec:w-local}.
+
+\clearpage
+Poniższy schemat (Rys. \ref{fig:schemat-ogolny-kodu}) przedstawia punkt wejściowy programu urządzenia. Rozszerzony opis działania widocznych 
+na nim elementów znajduje się w ww. rozdziałach.
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{./graf/schemat-ogolny-kodu.pdf}
+  \caption{Ogólny diagram sekwencji działania oprogramowania}
+  \label{fig:schemat-ogolny-kodu}
+\end{figure}
 
 \clearpage
 \section{Obsługa adresowalnych diod LED} 
@@ -73,6 +91,7 @@ Kompletny kod źródłowy mikrokontrolera wraz z instrukcją instalacji został 
   
 
 \section{Obsługa przycisków, enkodera, diod płyty głównej oraz przełącznika trybów}
+\label{sec:hum-inter}
   Podobnie jak w przypadku obsługi diod LED (rozdział \ref{sec:obsluga-led}), przygotowano rozwiązanie umożliwiające 
   zarządzanie wszystkimi elementami sterującymi. W tym celu utworzono obiekt \textit{HumanInterface} nakładający warstwę abstrakcji na 
   niskopoziomowe operacje związane z obsługą wejść urządzenia. 
@@ -96,18 +115,43 @@ Kompletny kod źródłowy mikrokontrolera wraz z instrukcją instalacji został 
  
 
 \section{Obsługa pamięci nieulotnej/systemu plików}
+\label{sec:filesystem}
   Rozmiar plików strony internetowej serwowanej przez urządzenie oraz potrzeba aktualizacji strony wymagała stworzenia 
   sposobu na zapis plików w pamięci nieulotnej urządzenia.
   Dodatkowo wykorzystanie diod LED RGB pozwala na personalizację kolorów poszczególnych elementów SWIM. Strona internetowa
   posiada opcję ustawienia koloru dla: wyświetlaczy segmentowych, sygnałów oraz magistrali. Aby zapewnić możliwość przechowywania
   wybranej konfiguracji również należało zapisać wartości w pamięci nieulotnej urządzenia.
+  \\
 
   Wyżej wymienione powody wymagały wykorzystania zewnętrznej biblioteki \textit{LittleFS}. Pozwala ona stworzyć osobną partycję w 
   pamięci flash urządzenia dla systemu plików. Zapisane w ten sposób dane nie ulegają usunięciu po odłączeniu zasilania urządzenia.
+  
 
+  Urządzenie przechowuje w pamięci plik z konfiguracją kolorów w formacie \textit{json}. Podczas uruchamiania urządzenia konfiguracja
+  jest odczytywana, a kolory zostają odpowiednio ustawione. Użytkownik ma możliwość nadpisania pliku z konfiguracją wykorzystując
+  odpowiednią opcję w ustawieniach strony internetowej serwowanej przez urządzenie.
 
+\clearpage
 \section{Obsługa trybu sieciowego SWIM}
+\label{sec:w-server}
+  Głównym trybem działania urządzenia jest wizualizacja interfejsu sieciowego symulatora Maszyny W. Powstały w tym celu obiekt
+  \textit{W\_Server} zajmuje się kreacją oraz zarządzaniem następującymi funkcjami:
+  \begin{itemize}
+    \item tworzenie punktu dostępowego,
+    \item tworzenie serwera DNS,
+    \item serwowanie strony internetowej,
+    \item obsługa komunikacji pomiędzy stroną internetową, a serwerem, 
+  \end{itemize}
 
+  NAJPIERW JEST ANIMACJA ŁADOWANIA
+  IP SIĘ WYŚWIETLA
+  PO POŁĄCZENIU WYSYŁANA JEST POCZĄTKOWA konfiguracja
+  JAK COŚ SIĘ ZMIENI NA STRONIE TO WYSYŁANY JEST DANY ELEMENT
+  PRZY ZMIANIE KOLORÓW WYSYŁANA JEST CAŁA STRONA
+
+  Na szczególną uwagę zasługuje ostatni podpunkt. Przy każdorazowej aktualizacji wartości elementów symulatora strona 
+  internetowa wysyła wiadomość do urządzenia. 
 
 
 \section{Obsługa trybu lokalnego SWIM}
+\label{sec:w-local}
