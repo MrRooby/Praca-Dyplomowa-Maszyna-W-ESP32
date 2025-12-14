@@ -3,63 +3,57 @@
 
 \section{Cel pracy}
   Celem niniejszej pracy jest opracowanie systemu wizualizacji danych pochodzących z webowego interfejsu Maszyny W 
-  z wykorzystaniem mikrokontrolera ESP32-S3.
+  z wykorzystaniem mikrokontrolera ESP32.
 
-  Opracowane w ramach pracy dyplomowej urządzenie umożliwia odwzorowanie w czasie rzeczywistym wartości 
-  liczbowych oraz sygnałów sterujących symulatorem Maszyny W na adresowalnych diodach RGB. 
-  Ponadto system pozwala na zdalne sterowanie funkcjami symulatora zarówno za pomocą przycisków 
-  fizycznych, jak i interfejsu internetowego. System obsługuje hosting interfejsu webowego bezpośrednio 
-  na mikrokontrolerze oraz zapewnia komunikację pomiędzy ESP32 a interfejsem. 
-  Wykorzystany w tym celu protokół WebSocket umożliwia natychmiastową synchronizację zmian między stroną internetową 
-  a wyświetlaczem, co pozwala użytkownikowi na intuicyjny i interaktywny monitoring oraz kontrolę stanu Maszyny W.
+  Opracowane w ramach pracy dyplomowej urządzenie umożliwia odwzorowanie, w czasie rzeczywistym, wartości 
+  liczbowych oraz sygnałów sterujących symulatorem Maszyny W na adresowalnych diodach RGB.
+
+  Urządzenie pozwala na zdalne sterowanie funkcjami symulatora zarówno za pomocą przycisków 
+  fizycznych, jak i interfejsu internetowego. System obsługuje serwowanie strony internetowej bezpośrednio 
+  na mikrokontrolerze oraz zapewnia komunikację pomiędzy stroną a urządzeniem. 
+  Wykorzystane rozwiązania możliwiają natychmiastową synchronizację zmian między stroną internetową 
+  a modelem Maszyny, co pozwala użytkownikowi na intuicyjny i interaktywny monitoring oraz kontrolę stanu Maszyny W.
 
 \section{Wprowadzenie do Maszyny W}
-Współczesne systemy komputerowe charakteryzują się wysokim stopniem złożoności zarówno pod względem architektury 
-sprzętowej, jak i warstwy programowej. Pomimo tego, podstawowe zasady ich działania pozostają zgodne z klasycznymi 
-założeniami architektury von Neumanna, sformułowanymi w połowie XX wieku. 
+  Współczesne systemy komputerowe charakteryzują się wysokim stopniem złożoności zarówno pod względem architektury 
+  sprzętowej, jak i warstwy programowej. Pomimo tego, podstawowe zasady ich działania pozostają zgodne z klasycznymi 
+  założeniami architektury von Neumanna, sformułowanymi w połowie XX wieku. 
 
+  % W celu ułatwienia zrozumienia tych zasad w procesie dydaktycznym stosowane są uproszczone modele komputerów, 
+  % których zadaniem jest eksponowanie kluczowych mechanizmów przetwarzania informacji przy jednoczesnym ograniczeniu 
+  % liczby elementów składowych. Jednym z takich modeli jest Maszyna W.  
+  
+  Maszyna W została zaprojektowana w latach siedemdziesiątych XX wieku na Politechnice Śląskiej przez zespół kierowany 
+  przez prof. Stefana Węgrzyna jako uproszczony model komputera, przeznaczony do nauki podstaw architektury 
+  komputerów oraz zasad działania procesora. \cite{bib:minut-tutaj-momot}
 
-W celu ułatwienia zrozumienia tych zasad 
-w procesie dydaktycznym stosowane są uproszczone modele komputerów, których zadaniem jest eksponowanie kluczowych 
-mechanizmów przetwarzania informacji przy jednoczesnym ograniczeniu liczby elementów składowych. Jednym z takich 
-modeli jest Maszyna W.  
-\\
+  Konstrukcja stanowi uproszczenie rzeczywistych jednostek obliczeniowych, przy jednoczesnym zachowaniu 
+  kluczowych cech architektury von Neumanna, takich jak wspólna pamięć dla danych i rozkazów oraz sekwencyjne 
+  wykonywanie instrukcji programu.
 
-Maszyna W została zaprojektowana w latach siedemdziesiątych XX wieku na Politechnice Śląskiej przez zespół kierowany 
-przez prof. Stefana Węgrzyna jako uproszczony model komputera, przeznaczony do nauki podstaw architektury 
-komputerów oraz zasad działania procesora. \cite{bib:minut-tutaj-momot}
+  \clearpage
+  Zgodnie z przyjętymi założeniami, Maszyna W składa się z trzech podstawowych bloków funkcjonalnych: pamięci operacyjnej,
+  jednostki arytmetyczno-logicznej oraz układu sterującego. Pamięć operacyjna przechowuje zarówno dane, jak i rozkazy
+  programu. Jednostka arytmetyczno-logiczna (JAML) realizuje operacje arytmetyczne i logiczne (m.in. dodawanie, odejmowanie),
+  wykorzystując akumulator jako główny rejestr roboczy, natomiast układ sterujący odpowiada za pobieranie, dekodowanie 
+  oraz wykonywanie rozkazów.
+  \\
+  
+  Istotnym elementem Maszyny W jest sposób sterowania przepływem danych pomiędzy jej komponentami. Komunikacja 
+  realizowana jest za pomocą magistrali adresowej i magistrali słowa, przebieg operacji kontrolowany jest przez 
+  zestaw sygnałów mikrosterujących (np. czyt, wys, wei, il). Sygnały te, umożliwiają precyzyjne sterowanie 
+  przesyłami międzypamięciowymi i międzypamięciowo-rejestrowymi w kolejnych taktach zegara. \cite{bib:minut-tutaj-momot} 
+  Dzięki temu możliwe jest szczegółowe śledzenie procesu realizacji pojedynczego rozkazu na poziomie mikrooperacji.
 
+  Z perspektywy dydaktycznej szczególnie istotna jest możliwość analizy pełnego cyklu rozkazu, obejmującego fazy 
+  pobrania, dekodowania oraz wykonania instrukcji. W Maszynie W faza pobrania i dekodowania rozkazu jest identyczna 
+  dla wszystkich instrukcji, co pozwala na wyraźne oddzielenie części wspólnej cyklu rozkazu od operacji 
+  charakterystycznych dla konkretnego typu instrukcji. Takie podejście sprzyja lepszemu zrozumieniu mechanizmów 
+  sterowania procesorem oraz zależności pomiędzy rejestrami i pamięcią.
+  \\
 
-Jej konstrukcja stanowi świadome uproszczenie rzeczywistych jednostek obliczeniowych, przy jednoczesnym zachowaniu 
-kluczowych cech architektury von Neumanna, takich jak wspólna pamięć dla danych i rozkazów oraz sekwencyjne 
-wykonywanie instrukcji programu.
-\\
-
-
-Zgodnie z przyjętymi założeniami, Maszyna W składa się z trzech podstawowych bloków funkcjonalnych: pamięci operacyjnej,
-jednostki arytmetyczno-logicznej oraz układu sterującego. Pamięć operacyjna przechowuje zarówno dane, jak i rozkazy
-programu. Jednostka arytmetyczno-logiczna (JAML) realizuje operacje arytmetyczne i logiczne (m.in. dodawanie, odejmowanie),
-wykorzystując akumulator jako główny rejestr roboczy, natomiast układ sterujący odpowiada za pobieranie, dekodowanie 
-oraz wykonywanie rozkazów.
-
-
-Istotnym elementem Maszyny W jest sposób sterowania przepływem danych pomiędzy jej komponentami. Komunikacja 
-realizowana jest za pomocą magistrali adresowej i magistrali słowa, przebieg operacji kontrolowany jest przez 
-zestaw sygnałów mikrosterujących (np. czyt, wys, wei, il). Sygnały te, umożliwiają precyzyjne sterowanie 
-przesyłami międzypamięciowymi i międzypamięciowo-rejestrowymi w kolejnych taktach zegara. \cite{bib:minut-tutaj-momot} 
-Dzięki temu możliwe jest szczegółowe śledzenie procesu realizacji pojedynczego rozkazu na poziomie mikrooperacji.
-
-
-Z perspektywy dydaktycznej szczególnie istotna jest możliwość analizy pełnego cyklu rozkazu, obejmującego fazy 
-pobrania, dekodowania oraz wykonania instrukcji. W Maszynie W faza pobrania i dekodowania rozkazu jest identyczna 
-dla wszystkich instrukcji, co pozwala na wyraźne oddzielenie części wspólnej cyklu rozkazu od operacji 
-charakterystycznych dla konkretnego typu instrukcji. Takie podejście sprzyja lepszemu zrozumieniu mechanizmów 
-sterowania procesorem oraz zależności pomiędzy rejestrami i pamięcią.
-\\
-
-
-Maszyna W wykorzystywana jest obecnie głównie w postaci programowego symulatora, który umożliwia implementację i 
-uruchamianie własnych rozkazów asemblerowych. W ramach zajęć laboratoryjnych studenci projektują rozkazy, definiując 
-sekwencje mikrosygnałów realizujących zadane operacje \cite{bib:minut-brzeski}. Proces ten wymaga nie tylko znajomości
-struktury Maszyny W, lecz także umiejętności analizy algorytmicznej oraz świadomego zarządzania stanem rejestrów i 
-pamięci.
+  Maszyna W wykorzystywana jest obecnie głównie w postaci programowego symulatora, który umożliwia implementację i 
+  uruchamianie własnych rozkazów asemblerowych. W ramach zajęć laboratoryjnych studenci projektują rozkazy, definiując 
+  sekwencje mikrosygnałów realizujących zadane operacje \cite{bib:minut-brzeski}. Proces ten wymaga nie tylko znajomości
+  struktury Maszyny W, lecz także umiejętności analizy algorytmicznej oraz świadomego zarządzania stanem rejestrów i 
+  pamięci.
