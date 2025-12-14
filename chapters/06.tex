@@ -56,14 +56,17 @@ na nim elementów znajduje się w ww. rozdziałach.
 
 
   Wykorzystanie abstrakcyjnego podejścia przy kreacji architektury oprogramowania pozwoliło w łatwy sposób odizolować i wykryć błędy. Pozwala na łatwą 
-  rozbudowę lub modyfikację układu wyświetlaczy. Implementacja menadżera w ostatecznej wersji oprogramowania wywołuje metodę odświeżającą wszystkie 
+  rozbudowę lub modyfikację układu wyświetlaczy. 
+  
+  
+  \clearpage
+  Implementacja menadżera w ostatecznej wersji oprogramowania wywołuje metodę odświeżającą wszystkie 
   diody LED zgodnie z poniższym schematem blokowym (Rys. \ref{fig:display-manager-flow-chart}). Widoczny na rysunku schemat ma na celu prezentację 
   podstawowych funkcji zarządzania diodami LED.
 
-  \clearpage
   \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\textwidth]{./graf/display-manager-flow-chart.pdf}
+    \includegraphics[scale=1]{./graf/display-manager-flow-chart.pdf}
     \caption{Diagram sekwencji działania menadżera diod LED}
     \label{fig:display-manager-flow-chart}
   \end{figure}
@@ -143,15 +146,39 @@ na nim elementów znajduje się w ww. rozdziałach.
     \item obsługa komunikacji pomiędzy stroną internetową, a serwerem, 
   \end{itemize}
 
-  NAJPIERW JEST ANIMACJA ŁADOWANIA
-  IP SIĘ WYŚWIETLA
-  PO POŁĄCZENIU WYSYŁANA JEST POCZĄTKOWA konfiguracja
-  JAK COŚ SIĘ ZMIENI NA STRONIE TO WYSYŁANY JEST DANY ELEMENT
-  PRZY ZMIANIE KOLORÓW WYSYŁANA JEST CAŁA STRONA
 
-  Na szczególną uwagę zasługuje ostatni podpunkt. Przy każdorazowej aktualizacji wartości elementów symulatora strona 
-  internetowa wysyła wiadomość do urządzenia. 
+  Poniższy schemat blokowy (Rys. \ref{fig:schemat-web-mode}) przedstawia uproszczony sposób działania
+  trybu sieciowego.
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{./graf/web-mode-graph.pdf}
+    \caption{Uproszczony diagram sekwencji działania trybu sieciowego}
+    \label{fig:schemat-web-mode}
+  \end{figure}
+
+  Sposób działania pomija szczegóły zwiazane z inicjalizacją poszczególnych komponentów takich jak: tworzenie serwera DNS czy serwowanie strony internetowej.
 
 
 \section{Obsługa trybu lokalnego SWIM}
 \label{sec:w-local}
+  Dodatkowym trybem działania urządzenia jest symulacja działania Maszyny W bezpośrednio na urządzeniu. Powstały 
+  w tym celu obiekt \textit{W\_Local} działa analogicznie do obiektu \textit{W\_Server}. Podobnie jak menadżer 
+  trybu sieciowego wykorzystuje obiekty \textit{DisplayManager}, \textit{HumanInterface} oraz \textit{FileSystem}.
+  
+  Poniższy schemat blokowy (Rys. \ref{fig:schemat-local-mode}) prezentuje uproszczony sposób działania trybu sieciowego.
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{./graf/local-mode-graph.pdf}
+    \caption{Uproszczony diagram sekwencji działania trybu lokalnego}
+    \label{fig:schemat-local-mode}
+  \end{figure}
+
+  Sygnały wybierane poprzez naciśnięcie odpowiednich przycisków zostają dodane do listy sygnałów. Obiekt posiada funkcję 
+  wykrywającą, czy Maszyna W pozwala na daną kombinację rozkazów. Przykładem wykluczających się wzajemnie rozkazów są: 
+  czyt/pisz, wyak/wys lub wyl/wyad. W przypadku wykrycia wciśnięcia niedozwolonego przycisku urządzenie nie doda rozkazu do listy.
+  Po wciśnięciu przycisku \textit{takt} obiekt wykona rozkazy z listy w kolejności dodania. 
+
+  
+  W celu zapewnienia poprawnego działania trybu lokalnego wprowadzono zabezpieczenie przed przekroczeniem wartości możliwej
+  do wyświetlenia na wyświetlaczach dwu oraz trzycyfrowych. W przypadku przekroczenia zadanego limitu liczba zostanie wyrównana
+  do największej/najmniejszej możliwej do wyświetlenia.
