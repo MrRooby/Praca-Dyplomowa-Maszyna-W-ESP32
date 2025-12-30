@@ -14,6 +14,7 @@
   Wykorzystane rozwiązania możliwiają natychmiastową synchronizację zmian między stroną internetową 
   a modelem Maszyny, co pozwala użytkownikowi na intuicyjny i interaktywny monitoring oraz kontrolę stanu Maszyny W.
 
+% \clearpage
 \section{Wprowadzenie do Maszyny W}
   Współczesne systemy komputerowe charakteryzują się wysokim stopniem złożoności zarówno pod względem architektury 
   sprzętowej, jak i warstwy programowej. Pomimo tego, podstawowe zasady ich działania pozostają zgodne z klasycznymi 
@@ -31,12 +32,39 @@
   kluczowych cech architektury von Neumanna, takich jak wspólna pamięć dla danych i rozkazów oraz sekwencyjne 
   wykonywanie instrukcji programu.
 
-  \clearpage
+  % \clearpage
   Zgodnie z przyjętymi założeniami, Maszyna W składa się z trzech podstawowych bloków funkcjonalnych: pamięci operacyjnej,
-  jednostki arytmetyczno-logicznej oraz układu sterującego. Pamięć operacyjna przechowuje zarówno dane, jak i rozkazy
-  programu. Jednostka arytmetyczno-logiczna (JAML) realizuje operacje arytmetyczne i logiczne (m.in. dodawanie, odejmowanie),
-  wykorzystując akumulator jako główny rejestr roboczy, natomiast układ sterujący odpowiada za pobieranie, dekodowanie 
-  oraz wykonywanie rozkazów.
+  jednostki arytmetyczno-logicznej oraz układu sterującego. 
+  W skład Maszyny W wchodzą następujące rejestry:
+  \begin{itemize}
+    \item \textbf{rejestr L} \textemdash{} 5-bitowy licznik rozkazów;
+    \item \textbf{rejestr I} \textemdash{} 8-bitowy rejestr instrukcji. 5 mniej znaczących bitów stanowi rejestr AD,
+          przechowujący adres argumentu rozkazu. 3 bardziej znaczące bity przechowują rejestr kodu rozkazu;
+    \item \textbf{rejestr A} \textemdash{} 5-bitowy rejestr adresowy, służący do adresowania komórki pamięci,
+          do której wykonywane są operacje zapisu i odczytu;
+    \item \textbf{rejestr S} \textemdash{} 8-bitowy rejestr słowa, do którego zapisywane/odczytywane są wartości z pamięci;
+    \item \textbf{rejestr AK} \textemdash{} 8-bitowy akumulator, do którego zapisywany jest wynik operacji arytmetycznej/logicznej.
+  \end{itemize}
+
+  Oraz następujące magistrale:
+  \begin{itemize}
+    \item \textbf{magistrala S} \textemdash{} 8-bitowa magistrala słowa;
+    \item \textbf{magistrala A} \textemdash{} 5-bitowa magistrala adresowa.
+  \end{itemize}
+  
+  Wymienione elementy znajdują się na poniższym schemacie urządzenia \ref{fig:rysunek-maszyny}.
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{./graf/rysunek-maszyny.pdf}
+    \caption{Schemat Maszyny W}
+    \label{fig:rysunek-maszyny}
+  \end{figure}
+  
+  \clearpage
+  Pamięć operacyjna przechowuje zarówno dane, jak i rozkazy
+  programu w formie 8-bitowego słowa. Jednostka arytmetyczno-logiczna (JAML) realizuje operacje arytmetyczne i logiczne 
+  (m.in. dodawanie, odejmowanie), wykorzystując akumulator jako główny rejestr roboczy, natomiast układ sterujący odpowiada za pobieranie, dekodowanie 
+  oraz wykonywanie rozkazów. \cite{bib:cwiczenia-tutaj}
   \\
   
   Istotnym elementem Maszyny W jest sposób sterowania przepływem danych pomiędzy jej komponentami. Komunikacja 

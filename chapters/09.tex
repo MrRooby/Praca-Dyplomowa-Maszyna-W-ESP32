@@ -1,5 +1,72 @@
 \chapter{Wnioski}
-  Celem pracy jakim było stworzenie systemu wizualizacji interfejsu webowego 
-  Maszyny W został w pełni osiągnięty. Praca została wykonana możliwie niskimi 
-  kosztami. W konstrukcji układu wykorzystano typowe podzespoły i rozwiązania 
-  układowe.
+  Niniejsza praca inżynierska poświęcona była zaprojektowaniu i budowie systemu 
+  wizualizacji danych dla webowego interfejsu Maszyny W z wykorzystaniem mikrokontrolera 
+  ESP32. Głównym celem projektu było stworzenie fizycznego modelu, który w czasie 
+  rzeczywistym odwzorowuje stan rejestrów i sygnałów sterujących symulatora Maszyny W za 
+  pomocą adresowalnych diod LED oraz umożliwia interakcję z nim poprzez przyciski fizyczne.
+
+  \section{Realizacja celów i wymagań}
+    Wszystkie kluczowe cele pracy zostały zrealizowane, a system jest w pełni funkcjonalny:
+    \begin{itemize}
+      
+      \item \textbf{Wizualizacja danych} \textemdash{} system skutecznie wyświetla zarówno
+      wartości liczbowe oraz stany sygnałów sterujących na tablicy złożonej z ponad 600 
+      adresowalnych diod LED RGB;
+
+      \item \textbf{Interakcja fizyczna} \textemdash{} zaimplementowano obsługę 17 przycisków
+      oraz enkodera obrotowego;
+
+      \item \textbf{Komunikacja sieciowa} \textemdash{} ESP32 pełni rolę punktu dostępowego 
+      i serwera HTTP, zapewniając dwukierunkową komunikację przez protokół WebSocket;
+      
+      \item \textbf{Tryb lokalny} \textemdash{} zrealizowano założenie pozwalające na pracę 
+      urządzenia w trybie autonomicznym, bez potrzeby połączenia z zewnętrznym komputerem.
+      
+    \end{itemize}
+  
+  \clearpage
+  \section{Problemy napotkane w trakcie pracy}
+    Podczas realizacji projektu napotkano kilka istotnych wyzwań technicznych, które 
+    wymagały modyfikacji pierwotnych założeń projektowych:
+
+    \begin{itemize}
+      
+      \item \textbf{Problem z spadkami napięcia podświetlenia LED} \textemdash{} 
+      Podczas testów prototypu stwierdzono, że tranzystory MOSFET odpowiedzialne
+      za sterowanie napięciem podświetlenia led zastosowane na płycie głównej nie działały
+      zgodnie z oczekiwaniami (np. problemy z pełnym otwarciem kanału przy napięciu sterującym 
+      z ESP32 lub nieprawidłowa charakterystyka przełączania). Aby zapewnić stabilne 
+      podświetlenie urządzenia podjęto decyzję o rezygnacji ze sterowania nimi z poziomu 
+      mikrokontrolera na rzecz stałego podłączenia diod LED do zasilania. Rozwiązanie to 
+      zapewnia stabilne podświetlenie, pozbywając użytkownika możliwości sterowania nim.
+      
+      \item \textbf{Spadki napięcia na linii diod LED RGB} \textemdash{} 
+      Spadki napięcia w linii diod LED. Duża liczba diod wymusiła przejście z 
+      zasilania 5V na 12V (model WS2815B), co wyeliminowało błędy w odwzorowaniu barw na 
+      końcach linii LED.
+      
+      \item \textbf{Ograniczona liczba wyprowadzeń ESP32} \textemdash{} Problem ten 
+      rozwiązano poprzez zastosowanie 16-kanałowego multipleksera analogowo-cyfrowego,
+      co pozwoliło na oszczędność pinów mikrokontrolera.
+
+    \end{itemize} 
+    
+  \section{Kierunek dalszego rozwoju}
+    Projekt SWIM był tworzony z zamysłem dalszego rozwoju jako narzędzie dydaktyczne. Poniższa
+    praca dyplomowa służy za dokumentację, a zarazem instrukcję obsługi urządzenia. Podczas
+    pracy zanotowano następujące możliwe dalsze kierunki rozwoju projektu:
+
+    \begin{itemize}
+
+      \item \textbf{Poprawa projektu płyty głównej} \textemdash{} kolejna wersja urządzenia powinna 
+      uwzględnić problemy z zasilaniem podświetlenia LED. 
+
+      \item \textbf{Poprawa projektu wyświetlaczy} \textemdash{} wybrany model LED posiada
+      dodatkową pomocniczą linię danych, która nie jest wykorzystana na wyprowadzeniach wyświetlaczy.
+      Rewizja powinna wykorzystywać tę funkcjonalność.
+
+      \item \textbf{Wsparcie dla rozszerzeń modelu dydaktycznego} \textemdash{} Maszyna W w swojej pełnej wersji
+      posiada obsługę przerwań, dodatkowe sygnały sterujące oraz dodatkowe rejestry poszerzające
+      jej funkcjonalność \cite{bib:cwiczenia-tutaj}.  Kolejna wersja urządzenia mogłaby wspierać rozszerzenia maszyny.
+
+    \end{itemize}
