@@ -1,2 +1,93 @@
 \chapter{Obsługa}
-Tutaj trzeba będzie opisać jak działa maszyma i jak ją można obsługiwać
+Obsługa SWIM jest zależna od wybranego trybu działania urządzenia. W poniższych dwóch rozdziałach
+opiszę sposób obsługi urządzenia w obu trybach.
+  
+Po podłączeniu urządzenia do zasilacza 12V urządzenie uruchomi się w jednym z trybów. Wybór jest zależny
+od ustawienia przełącznika trybów (Rozdział \ref{sec:przel_tryb}). Przy zmianie stanu przełącznika urządzenie
+automatycznie zainicjuje oraz zmieni swój tryb działania.
+
+\section{Tryb sieciowy}
+  W przypadku wybrania trybu sieciowego:
+
+  \begin{enumerate}
+
+    \item Urządzenie udostępnia użytkownikowi dedykowaną sieć lokalną o nazwie \textit{Maszyna W(eb)}.
+    W czasie oczekiwania na połączenie użytkownika do sieci na wyświetlaczach segmentowych modelu 
+    wyświetlana będzie animacja ładowania w postaci obracających się okręgów.
+
+    \item Na wybranym przez użytkownika urządzeniu (komputer, telefon, tablet, itp.) należy połączyć się z
+    udostępnianą siecią poprzez wpisanie hasła \textit{czytwysweiil}. Poprawne połączenie do sieci skutkuje
+    wyłączeniem animacji ładowania oraz wyświetleniem na wyświetlaczach \textit{PaO} adresu IP strony internetowej.
+    
+    \item \textit{(OPCJONALNE)} Jeżeli urządzenie wybrane przez użytkownika wspiera funkcjonalność portalu
+    uwierzytelniającego urządzenie użytkownika powinno wyświetlić powiadomienie o potrzebie zalogowania się
+    do sieci. Wybierając tę funkcję użytkownik zostaje przekierowany na stronę internetową symulatora 
+    Maszyny W.
+
+    \item Jeżeli urządzenie użytkownika nie wspiera wymienionej w powyższym punkcie funkcjonalności, należy
+    wpisać w polu adresowym przeglądarki wyświetlany na \textit{PaO} adres IP.
+
+    \item Poprawne połączenie ze stroną internetową poskutkuje wyświetleniem na wyświetlaczu wartości obecnych 
+    na interfejsie strony. W prawym górnym rogu strony znajduje się przycisk informujący o poprawnym połączeniu 
+    z SWIM.
+
+    \item Na tym etapie użytkownik ma możliwość sterowania urządzeniem w sposób dowjaki. Wykorzystując:
+      \begin{itemize}
+        
+        \item \textbf{Interfejs strony internetowej} \textemdash{} Zmieniając wartości rejestrów, bądź rozkazów
+        ich wartości będą wyświetlane na urządzeniu w czasie rzeczywistym,
+        
+        \item \textbf{Przyciski SWIM} \textemdash{} Wciśnięte przyciski rozkazów będą odwzorowane na interfejsie 
+        strony internetowej oraz wyświetlaczach modelu.
+
+      \end{itemize}
+
+    \item \textit{(OPCJONALNE)} Użytkownik ma możliwość zmiany koloru wybranych elementów SWIM poprzez stronę internetową w 
+    następujący sposób:
+      \begin{enumerate}
+        \item Wybór menu ustawień.
+        \item W sekcji \textit{Kolory LED} ustawień. Zadanie wybranym wyświetlaczom wartości koloru.
+        \item Wciśnięcie przycisku \textit{Wyślij wszystkie kolory do ESP32}.
+      \end{enumerate}
+    Po przesłaniu wartości kolorów wyświetlacze SWIM zmienią kolor na wybrany przez użytkownika. Konfiguracja
+    kolorów zostaje zapisana w pamięci urządzenia. (W przypadku ponownego uruchomienia SWIM zostanie
+    odczytana wcześniej zapisana konfiguracja)
+
+  \end{enumerate}
+
+\clearpage
+\section{Tryb lokalny}
+  W przypadku wybrania trybu lokalnego:
+  \begin{enumerate}
+    
+    \item Urządzenie przechodzi bezpośrednio do symulacji Maszyny W. Wszystkie linie rozkazów zostają 
+    wyłączone, a wartości w rejestrach oraz \textit{PaO} wyzerowane.
+    
+    \item Użytkownik ma możliwość wykonania następujących operacji:
+    \begin{itemize}
+      
+      \item \textbf{Przewijanie wyświetlanego fragmentu \textit{PaO}} \textemdash{} wykonując obrót enkoderem 
+      w lewo/prawo zmieni wyświetlany na 4 wierszach \textit{PaO} fragment pamięci operacyjnej.
+
+      \item \textbf{Skok do aktywnego adresu w \textit{PaO} } \textemdash{} wciskając przycisk enkodera
+      wyświetlacz \textit{PaO} pokaże fragment pamięci operacyjnej zawierający adres zapiany w rejestrze \textit{A}.
+
+      \item \textbf{Tryb wprowadzania} \textemdash{} aktywacja/dezaktywacja trybu następuje poprzez przytrzymanie 
+      1s przycisku enkodera. Aktywny tryb wprowadzania jest sygnalizowany miganiem jednego z rejestrów.
+      Obrót enkodera w lewo/prawo zmniejszymy/zwiększymy wartość w wybranym (migającym) rejestrze. 
+      Wciskając przycisk enkodera następuje zmiana wybranego wyświetlacza.
+
+      \item \textbf{Aktywacja rozkazów} \textemdash{} aktywacja/dezaktywacja rozkazów następuje poprzez
+      wciśnięcie odpowiedniego przyciska rozkazu. Aktywacja jest sygnalizowana podświetleniem linii rozkazu.
+      Wybrany rozkaz zostaje dodany do listy rozkazów do wykonania w takcie. Wybór niedozwolonej kombinacji
+      rozkazów skutkuje brakiem aktywacji rozkazu.
+
+      \item \textbf{Wykonanie taktu} \textemdash{} wciśnięcie przycisku \textit{TAKT} skutkuje wykonaniem
+      wybranych przez użytkownika rozkazów. Przypisane im operacje (czyt, wys, wei, itp.) zostają wykonane
+      w kolejności ich wyboru.
+
+    \end{itemize}
+
+  \end{enumerate}
+  
+    
