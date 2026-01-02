@@ -3,8 +3,8 @@
 
 \section{System mikroprocesorowy}\
 \label{sec:esp32}
-  Ze względu na wymaganą komunikację sieciową projektu, wysoką złożoność rozwiązania oraz zapotrzebowanie na wiele portów wejścia/wyjścia
-  należało wybrać system mikroprocesorowy zapewniający poniższe możliwości:
+  Ze względu na wymaganą komunikację sieciową projektu, wysoką złożoność rozwiązania oraz zapotrzebowanie na wiele portów
+  wejścia/wyjścia należało wybrać system mikroprocesorowy zapewniający poniższe możliwości:
   \begin{itemize}
     \item obsługa dwóch kanałów dla adresowalnych diod LED RGB,
     \item obsługa 17 przycisków wraz z enkoderem,
@@ -13,23 +13,24 @@
     \item serwowanie strony internetowej.
   \end{itemize}
   
-  Zwracając uwagę na powyżej wymienione wymagania rozważono dwie możliwości: mikrokomputer z rodziny \textit{Raspberry Pi} lub 
+  Biorąc pod uwagę powyższe wymagania, rozważono dwie możliwości: mikrokomputer z rodziny \textit{Raspberry Pi} lub 
   mikrokontroler z rodziny \textit{ESP32}. Zarówno mikrokomputer jak i mikrokontroler spełniają wszystkie ww. założenia. Urządzenia 
-  z rodziny \textit{Raspberry Pi} są proste w użytku, posiadają system operacyjny oparty na jądrze \textit{Linux'a} oraz pozwalają na 
-  programowanie w językach \textit{Python} oraz \textit{C++}. System operacyjny pozwala również na łatwe przechowywanie danych
-  w pamięci nieulotnej urządzenia z uwagi na obecny w nim syWyświetlacze segmentostem plików. Obecny na urządzeniach \textit{Raspberry Pi} system operacyjny
-  \textit{Raspbian} będący pochodną popularnej dystrybucji \textit{Debiana} pozwala na tworzenie własnych \textit{daemonów}
-  (procesy działające w tle). 
+  z rodziny \textit{Raspberry Pi} charakteryzują się prostotą obsługi oraz konfiguracji, są wyposażone w system operacyjny oparty na 
+  jądrze \textit{Linuxa} oraz pozwalają na programowanie w językach \textit{Python} oraz \textit{C++}. System operacyjny pozwala 
+  również na łatwe przechowywanie danych w pamięci nieulotnej urządzenia z uwagi na obecny w nim system plików. 
+  Obecny na urządzeniach \textit{Raspberry Pi} system operacyjny \textit{Raspbian} będący pochodną popularnej dystrybucji 
+  \textit{Debiana} pozwala na tworzenie własnych procesów typu \textit{daemon} (procesów działających w tle). 
   
 
-  Mikrokontrolery z rodziny \textit{ESP32} nie posiadają systemu operacyjnego, a ich programowanie jest możliwe przy użyciu języków takich jak \textit{C} oraz 
-  \textit{C++}. Służą do tego specjalnie przygotowane środowiska programistyczne takie jak \textit{Visual Studio Code} z rozszerzeniem \textit{PlatformIO} a także
-  \textit{Arduino IDE}. Ich przewagą nad mikrokomputerami są: brak systemu operacyjnego, niższa cena, mniejsza złożoność oraz mniejsze zużycie energii. 
+  Mikrokontrolery z rodziny \textit{ESP32} nie posiadają systemu operacyjnego, a ich programowanie jest możliwe przy użyciu języków 
+  takich jak \textit{C} oraz \textit{C++}. Służą do tego specjalnie przygotowane środowiska programistyczne takie jak 
+  \textit{Visual Studio Code} z rozszerzeniem \textit{PlatformIO} a także \textit{Arduino IDE}. Ich przewagą nad mikrokomputerami 
+  są: brak systemu operacyjnego, niższa cena, mniejsza złożoność oraz mniejsze zużycie energii. 
   
   \clearpage
-  Po rozważeniu obu opcji decydowano się na użycie mikrokontrolera z rodziny ESP32. Wybór został podyktowany pozwalającym na pełną kontrolę urządzenia
-  językiem \textit{C++}, niższą ceną, brakiem systemu operacyjnego, dostępnością oraz bogatą dokumentacją. Z katalogu firmy \textit{Espressif Systems} 
-  wybrano urządzenie \textit{ESP32-S3-WROOM-1}.
+  Po rozważeniu obu opcji zdecydowano się na użycie mikrokontrolera z rodziny ESP32. Wybór został podyktowany pozwalającym na pełną 
+  kontrolę urządzenia językiem \textit{C++}, niższą ceną, brakiem systemu operacyjnego, dostępnością oraz bogatą dokumentacją. 
+  Z katalogu firmy \textit{Espressif Systems} wybrano urządzenie \textit{ESP32-S3-WROOM-1}.
 
   Poniższy rysunek (Rys. \ref{fig:schemat-blokowy-esp32}) z dokumentacji producenta przedstawia schemat funkcjonalny wybranego układu
   \begin{figure}[H]
@@ -43,30 +44,31 @@
   Własności wybranego układu zapożyczone z dokumentacji firmy \textit{Espressif Systems}:
   \begin{itemize}
     \item dwurdzeniowy 32-bitowy mikroprocesor \textit{Xtensa LX7},
-    \item 16MB pamięci flash, 16MB pamięci PSRAM,
-    \item 512MB pamięci SRAM,
+    \item 16~MB pamięci flash, 16MB pamięci PSRAM,
+    \item 512~MB pamięci SRAM,
     \item 36 portów GPIO,
-    \item komunikacja 2.4GHz WiFi (802.11b/g/n) oraz Bluetooth 5,
+    \item komunikacja 2.4~GHz WiFi (802.11b/g/n) oraz Bluetooth 5,
     \item wbudowana antena,
     \item wsparcie dla: I2C, LED PWM, USB Serial,
-    \item maksymalny pobór prądu ~300-400mA,
-    \item zasilanie napięciem 3.3V.
+    \item maksymalny pobór prądu ~300-400~mA,
+    \item zasilanie napięciem 3.3~V.
   \end{itemize}
 
 \clearpage
 \section{Adresowalne diody LED}
 \label{sec:led-rgb}
-  Zakładano wizualizację interfejsu Maszyny W na tablicy złożonej z diod LED RGB. Adresowalne diody LED RGB pozwalają
+  Przyjęto założenie dotyczące wizualizacji interfejsu Maszyny W na tablicy złożonej z diod LED RGB. Adresowalne diody LED RGB pozwalają
   na sekwencyjne zadanie kolorów każdej z 3 diod (czerwonej, zielonej oraz niebieskiej) elementu, połączonych w ciągłą linię.
   Przewidywana liczba pojedynczych diod LED podłączonych do SWIM przekracza 600. Znaczna liczba elementów może doprowadzać do
   wpływających na poprawne działanie układu spadków napięcia.
 
-  Spośród aktualnie dostępnych na rynku wersji elementu wyróżniły się dwa modele: \textit{WS2812B} oraz \textit{WS2815B} firmy \textit{WORLDSEMI}.
-  Podczas wstępnych testów obu elementów zaobserwowano następujące cechy. Diody \textit{WS2812B} zasilane napięciem 5V wykazywały
+  Spośród aktualnie dostępnych na rynku wersji elementu wyróżniły się dwa modele: \textit{WS2812B} oraz \textit{WS2815B} firmy
+  \textit{WORLDSEMI}.
+  Podczas wstępnych testów obu elementów zaobserwowano następujące cechy. Diody \textit{WS2812B} zasilane napięciem 5~V wykazywały
   zauważalny spadek jakości odwzorowania kolorów przy liczbie elementów przekraczającej 100 (w ciągłej linii). Wykorzystanie 
   ww. elementów niosłoby za sobą potrzebę dodatkowego wprowadzania napięcia do linii diod. Diody \textit{WS2815B} zasilane napięciem 
-  12V nie wykazały zauważalnych spadków napięcia przy tej samej liczbie elementów. Cecha ta zadecydowała o ostatecznym wyborze 
-  modelu \textit{WS2815B-V1}, jego jedyną wadą jest nieznacznie większa cena w porównaniu do 5V odpowiednika. 
+  12~V nie wykazały zauważalnych spadków napięcia przy tej samej liczbie elementów. Cecha ta zadecydowała o ostatecznym wyborze 
+  modelu \textit{WS2815B-V1}, jego jedyną wadą jest nieznacznie większa cena w porównaniu do 5~V odpowiednika. 
   \\
 
 
@@ -80,7 +82,7 @@
 
   Własności elementu:
   \begin{itemize}
-    \item napięcie pracy 12V,
+    \item napięcie pracy 12~V,
     \item pobór prądu 15mA przy maksymalnej jasności każdej z 3 kolorowych diod,
     \item montaż SMD,
     \item częstotliwość odświeżania 4kHz.
@@ -152,9 +154,9 @@
     \item logo Politechniki Śląskiej.
   \end{itemize}
 
-  Wykorzystano do tego 12V linie diod LED.
-  Aby uniknąć zauważalny dla użytkowników spadków jasności podświetlenia zdecydowano na podłączenie bezpośrednio do 
-  zasilacza 12V.
+  Wykorzystano do tego 12~V linie diod LED.
+  Aby uniknąć zauważalnych dla użytkownika spadków jasności podświetlenia zdecydowano na podłączenie bezpośrednio do 
+  zasilacza 12~V.
   % TODO czy tutaj napisać że mam tranzysotry na płytce których jednak nie będę wykorzystywał bo ledy gasną jak się zapalają
   % wsy? Czy póżniej o tym wspomineć?
 
@@ -183,7 +185,7 @@
     \begin{minipage}[c]{0.60\textwidth}
       \centering
       \includegraphics[width=\textwidth]{./graf/enc-graph-cw.pdf}
-      \caption{Wykres stanów przy obrocie w prawo}
+      \caption{Wykres stanów enkodera przy obrocie w prawo}
       \label{fig:enc-cw}
     \end{minipage}%
     \hfill
@@ -197,7 +199,7 @@
         3 & 1 & 0 \\ \hline
         4 & 1 & 1 \\ \hline
       \end{tabular}
-      \captionof{table}{Tablica prawdy dla obrotu w prawo}
+      \captionof{table}{Tablica prawdy enkodera dla obrotu w prawo}
       \label{tab:enc-cw}
     \end{minipage}
     
@@ -207,7 +209,7 @@
     \begin{minipage}[c]{0.60\textwidth}
       \centering
       \includegraphics[width=\textwidth]{./graf/enc-graph-ccw.pdf} % Upewnij się, że masz ten plik
-      \caption{Wykres stanów przy obrocie w lewo}
+      \caption{Wykres stanów enkodera przy obrocie w lewo}
       \label{fig:enc-ccw}
     \end{minipage}%
     \hfill
@@ -221,7 +223,7 @@
         3 & 0 & 1 \\ \hline
         4 & 1 & 1 \\ \hline
       \end{tabular}
-      \captionof{table}{Tablica prawdy dla obrotu w lewo}
+      \captionof{table}{Tablica prawdy enkodera dla obrotu w lewo}
       \label{tab:enc-ccw}
     \end{minipage}
   \end{figure}
@@ -273,8 +275,9 @@
 \section{Strona internetowa}
   Poniższa praca dyplomowa wykorzystuje wykonaną na potrzeby projektu PBL, którego SWIM również był częścią, stronę 
   modernizującą symulator Maszyny W. Niezwykle ważnym jest zaznaczyć, iż projekt oraz wykonanie ww. strony internetowej
-  nie są częścią poniższej pracy dyplomowej. Została ona stworzona przez (AUTORZY STRONY !!!). Mając na uwadze autorów tej części projektu
-  należy zrozumieć jej działanie, aby w odpowiedni sposób wdrożyć ją do projektu. 
+  nie są częścią poniższej pracy dyplomowej. Została ona stworzona przez członków projektu naukowego zajmującego się 
+  modernizacją Maszyny W \cite{bib:aei-maszynaw}. Mając na uwadze autorów tej części projektu należy zrozumieć jej działanie,
+  aby w odpowiedni sposób wdrożyć ją do projektu. 
   \\
 
   Strona umożliwia naukę działania Maszyny W w intuicyjny oraz łatwo dostępny sposób. Na Rys. \ref{fig:maszyna-web} widnieje 
@@ -317,8 +320,8 @@
 \clearpage
 \section{Zasilanie}
   Mając na uwadze wszystkie wymienione w powyższym rozdziale elementy SWIM, dokonano analizy wymagań energetycznych układu w celu dobrania 
-  odpowiedniego zasilacza. Adresowalne diody LED oraz podświetlenie wymagały zasilania napięciem 12V, natomiast mikrokontroler ESP32 
-  oraz multiplekser korzystały z napięcia 3,3V.
+  odpowiedniego zasilacza. Adresowalne diody LED oraz podświetlenie wymagały zasilania napięciem 12~V, natomiast mikrokontroler ESP32 
+  oraz multiplekser korzystały z napięcia 3,3~V.
 
   Przeprowadzono szacunkowe obliczenia maksymalnego poboru prądu:
   \begin{itemize}
@@ -327,11 +330,11 @@
     \item dla mikrokontrolera ESP32-S3 oraz układów towarzyszących przewidziano pobór prądu około 600mA przy pełnym obciążeniu interfejsów peryferyjnych i aktywnym WiFi.
   \end{itemize}
 
-Na podstawie powyższych obliczeń dobrano zasilacz impulsowy o napięciu wyjściowym 12V i mocy minimalnej 330W, co zapewniało bezpieczny 
+Na podstawie powyższych obliczeń dobrano zasilacz impulsowy o napięciu wyjściowym 12~V i mocy minimalnej 330~W, co zapewniało bezpieczny 
 margines względem przewidywanego maksymalnego poboru prądu. Zastosowanie zasilacza o większej mocy umożliwiało również stabilne działanie 
 układu przy chwilowych skokach poboru prądu przez linie LED.
 
-Zasilanie mikrokontrolera ESP32 oraz innych układów niskonapięciowych realizowano przy użyciu przetwornicy DC-DC obniżającej napięcie z 12V do 3,3V.
+Zasilanie mikrokontrolera ESP32 oraz innych układów niskonapięciowych realizowano przy użyciu przetwornicy DC-DC obniżającej napięcie z 12~V do 3,3~V.
 Rozwiązanie to zapewniało izolację układów niskonapięciowych od wysokoprądowych linii LED oraz stabilne napięcie zasilania, eliminując spadki i 
 zakłócenia w pracy mikrokontrolera. Dodatkowo, w celu ochrony układu przed odwrotną polaryzacją, należy zapewnić odpowiednią ochronę. 
 Takie podejście zapewniło bezpieczne i niezawodne działanie całego systemu SWIM.

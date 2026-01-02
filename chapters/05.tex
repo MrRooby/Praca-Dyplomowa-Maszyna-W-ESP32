@@ -20,7 +20,8 @@
     \\
 
     Front płytki zapewnia możliwość przymocowania elementów urządzenia wyłączając wyprowadzenia oraz porty.
-    Rysunek \ref{fig:plyta-glowna-pcb-front} przedstawia płytkę pomniejszoną dwukrotnie względem wymiarów rzeczywistych.
+    Rysunek \ref{fig:plyta-glowna-pcb-front} przedstawia frontową mozaikę ścieżek płytki pomniejszoną dwukrotnie względem 
+    wymiarów rzeczywistych.
     \begin{figure}[H]
       \centering
       \includegraphics[scale=0.5]{./graf/plyta-glowna-pcb-front.pdf}
@@ -30,7 +31,8 @@
 
     Rewers płytki zapewnia możliwość przymocowania wyprowadzeń oraz portów urządzenia. Umożliwia również podłączenie
     dodatkowych elementów przy wykorzystaniu dostępnych wyprowadzeń dodatkowych.
-    Rysunek \ref{fig:plyta-glowna-pcb-front} przedstawia płytkę pomniejszoną dwukrotnie względem wymiarów rzeczywistych.
+    Rysunek \ref{fig:plyta-glowna-pcb-rewers} przedstawia tylną mozaikę ścieżek płytki pomniejszoną dwukrotnie względem 
+    wymiarów rzeczywistych.
     \begin{figure}[H]
       \centering
       \includegraphics[scale=0.5]{./graf/plyta-glowna-pcb-back.pdf}
@@ -96,17 +98,17 @@
 
     \subsubsection{Złącze zasilania}
       Urządzenie jest wyposażone w 2-wyprowadzeniową listwę zaciskową typu \textit{ARK}. 
-      Złącze pełni funkcję głównego wejścia zasilania i przyjmuje napięcie 12V. 
+      Złącze pełni funkcję głównego wejścia zasilania i przyjmuje napięcie 12~V. 
       Układ elektryczny wyposażono w zabezpieczenie przed odwrotną polaryzacją, 
       uniemożliwiające uszkodzenie płytki w przypadku błędnego podłączenia przewodów.
 
     \subsubsection{Złącze USB-C}
       W celu umożliwienia łatwego programowania i komunikacji z mikroprocesorem, 
-      płytkę wyposażono w złącze USB typu C (tryb USB 2.0 Device).
-      Wyprowadzone są jedynie linie \textit{D+} oraz \textit{D−}. Linie zasilania 
+      płytkę wyposażono w złącze USB typu C (tryb USB 2.0).
+      Na złącze wyprowadzono jedynie linie \textit{D+} oraz \textit{D−}. Linie zasilania 
       \textit{VBUS} są wykorzystywane do zasilania sekcji USB oraz wykrywania 
       podłączenia komputera. Aby zapewnić zabezpieczenie przed prądem wstecznym
-      wykorzystano diodę \textit{Schottky'ego} połączoną w kierynku zaporowym na linii zasilania.
+      wykorzystano diodę \textit{Schottky'ego} połączoną w kierunku zaporowym na linii zasilania.
       Pozostałe wyprowadzenia USB-C niewykorzystywane przez układ 
       zostały pozostawione niepodłączone, zgodnie ze specyfikacją.
 
@@ -120,7 +122,7 @@
         \item \textit{DT} \textemdash{} drugi kanał kwadraturowy enkodera, 
         \item \textit{SW} \textemdash{} złącze przycisku enkodera
       \end{itemize}
-      Sygnały prowadzone są do wejść cyfrowych mikroprocesora. Redukcja drgań styków 
+      Sygnały prowadzone są do wejść cyfrowych mikroprocesora. Redukcję drgań styków 
       zapewniono z poziomu oprogramowania.
 
     \subsubsection{Złącza przycisków}
@@ -133,14 +135,14 @@
       Przełącznik trybów posiada dedykowane 2-wyprowadzeniowe złącze typu \textit{JST-ZH} o rastrze 1.5mm.
       Jedno wyprowadzenie złącza podłączone jest do masy \textit{GND}, drugie \textemdash{} do wejścia cyfrowego mikroprocesora 
       wykorzystującego wbudowany w mikroprocesor rezystor polaryzujący do zasilania. 
-      Filtrację sygnałów zapewniono od strony oprogramowania.
+      Filtrację sygnałów zrealizowano programowo.
 
     \subsubsection{Złącza linii LED}
       Dwa wyprowadzenia linii LED wykorzystują 3-wyprowadzeniowe złącza typu \textit{JST-XH} o rastrze 2.5mm, 
       prowadzące sygnały do linii diod LED typu \textit{WS2815B-V1}.
       Wyprowadzenia:
       \begin{itemize}
-        \item \textit{+5V} \textemdash{} zasilanie diod,
+        \item \textit{+12~V} \textemdash{} zasilanie diod,
         \item \textit{DATA} \textemdash{} linia danych,
         \item \textit{GND} \textemdash{} masa układu.
       \end{itemize}
@@ -149,13 +151,13 @@
 
     \subsubsection{Złącza zasilania podświetlenia modelu}
       Płytka zawiera dodatkowe dwa 2-wyprowadzeniowe złącza typu \textit{JST-XH} o rastrze 2.5mm. 
-      Każde złącze wspiera kontrolę zasilania 12V z poziomu mikroprocesora. W tym celu
+      Każde złącze wspiera kontrolę zasilania 12~V z poziomu mikroprocesora. W tym celu
       zostały wykorzystane tranzystory typu \textit{MOSFET}.
     
     \subsubsection{Złącza dodatkowego wprowadzania zasilania}
       Projekt układu przewiduje potrzebę dodatkowego wprowadzania zasilania na linie adresowalnych diod LED. 
       W tym celu płytkę wyposażono w 9 złącz typu \textit{JST-XH} o rastrze 2.5mm. Każde złącze zapewnia 
-      zasilanie 12V.
+      zasilanie 12~V.
 
   \subsection{Wyświetlacze segmentowe}
     \subsubsection{Złącza wejścia/wyjścia}
@@ -163,7 +165,7 @@
       typu \textit{JST-XH} o rastrze 2.5mm. Złącza umożliwiają łączenie wyświetlaczy w ciągłe linie.
       Wyprowadzenia:
       \begin{itemize}
-        \item \textit{+5V} \textemdash{} zasilanie diod,
+        \item \textit{+12~V} \textemdash{} zasilanie diod,
         \item \textit{DATA\_IN/DATA\_OUT} \textemdash{} wejście/wyjście linii danych,
         \item \textit{GND} \textemdash{} masa układu.
       \end{itemize}
