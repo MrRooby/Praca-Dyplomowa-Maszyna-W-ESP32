@@ -54,7 +54,7 @@ na nim elementów znajduje się w ww. rozdziałach.
   \\
 
 
-  Wykorzystanie abstrakcyjnego podejścia przy kreacji architektury oprogramowania pozwoliło w łatwy sposób odizolować i wykryć błędy. Pozwala na łatwą 
+  Wykorzystanie abstrakcyjnego podejścia w architekturze oprogramowania pozwoliło w łatwy sposób odizolować i wykryć błędy. Pozwala na łatwą 
   rozbudowę lub modyfikację układu wyświetlaczy. 
   
   
@@ -118,7 +118,7 @@ na nim elementów znajduje się w ww. rozdziałach.
 
 \section{Obsługa pamięci nieulotnej/systemu plików}
 \label{sec:filesystem}
-  Rozmiar plików strony internetowej serwowanej przez urządzenie oraz potrzeba aktualizacji strony wymagała stworzenia 
+  Rozmiar plików strony internetowej udostępnianej przez urządzenie oraz potrzeba aktualizacji strony wymagała stworzenia 
   sposobu na zapis plików w pamięci nieulotnej urządzenia.
   Dodatkowo wykorzystanie diod LED RGB pozwala na personalizację kolorów poszczególnych elementów SWIM. Strona internetowa
   posiada opcję ustawienia koloru dla: wyświetlaczy segmentowych, sygnałów oraz magistrali. Aby zapewnić możliwość przechowywania
@@ -131,18 +131,18 @@ na nim elementów znajduje się w ww. rozdziałach.
 
   Urządzenie przechowuje w pamięci plik z konfiguracją kolorów w formacie \textit{json}. Podczas uruchamiania urządzenia konfiguracja
   jest odczytywana, a kolory zostają odpowiednio ustawione. Użytkownik ma możliwość nadpisania pliku z konfiguracją wykorzystując
-  odpowiednią opcję w ustawieniach strony internetowej serwowanej przez urządzenie.
+  odpowiednią opcję w ustawieniach strony internetowej udostępnianej przez urządzenie.
 
 \clearpage
 \section{Obsługa trybu sieciowego SWIM}
 \label{sec:w-server}
   Głównym trybem działania urządzenia jest wizualizacja interfejsu sieciowego symulatora Maszyny W. Powstały w tym celu obiekt
-  \textit{W\_Server} zajmuje się kreacją oraz zarządzaniem następującymi funkcjami:
+  \textit{W\_Server} jest odpowiedzialny za zarządzanie następującymi funkcjami:
   \begin{itemize}
     \item tworzenie punktu dostępowego,
     \item tworzenie serwera DNS,
-    \item serwowanie strony internetowej,
-    \item obsługa komunikacji pomiędzy stroną internetową, a serwerem, 
+    \item udostępnianie strony internetowej,
+    \item obsługa komunikacji pomiędzy stroną internetową, a serwerem. 
   \end{itemize}
 
 
@@ -155,7 +155,8 @@ na nim elementów znajduje się w ww. rozdziałach.
     \label{fig:schemat-web-mode}
   \end{figure}
 
-  Sposób działania pomija szczegóły zwiazane z inicjalizacją poszczególnych komponentów takich jak: tworzenie serwera DNS czy serwowanie strony internetowej.
+  Sposób działania pomija szczegóły zwiazane z inicjalizacją poszczególnych komponentów takich jak: tworzenie serwera DNS,
+  czy udostępnianie strony internetowej.
 
 
 \section{Obsługa trybu lokalnego SWIM}

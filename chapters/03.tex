@@ -8,9 +8,9 @@
   \begin{itemize}
     \item obsługa dwóch kanałów dla adresowalnych diod LED RGB,
     \item obsługa 17 przycisków wraz z enkoderem,
-    \item zapewnienie punktu dostępu internetu,
+    \item zapewnienie punktu dostępu do internetu,
     \item przechowywanie danych w pamięci nieulotnej,
-    \item serwowanie strony internetowej.
+    \item udostępnianie strony internetowej.
   \end{itemize}
   
   Biorąc pod uwagę powyższe wymagania, rozważono dwie możliwości: mikrokomputer z rodziny \textit{Raspberry Pi} lub 
@@ -41,7 +41,7 @@
   \end{figure}
 
 
-  Własności wybranego układu zapożyczone z dokumentacji firmy \textit{Espressif Systems}:
+  Własności wybranego układu zapożyczone z dokumentacji firmy \textit{Espressif Systems} \cite{bib:esp-doku}:
   \begin{itemize}
     \item dwurdzeniowy 32-bitowy mikroprocesor \textit{Xtensa LX7},
     \item 16~MB pamięci flash, 16MB pamięci PSRAM,
@@ -75,7 +75,7 @@
   Poniższy rysunek (Rys. \ref{fig:schemat-LED-RGB}) z dokumentacji producenta przedstawia schemat wyprowadzeń elementu.
   \begin{figure}[H]
   \centering
-  \includegraphics[width=0.6\textwidth]{./graf/led-rgb-schematic.png}
+  \includegraphics[width=0.4\textwidth]{./graf/led-rgb-schematic.png}
   \caption{Schemat wyprowadzeń adresowalnej diody LED RGB \textit{WS2815B-V1}}
   \label{fig:schemat-LED-RGB}
   \end{figure}
@@ -88,7 +88,7 @@
     \item częstotliwość odświeżania 4kHz.
   \end{itemize}
 
-
+\clearpage
 \section{Przyciski}
 \label{sec:przyciski}
   W celu zapewnienia pełnej obsługi Maszyny W potrzebne jest wykorzystanie 17 przycisków.
@@ -147,11 +147,11 @@
 \section{Podświetlenie LED}
   Chcąc zapewnić przyjazny wizualnie wygląd modelu SWIM zdecydowano się na podświetlenie następujących elementów:
   \begin{itemize}
-    \item licznik rozkazów,
-    \item akumulator,
-    \item rejestr instrukcji,
-    \item rejestry A oraz S,
-    \item logo Politechniki Śląskiej.
+    \item licznika rozkazów,
+    \item akumulatora,
+    \item rejestru instrukcji,
+    \item rejestrów A oraz S,
+    \item loga Politechniki Śląskiej.
   \end{itemize}
 
   Wykorzystano do tego 12~V linie diod LED.
@@ -239,12 +239,12 @@
 \section{Serwer} %żródło kto zrobił stronę
 \label{sec:serwer}
   Na potrzebę modernizacji narzędzia dydaktycznego, jakim jest Maszyna W, została stworzona strona 
-  internetowa (rozdział \ref{sec:strona-internetowa}) symulująca działanie modelu komputera. Projekt oraz wykonanie ww. strony internetowej nie jest
-  częścią poniższej pracy dyplomowej. Sieciowy symulator Maszyny W został wykonany przez (AUTORZY !!!). Zadamiem SWIM
-  jest serwowanie ww. strony internetowej na lokalnej sieci utworzonej przez mikroprocesor.
+  internetowa symulująca działanie modelu komputera \cite{bib:aei-maszynaw}. Projekt oraz wykonanie ww. strony 
+  internetowej nie jest częścią poniższej pracy dyplomowej. 
+  Zadaniem SWIM jest udostępnianie ww. strony internetowej na lokalnej sieci utworzonej przez mikroprocesor.
 
 
-  Mikroprocesor wybrany w rozdziale \ref{sec:esp32} umożliwia serwowanie złożonych stron internetowych z poziomu urządzenia.
+  Mikroprocesor wybrany w rozdziale \ref{sec:esp32} umożliwia udostępnianie złożonych stron internetowych z poziomu urządzenia.
   Aby było to możliwe planowano wykorzystać biblioteki takie jak:
   \begin{itemize}
     \item \textit{WiFi} - obsługa połączeń i konfiguracji interfejsu sieci bezprzewodowej,
@@ -264,9 +264,9 @@
   \end{itemize} 
 
 \section{Punkt dostępowy}
-  Kreacja urządzenia sieciowego wymaga zabezpieczenia rozwiązania przed niechcianym dostępem oraz atakami.
-  Spośród dwóch możliwych rozwiązań: serwowaniu strony internetowej w globalnej sieci lub sieci lokalnej zdecydowano na rozwiązanie w pełni lokalne.
-  Aby było to możliwe mikroprocesor tworzy własną sieć internetową na której następnie serwuje stronę internetową. 
+  Wykorzystanie urządzenia sieciowego wymaga zabezpieczenia rozwiązania przed niechcianym dostępem oraz atakami.
+  Spośród dwóch możliwych rozwiązań \textemdash udostępniania strony internetowej w sieci globalnej bądź lokalnej \textemdash wybrano rozwiązanie w pełni lokalne.
+  Aby było to możliwe mikroprocesor tworzy własną sieć internetową na której następnie serwuje stronę internetową.  
   
 
   Tworzenie własnego punktu dostępu oraz izolacja go od sieci globalnej zapewnia bezpieczeństwo oraz kontrolę dostępu dla urządzenia.
@@ -325,8 +325,8 @@
 
   Przeprowadzono szacunkowe obliczenia maksymalnego poboru prądu:
   \begin{itemize}
-    \item dla linii diod LED WS2815B-V1, przy założeniu pełnej jasności każdej z trzech diod RGB oraz wykorzystaniu 600 elementów, przewidziano maksymalny pobór prądu na poziomie około 9A,
-    \item dla podświetlenia LED przewidziano pobór prądu rzędu 0,5A, uwzględniając wszystkie elementy podświetlane jednocześnie,
+    \item dla linii diod LED WS2815B-V1, przy założeniu pełnej jasności każdej z trzech diod RGB oraz wykorzystaniu 600 elementów, przewidziano maksymalny pobór prądu na poziomie około 9~A,
+    \item dla podświetlenia LED przewidziano pobór prądu rzędu 0,5~A, uwzględniając wszystkie elementy podświetlane jednocześnie,
     \item dla mikrokontrolera ESP32-S3 oraz układów towarzyszących przewidziano pobór prądu około 600mA przy pełnym obciążeniu interfejsów peryferyjnych i aktywnym WiFi.
   \end{itemize}
 

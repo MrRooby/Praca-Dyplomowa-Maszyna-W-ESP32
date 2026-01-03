@@ -9,7 +9,7 @@
   liczbowych oraz sygnałów sterujących symulatorem Maszyny W na adresowalnych diodach RGB.
 
   Urządzenie pozwala na zdalne sterowanie funkcjami symulatora zarówno za pomocą przycisków 
-  fizycznych, jak i interfejsu internetowego. System obsługuje serwowanie strony internetowej bezpośrednio 
+  fizycznych, jak i interfejsu internetowego. System obsługuje udostępnianie strony internetowej bezpośrednio 
   na mikrokontrolerze oraz zapewnia komunikację pomiędzy stroną a urządzeniem. 
   Wykorzystane rozwiązania umożliwiają natychmiastową synchronizację zmian między stroną internetową 
   a modelem Maszyny, co pozwala użytkownikowi na intuicyjny i interaktywny monitoring oraz kontrolę stanu Maszyny W.
@@ -26,7 +26,7 @@
   
   Maszyna W została zaprojektowana w latach siedemdziesiątych XX wieku na Politechnice Śląskiej przez zespół kierowany 
   przez prof. Stefana Węgrzyna jako uproszczony model komputera, przeznaczony do nauki podstaw architektury 
-  komputerów oraz zasad działania procesora. \cite{bib:minut-tutaj-momot}
+  komputerów oraz zasad działania procesora \cite{bib:minut-tutaj-momot}.
 
   Konstrukcja stanowi uproszczenie rzeczywistych jednostek obliczeniowych, przy jednoczesnym zachowaniu 
   kluczowych cech architektury von Neumanna, takich jak wspólna pamięć dla danych i rozkazów oraz sekwencyjne 
@@ -64,13 +64,13 @@
   Pamięć operacyjna przechowuje zarówno dane, jak i rozkazy
   programu w formie 8-bitowego słowa. Jednostka arytmetyczno-logiczna (JAL) realizuje operacje arytmetyczne i logiczne 
   (m.in. dodawanie, odejmowanie), wykorzystując akumulator jako główny rejestr roboczy, natomiast układ sterujący odpowiada za pobieranie, dekodowanie 
-  oraz wykonywanie rozkazów. \cite{bib:cwiczenia-tutaj}
+  oraz wykonywanie rozkazów \cite{bib:cwiczenia-tutaj}.
   \\
   
   Istotnym elementem Maszyny W jest sposób sterowania przepływem danych pomiędzy jej komponentami. Komunikacja 
   realizowana jest za pomocą magistrali adresowej i magistrali słowa, przebieg operacji kontrolowany jest przez 
   zestaw sygnałów mikrosterujących (np. czyt, wys, wei, il). Sygnały te, umożliwiają precyzyjne sterowanie 
-  przesyłami międzypamięciowymi i międzypamięciowo-rejestrowymi w kolejnych taktach zegara. \cite{bib:minut-tutaj-momot} 
+  przesyłami międzypamięciowymi i międzypamięciowo-rejestrowymi w kolejnych taktach zegara \cite{bib:minut-tutaj-momot}. 
   Dzięki temu możliwe jest szczegółowe śledzenie procesu realizacji pojedynczego rozkazu na poziomie mikrooperacji.
 
   Z perspektywy dydaktycznej szczególnie istotna jest możliwość analizy pełnego cyklu rozkazu, obejmującego fazy 
