@@ -103,7 +103,7 @@
       uniemożliwiające uszkodzenie płytki w przypadku błędnego podłączenia przewodów.
 
     \subsubsection{Złącze USB-C}
-      W celu umożliwienia łatwego programowania i komunikacji z mikroprocesorem, 
+      W celu umożliwienia łatwego programowania i komunikacji z mikrokontrolerem, 
       płytkę wyposażono w złącze USB typu C (tryb USB 2.0).
       Na złącze wyprowadzono jedynie linie \textit{D+} oraz \textit{D−}. Linie zasilania 
       \textit{VBUS} są wykorzystywane do zasilania sekcji USB oraz wykrywania 
@@ -122,19 +122,19 @@
         \item \textit{DT} \textemdash{} drugi kanał kwadraturowy enkodera, 
         \item \textit{SW} \textemdash{} złącze przycisku enkodera
       \end{itemize}
-      Sygnały prowadzone są do wejść cyfrowych mikroprocesora. Redukcję drgań styków 
+      Sygnały prowadzone są do wejść cyfrowych mikrokontrolera. Redukcję drgań styków 
       zapewniono z poziomu oprogramowania.
 
     \subsubsection{Złącza przycisków}
       Każdy przycisk posiada dedykowane 2-wyprowadzeniowe złącze typu \textit{JST-ZH} o rastrze 1.5mm. 
-      Jedno wyprowadzenie każdego złącza podłączone jest do masy \textit{GND}, drugie \textemdash{} do wejścia cyfrowego mikroprocesora.
-      Linie sygnałowe wyposażono w rezystor polaryzujący do zasilania z poziomu wbudowanych w mikroprocesor 
+      Jedno wyprowadzenie każdego złącza podłączone jest do masy \textit{GND}, drugie \textemdash{} do wejścia cyfrowego mikrokontrolera.
+      Linie sygnałowe wyposażono w rezystor polaryzujący do zasilania z poziomu wbudowanych w mikrokontroler 
       rezystorów. Filtrację sygnałów zapewniono od strony oprogramowania.
 
     \subsubsection{Złącze przełącznika trybów}
       Przełącznik trybów posiada dedykowane 2-wyprowadzeniowe złącze typu \textit{JST-ZH} o rastrze 1.5mm.
-      Jedno wyprowadzenie złącza podłączone jest do masy \textit{GND}, drugie \textemdash{} do wejścia cyfrowego mikroprocesora 
-      wykorzystującego wbudowany w mikroprocesor rezystor polaryzujący do zasilania. 
+      Jedno wyprowadzenie złącza podłączone jest do masy \textit{GND}, drugie \textemdash{} do wejścia cyfrowego mikrokontrolera 
+      wykorzystującego wbudowany w mikrokontroler rezystor polaryzujący do zasilania. 
       Filtrację sygnałów zrealizowano programowo.
 
     \subsubsection{Złącza linii LED}
@@ -151,7 +151,8 @@
 
     \subsubsection{Złącza zasilania podświetlenia modelu}
       Płytka zawiera dodatkowe dwa 2-wyprowadzeniowe złącza typu \textit{JST-XH} o rastrze 2.5mm. 
-      Każde złącze wspiera kontrolę zasilania 12~V z poziomu mikroprocesora. W tym celu
+      Każde złącze wspiera kontrolę zasilania 12~V z poziomu mikrokontrolera. W
+      tym celu
       zostały wykorzystane tranzystory typu \textit{MOSFET}.
     
     \subsubsection{Złącza dodatkowego wprowadzania zasilania}

@@ -1,10 +1,10 @@
 \chapter{Część projektowa}
 % \label{ch:wymagania-i-narzedzia} % nie wiem do czego to służy więc nie usuwam póki co
 
-\section{System mikroprocesorowy}\
+\section{System mikrokontrolerowy}
 \label{sec:esp32}
-  Ze względu na wymaganą komunikację sieciową projektu, wysoką złożoność rozwiązania oraz zapotrzebowanie na wiele portów
-  wejścia/wyjścia należało wybrać system mikroprocesorowy zapewniający poniższe możliwości:
+  Ze względu na wymaganą komunikację sieciową projektu, wysoką złożoność rozwiązania oraz zapotrzebowanie 
+  na wiele portów wejścia/wyjścia należało wybrać system mikrokontrolerowy zapewniający poniższe możliwości:
   \begin{itemize}
     \item obsługa dwóch kanałów dla adresowalnych diod LED RGB,
     \item obsługa 17 przycisków wraz z enkoderem,
@@ -32,7 +32,7 @@
   kontrolę urządzenia językiem \textit{C++}, niższą ceną, brakiem systemu operacyjnego, dostępnością oraz bogatą dokumentacją. 
   Z katalogu firmy \textit{Espressif Systems} wybrano urządzenie \textit{ESP32-S3-WROOM-1}.
 
-  Poniższy rysunek (Rys. \ref{fig:schemat-blokowy-esp32}) z dokumentacji producenta przedstawia schemat funkcjonalny wybranego układu
+  Poniższy rysunek (Rys. \ref{fig:schemat-blokowy-esp32}) z dokumentacji producenta przedstawia schemat funkcjonalny wybranego układu.
   \begin{figure}[H]
   \centering
   \includegraphics[width=0.8\textwidth]{./graf/schemat-esp32.png}
@@ -43,7 +43,7 @@
 
   Własności wybranego układu zapożyczone z dokumentacji firmy \textit{Espressif Systems} \cite{bib:esp-doku}:
   \begin{itemize}
-    \item dwurdzeniowy 32-bitowy mikroprocesor \textit{Xtensa LX7},
+    \item dwurdzeniowy 32-bitowy mikrokontroler \textit{Xtensa LX7},
     \item 16~MB pamięci flash, 16MB pamięci PSRAM,
     \item 512~MB pamięci SRAM,
     \item 36 portów GPIO,
@@ -72,7 +72,7 @@
   \\
 
 
-  Poniższy rysunek (Rys. \ref{fig:schemat-LED-RGB}) z dokumentacji producenta przedstawia schemat wyprowadzeń elementu.
+  Poniższy rysunek (Rys. \ref{fig:schemat-LED-RGB}) z dokumentacji producenta przedstawia schemat wyprowadzeń elementu \cite{bib:led-doku}.
   \begin{figure}[H]
   \centering
   \includegraphics[width=0.4\textwidth]{./graf/led-rgb-schematic.png}
@@ -105,10 +105,10 @@
   W tym celu wybrano 16 kanałowy multiplekser z wyprowadzeniem \textit{COM}. Urządzenie to pozwala na odczyt stanu przycisku wprowadzając 
   na wejście multipleksera 4-bitowego sygnału. Cykliczny odczyt stanu wyprowadzenia \textit{COM} wraz z odpowiednią kombinacją 
   4-bitowego wejścia pozwala na odczyt aktualnego stanu przycisków. Zmiana kombinacji 4-bitów wejścia oraz odczyt stanu wyprowadzenia
-  \textit{COM} co cykl mikroprocesora pozwala na odczyt aktualnego stanu przycisków. Z uwagi na niską cenę oraz niewielki wymiar 
+  \textit{COM} co cykl mikrokontrolera pozwala na odczyt aktualnego stanu przycisków. Z uwagi na niską cenę oraz niewielki wymiar 
   wybrano model \textit{CD74HC4067M} firmy \textit{Texas Instruments}.
   
-  Poniższy rysunek (Rys. \ref{fig:schemat-mux}) z dokumentacji producenta przedstawia diagram funkcjonalny układu.
+  Poniższy rysunek (Rys. \ref{fig:schemat-mux}) z dokumentacji producenta przedstawia diagram funkcjonalny układu \cite{bib:mux-doku}.
   \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{./graf/mux-schematic.png}
@@ -185,7 +185,7 @@
     \begin{minipage}[c]{0.60\textwidth}
       \centering
       \includegraphics[width=\textwidth]{./graf/enc-graph-cw.pdf}
-      \caption{Wykres stanów enkodera przy obrocie w prawo}
+      \caption{Wykres stanów przy obrocie w prawo}
       \label{fig:enc-cw}
     \end{minipage}%
     \hfill
@@ -199,7 +199,7 @@
         3 & 1 & 0 \\ \hline
         4 & 1 & 1 \\ \hline
       \end{tabular}
-      \captionof{table}{Tablica prawdy enkodera dla obrotu w prawo}
+      \captionof{table}{Tablica prawdy dla obrotu w prawo}
       \label{tab:enc-cw}
     \end{minipage}
     
@@ -209,7 +209,7 @@
     \begin{minipage}[c]{0.60\textwidth}
       \centering
       \includegraphics[width=\textwidth]{./graf/enc-graph-ccw.pdf} % Upewnij się, że masz ten plik
-      \caption{Wykres stanów enkodera przy obrocie w lewo}
+      \caption{Wykres stanów przy obrocie w lewo}
       \label{fig:enc-ccw}
     \end{minipage}%
     \hfill
@@ -223,7 +223,7 @@
         3 & 0 & 1 \\ \hline
         4 & 1 & 1 \\ \hline
       \end{tabular}
-      \captionof{table}{Tablica prawdy enkodera dla obrotu w lewo}
+      \captionof{table}{Tablica prawdy dla obrotu w lewo}
       \label{tab:enc-ccw}
     \end{minipage}
   \end{figure}
@@ -232,7 +232,7 @@
 \label{sec:przel_tryb}
   Jednym z dodatkowych założeń projektu jest możliwość przełączania SWIM między trybami lokalnym oraz sieciowym. 
   Aby zapewnić taką możliwość bezpośrednio z poziomu modelu wykorzystano przełącznik bistabilny. Podłączenie 
-  przełącznika bezpośrednio do systemu mikroprocesorowego pozwala na wykorzystanie przerwań w celu natychmiastowej
+  przełącznika bezpośrednio do systemu mikrokontrolerowego pozwala na wykorzystanie przerwań w celu natychmiastowej
   zmiany trybu pracy urządzenia. Korekta drgań styków urządzenia została zapewniona z poziomu oprogramowania. 
 
 \clearpage
@@ -240,17 +240,17 @@
 \label{sec:serwer}
   Na potrzebę modernizacji narzędzia dydaktycznego, jakim jest Maszyna W, została stworzona strona 
   internetowa symulująca działanie modelu komputera \cite{bib:aei-maszynaw}. Projekt oraz wykonanie ww. strony 
-  internetowej nie jest częścią poniższej pracy dyplomowej. 
-  Zadaniem SWIM jest udostępnianie ww. strony internetowej na lokalnej sieci utworzonej przez mikroprocesor.
+  internetowej nie jest częścią bieżącej pracy dyplomowej. 
+  Zadaniem SWIM jest udostępnianie ww. strony internetowej na lokalnej sieci utworzonej przez mikrokontroler.
 
 
-  Mikroprocesor wybrany w rozdziale \ref{sec:esp32} umożliwia udostępnianie złożonych stron internetowych z poziomu urządzenia.
+  Mikrokontroler wybrany w rozdziale \ref{sec:esp32} umożliwia udostępnianie złożonych stron internetowych z poziomu urządzenia.
   Aby było to możliwe planowano wykorzystać biblioteki takie jak:
   \begin{itemize}
     \item \textit{WiFi} - obsługa połączeń i konfiguracji interfejsu sieci bezprzewodowej,
     \item \textit{AsyncTCP} - asynchroniczna, nieblokująca komunikacja TCP,
     \item \textit{AsyncWebServer} - asynchroniczna obsługa serwera HTTP,
-    \item \textit{LittleFS} - system plików dla pamięci flash mikrokontrolera (przechowywanie plików strony)
+    \item \textit{LittleFS} - system plików dla pamięci flash mikrokontrolera,
     \item \textit{DNSServer} - lokalna obsługa i przekierowywanie zapytań serwera nazw domen.
   \end{itemize} 
 
@@ -259,23 +259,23 @@
   \begin{itemize}
     \item kontrolę połączeń z użytkownikami oraz ograniczenie ich liczby,
     \item komunikację przy wykorzystaniu protokołu sieciowego TCP,
-    \item przechowywanie złożonej strony internetowej Maszyny W bezpośrednio w pamięci flash mikroprocesora,
+    \item przechowywanie złożonej strony internetowej Maszyny W bezpośrednio w pamięci flash mikrokontrolera,
     \item wykorzystanie portalu przechwytującego zapytania DNS w celu przekierowania użytkowników na wybraną stronę.
   \end{itemize} 
 
 \section{Punkt dostępowy}
   Wykorzystanie urządzenia sieciowego wymaga zabezpieczenia rozwiązania przed niechcianym dostępem oraz atakami.
   Spośród dwóch możliwych rozwiązań \textemdash udostępniania strony internetowej w sieci globalnej bądź lokalnej \textemdash wybrano rozwiązanie w pełni lokalne.
-  Aby było to możliwe mikroprocesor tworzy własną sieć internetową na której następnie serwuje stronę internetową.  
+  Aby było to możliwe mikrokontroler tworzy własną sieć internetową na której następnie serwuje stronę internetową.  
   
 
   Tworzenie własnego punktu dostępu oraz izolacja go od sieci globalnej zapewnia bezpieczeństwo oraz kontrolę dostępu dla urządzenia.
   Bibioteki wymienione w rozdziale \ref{sec:serwer} umożliwiają zadanie hasła punktowi dostępu oraz ograniczenie liczby połączonych na raz użytkowników.
 
 \section{Strona internetowa}
-  Poniższa praca dyplomowa wykorzystuje wykonaną na potrzeby projektu PBL, którego SWIM również był częścią, stronę 
+  Bieżąca praca dyplomowa wykorzystuje wykonaną na potrzeby projektu PBL, którego SWIM również był częścią, stronę 
   modernizującą symulator Maszyny W. Niezwykle ważnym jest zaznaczyć, iż projekt oraz wykonanie ww. strony internetowej
-  nie są częścią poniższej pracy dyplomowej. Została ona stworzona przez członków projektu naukowego zajmującego się 
+  nie są częścią bieżącej pracy dyplomowej. Została ona stworzona przez członków projektu naukowego zajmującego się 
   modernizacją Maszyny W \cite{bib:aei-maszynaw}. Mając na uwadze autorów tej części projektu należy zrozumieć jej działanie,
   aby w odpowiedni sposób wdrożyć ją do projektu. 
   \\
@@ -295,7 +295,7 @@
 
 \clearpage
 \section{Interfejs komunikacyjny}
-  Niezbędnym elementem poniższego projektu jest możliwość komunikacji pomiędzy mikroprocesorem, a serwowaną na nim stroną w czasie rzeczywistym.
+  Niezbędnym elementem bieżącego projektu jest możliwość komunikacji pomiędzy mikrokontrolerem, a serwowaną na nim stroną w czasie rzeczywistym.
   Wyjściowo, nie jest możliwe przesyłanie informacji o aktualnie znajdujących się wartościach w polach tekstowych strony internetowej, lub o
   aktualnie wybranych sygnałach. 
   
@@ -305,7 +305,7 @@
   \\
 
   \textit{Websocket} jest dwukierunkowym protokołem komunikacyjnym. Działa zarówno w warstwie aplikacji (strona internetowa) oraz 
-  na serwerze (mikroprocesor). Umożliwia wymianę danych w czasie rzeczywistym, bez konieczności każdorazowego inicjowania żądania przez użytkownika.
+  na serwerze (mikrokontroler). Umożliwia wymianę danych w czasie rzeczywistym, bez konieczności każdorazowego inicjowania żądania przez użytkownika.
   Wykorzystuje asynchroniczną komunikację, co pozwala na nieblokujące odbieranie i nadawanie złożonych informacji.
 
 
