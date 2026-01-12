@@ -254,12 +254,12 @@
   Aby było to możliwe planowano wykorzystać biblioteki takie jak:
   \begin{itemize}
     \item \textit{WiFi} - obsługa połączeń i konfiguracji interfejsu sieci bezprzewodowej,
-    \item \textit{AsyncTCP} - asynchroniczna, nieblokująca komunikacja \textit{TCP} 
+    \item \textit{AsyncTCP} - asynchroniczna, nieblokująca komunikacja TCP 
       (z ang. \textit{Transmission Control Protocol}),
-    \item \textit{AsyncWebServer} - asynchroniczna obsługa serwera \textit{HTTP} 
+    \item \textit{AsyncWebServer} - asynchroniczna obsługa serwera HTTP 
       (z ang. \textit{Hypertext Transfer Protocol}),
-    \item \textit{LittleFS} - system plików dla pamięci \textit{flash} mikrokontrolera,
-    \item \textit{DNSServer} - lokalna obsługa i przekierowywanie zapytań \textit{DNS} 
+    \item \textit{LittleFS} - system plików dla pamięci flash mikrokontrolera,
+    \item \textit{DNSServer} - lokalna obsługa i przekierowywanie zapytań DNS 
       (z ang. \textit{Domain Name Server}).
   \end{itemize} 
 
@@ -267,9 +267,9 @@
   Wykorzystanie owych bibliotek pozwala na:
   \begin{itemize}
     \item kontrolę połączeń z użytkownikami oraz ograniczenie ich liczby,
-    \item komunikację przy wykorzystaniu protokołu sieciowego \textit{TCP},
-    \item przechowywanie złożonej strony internetowej Maszyny W bezpośrednio w pamięci \textit{flash} mikrokontrolera,
-    \item wykorzystanie portalu przechwytującego zapytania \textit{DNS} w celu przekierowania użytkowników na wybraną stronę.
+    \item komunikację przy wykorzystaniu protokołu sieciowego TCP,
+    \item przechowywanie złożonej strony internetowej Maszyny W bezpośrednio w pamięci flash mikrokontrolera,
+    \item wykorzystanie portalu przechwytującego zapytania DNS w celu przekierowania użytkowników na wybraną stronę.
   \end{itemize} 
 
 \section{Punkt dostępowy}
@@ -309,7 +309,7 @@
   Wyjściowo, nie jest możliwe przesyłanie informacji o aktualnie znajdujących się wartościach w polach tekstowych strony internetowej lub o
   aktualnie wybranych sygnałach. 
   
-  Standardowa implementacja serwera posiada jedynie możliwość komunikacji za pomocą protokołu \textit{HTTP}. Wykorzystanie
+  Standardowa implementacja serwera posiada jedynie możliwość komunikacji za pomocą protokołu HTTP. Wykorzystanie
   takiego rozwiązania wymagałoby wysyłania cyklicznych żądań do serwera co powodowałoby wysokie zużycie zasobów oraz opóźnienia w działaniu.  
   W celu zapewnienia wydajnej oraz szybkiej komunikacji pomiędzy stroną internetową a serwerem wykorzystano technologię \textit{WebSocket}.
   \\
@@ -323,7 +323,7 @@
   \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{./graf/websocket-graph.pdf}
-    \caption{Schemat komunikacji przy wykorzystaniu protokołu \textit{Websocket}. Źródło: opracowanie własne.}
+    \caption{Schemat komunikacji przy wykorzystaniu protokołu \textit{WebSocket}. Źródło: opracowanie własne.}
     \label{fig:websocket-graph}
   \end{figure} 
 

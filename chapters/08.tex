@@ -6,10 +6,10 @@
 
     \item \textbf{Programowanie mikrokontrolera:} Pierwszym krokiem było przygotowanie mikrokontrolera \textit{ESP32} 
       do pracy. Program został wgrany z poziomu środowiska \textit{PlatformIO} po uprzednim wprowadzeniu 
-      układu w tryb \textit{bootloadera} i podłączeniu go do komputera za pomocą przewodu \textit{USB-C}.
+      układu w tryb \textit{bootloadera} i podłączeniu go do komputera za pomocą przewodu USB-C.
     
     \item \textbf{Konfiguracja systemu plików:} Ważnym elementem konfiguracji programowej 
-      było przygotowanie struktury partycji pamięci \textit{flash} pod system plików \textit{LittleFS}. 
+      było przygotowanie struktury partycji pamięci flash pod system plików \textit{LittleFS}. 
       Było to niezbędne do poprawnego umieszczenia na urządzeniu plików źródłowych strony 
       internetowej, która stanowi kluczowy element działania urządzenia.
     
@@ -21,7 +21,7 @@
       przekłamaniami w przesyłaniu sygnałów sterujących kolorami. 
   
       Problem rozwiązano poprzez wymianę okablowania na nowe, wykonane z dużą precyzją przy 
-      użyciu dedykowanej zaciskarki do złącz \textit{JST}. Zastosowanie profesjonalnego narzędzia 
+      użyciu dedykowanej zaciskarki do złącz JST. Zastosowanie profesjonalnego narzędzia 
       zapewniło pewność połączeń elektrycznych i wyeliminowało błędy w odwzorowaniu barw.
     
     \item \textbf{Korekta oprogramowania:} Podczas testów oprogramowania modelu wystąpiły 
@@ -58,7 +58,7 @@
         oraz enkodera obrotowego;
 
       \item \textbf{Komunikacja sieciowa} \textemdash{} \textit{ESP32} pełni rolę punktu dostępowego 
-        i serwera \textit{HTTP}, zapewniając dwukierunkową komunikację przez protokół \textit{WebSocket};
+        i serwera HTTP, zapewniając dwukierunkową komunikację przez protokół \textit{WebSocket};
       
       \item \textbf{Tryb lokalny} \textemdash{} zrealizowano założenie pozwalające na pracę 
         urządzenia w trybie autonomicznym, bez potrzeby połączenia z zewnętrznym komputerem.
@@ -73,7 +73,7 @@
     \begin{itemize}
       
       \item \textbf{Problem z spadkami napięcia podświetlenia LED} \textemdash{} 
-        Podczas testów prototypu stwierdzono, że tranzystory \textit{MOSFET} odpowiedzialne
+        Podczas testów prototypu stwierdzono, że tranzystory MOSFET odpowiedzialne
         za sterowanie napięciem podświetlenia led zastosowane na płycie głównej nie działały
         zgodnie z oczekiwaniami (np. problemy z pełnym otwarciem kanału przy napięciu sterującym 
         z \textit{ESP32} lub nieprawidłowa charakterystyka przełączania). Aby zapewnić stabilne 
@@ -108,7 +108,8 @@
 
       \item \textbf{Wsparcie dla rozszerzeń modelu dydaktycznego} \textemdash{} Maszyna W w swojej pełnej wersji
         posiada obsługę przerwań, dodatkowe sygnały sterujące oraz dodatkowe rejestry poszerzające
-        jej funkcjonalność \cite{bib:cwiczenia-tutaj}.  Kolejna wersja urządzenia mogłaby wspierać rozszerzenia Maszyny W.
+        jej funkcjonalność \cite{bib:cwiczenia-tutaj}.  Kolejna wersja urządzenia mogłaby wspierać rozszerzenia 
+        Maszyny W.
 
     \end{itemize}
 
