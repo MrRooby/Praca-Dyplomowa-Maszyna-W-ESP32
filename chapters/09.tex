@@ -1,7 +1,7 @@
 \chapter{Wnioski}
   Niniejsza praca inżynierska poświęcona była zaprojektowaniu i budowie systemu 
   wizualizacji danych dla webowego interfejsu Maszyny W z wykorzystaniem mikrokontrolera 
-  \textit{ESP32}. Głównym celem projektu było stworzenie fizycznego modelu, który w czasie 
+  ESP32. Głównym celem projektu było stworzenie fizycznego modelu, który w czasie 
   rzeczywistym odwzorowuje stan rejestrów i sygnałów sterujących symulatora Maszyny W za 
   pomocą adresowalnych diod LED oraz umożliwia interakcję z nim poprzez przyciski fizyczne.
 
@@ -16,7 +16,7 @@
       \item \textbf{Interakcja fizyczna} \textemdash{} zaimplementowano obsługę 17 przycisków
         oraz enkodera obrotowego;
 
-      \item \textbf{Komunikacja sieciowa} \textemdash{} \textit{ESP32} pełni rolę punktu dostępowego 
+      \item \textbf{Komunikacja sieciowa} \textemdash{} ESP32 pełni rolę punktu dostępowego 
         i serwera HTTP, zapewniając dwukierunkową komunikację przez protokół \textit{WebSocket};
       
       \item \textbf{Tryb lokalny} \textemdash{} zrealizowano założenie pozwalające na pracę 
@@ -35,7 +35,7 @@
         Podczas testów prototypu stwierdzono, że tranzystory MOSFET odpowiedzialne
         za sterowanie napięciem podświetlenia led zastosowane na płycie głównej nie działały
         zgodnie z oczekiwaniami (np. problemy z pełnym otwarciem kanału przy napięciu sterującym 
-        z \textit{ESP32} lub nieprawidłowa charakterystyka przełączania). Aby zapewnić stabilne 
+        z ESP32 lub nieprawidłowa charakterystyka przełączania). Aby zapewnić stabilne 
         podświetlenie urządzenia podjęto decyzję o rezygnacji ze sterowania nimi z poziomu 
         mikrokontrolera na rzecz stałego podłączenia diod LED do zasilania. Rozwiązanie to 
         zapewnia stabilne podświetlenie, pozbywając użytkownika możliwości sterowania nim.

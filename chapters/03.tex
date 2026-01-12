@@ -14,7 +14,7 @@
   \end{itemize}
   
   Biorąc pod uwagę powyższe wymagania, rozważono dwie możliwości: mikrokomputer z rodziny \textit{Raspberry Pi} lub 
-  mikrokontroler z rodziny \textit{ESP32}. Zarówno mikrokomputer jak i mikrokontroler spełniają wszystkie ww. założenia. Urządzenia 
+  mikrokontroler z rodziny ESP32. Zarówno mikrokomputer jak i mikrokontroler spełniają wszystkie ww. założenia. Urządzenia 
   z rodziny \textit{Raspberry Pi} charakteryzują się prostotą obsługi oraz konfiguracji, są wyposażone w system operacyjny oparty na 
   jądrze \textit{Linuxa} oraz pozwalają na programowanie w językach \textit{Python} oraz \textit{C++}. System operacyjny pozwala 
   również na łatwe przechowywanie danych w pamięci nieulotnej urządzenia z uwagi na obecny w nim system plików. 
@@ -22,13 +22,13 @@
   \textit{Debiana} pozwala na tworzenie własnych procesów typu \textit{daemon} (procesów działających w tle). 
   
 
-  Mikrokontrolery z rodziny \textit{ESP32} nie posiadają systemu operacyjnego, a ich programowanie jest możliwe przy użyciu języków 
+  Mikrokontrolery z rodziny ESP32 nie posiadają systemu operacyjnego, a ich programowanie jest możliwe przy użyciu języków 
   takich jak \textit{C} oraz \textit{C++}. Służą do tego specjalnie przygotowane środowiska programistyczne takie jak 
   \textit{Visual Studio Code} z rozszerzeniem \textit{PlatformIO} a także \textit{Arduino IDE}. Ich przewagą nad mikrokomputerami 
   są: brak systemu operacyjnego, niższa cena, mniejsza złożoność oraz mniejsze zużycie energii. 
   
   \clearpage
-  Po rozważeniu obu opcji zdecydowano się na użycie mikrokontrolera z rodziny \textit{ESP32}. Wybór został podyktowany pozwalającym na pełną 
+  Po rozważeniu obu opcji zdecydowano się na użycie mikrokontrolera z rodziny ESP32. Wybór został podyktowany pozwalającym na pełną 
   kontrolę urządzenia językiem \textit{C++}, niższą ceną, brakiem systemu operacyjnego, dostępnością oraz bogatą dokumentacją. 
   Z katalogu firmy \textit{Espressif Systems} wybrano urządzenie \textit{ESP32-S3-WROOM-1}.
 
@@ -36,7 +36,7 @@
   \begin{figure}[H]
   \centering
   \includegraphics[width=0.7\textwidth]{./graf/schemat-esp32.png}
-    \caption{Schemat blokowy funkcjonalny układu \textit{ESP32-S3}. 
+    \caption{Schemat blokowy funkcjonalny układu ESP32-S3. 
     Źródło: \url{https://www.circuitstate.com/wp-content/uploads/2023/08/Espressif-ESP32-S3-Functional-Block-Diagram-CIRCUITSTATE-Electronics-1.png}}
   \label{fig:schemat-blokowy-esp32}
   \end{figure}
@@ -330,7 +330,7 @@
 \clearpage
 \section{Zasilanie}
   Mając na uwadze wszystkie wymienione w powyższym rozdziale elementy SWIM, dokonano analizy wymagań energetycznych układu w celu dobrania 
-  odpowiedniego zasilacza. Adresowalne diody LED oraz podświetlenie wymagały zasilania napięciem 12~V, natomiast mikrokontroler \textit{ESP32} 
+  odpowiedniego zasilacza. Adresowalne diody LED oraz podświetlenie wymagały zasilania napięciem 12~V, natomiast mikrokontroler ESP32 
   oraz multiplekser korzystały z napięcia 3,3~V.
   \\
 
@@ -338,14 +338,14 @@
   \begin{itemize}
     \item dla linii diod LED \textit{WS2815B-V1}, przy założeniu pełnej jasności każdej z trzech diod RGB oraz wykorzystaniu 600 elementów, przewidziano maksymalny pobór prądu na poziomie około 9~A,
     \item dla podświetlenia LED przewidziano pobór prądu rzędu 0,5~A, uwzględniając wszystkie elementy podświetlane jednocześnie,
-    \item dla mikrokontrolera \textit{ESP32-S3} oraz układów towarzyszących przewidziano pobór prądu około 600~mA przy pełnym obciążeniu interfejsów peryferyjnych i aktywnym WiFi.
+    \item dla mikrokontrolera ESP32-S3 oraz układów towarzyszących przewidziano pobór prądu około 600~mA przy pełnym obciążeniu interfejsów peryferyjnych i aktywnym WiFi.
   \end{itemize}
 
 Na podstawie powyższych obliczeń dobrano zasilacz impulsowy o napięciu wyjściowym 12~V i mocy minimalnej 330~W, co zapewniało bezpieczny 
 margines względem przewidywanego maksymalnego poboru prądu. Zastosowanie zasilacza o większej mocy umożliwiało również stabilne działanie 
 układu przy chwilowych skokach poboru prądu przez linie LED.
 
-Zasilanie mikrokontrolera \textit{ESP32} oraz innych układów niskonapięciowych realizowano przy użyciu przetwornicy DC-DC obniżającej napięcie z 12~V do 3,3~V.
+Zasilanie mikrokontrolera ESP32 oraz innych układów niskonapięciowych realizowano przy użyciu przetwornicy DC-DC obniżającej napięcie z 12~V do 3,3~V.
 Rozwiązanie to zapewniało izolację układów niskonapięciowych od wysokoprądowych linii LED oraz stabilne napięcie zasilania, eliminując spadki i 
 zakłócenia w pracy mikrokontrolera. Dodatkowo, w celu ochrony układu przed odwrotną polaryzacją, należy zapewnić odpowiednią ochronę. 
 Takie podejście zapewniło bezpieczne i niezawodne działanie całego systemu SWIM.
