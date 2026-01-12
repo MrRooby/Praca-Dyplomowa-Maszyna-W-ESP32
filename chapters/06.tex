@@ -12,8 +12,6 @@ Mikrokontroler ma do zrealizowania następujące zadania:
   \item obsługa trybu lokalnego SWIM,
   \item kontrola podświetlenia LED.
 \end{itemize}
-Kompletny kod źródłowy mikrokontrolera wraz z instrukcją instalacji został zamieszczony w dodatku (TODO Dodatek z kodem źródłowym).
-\\
 
 
 Poniższe rozdziały opisują w szczegółowy sposób działanie oprogramowania urządzenia. Rozdziały \ref{sec:obsluga-led},
@@ -126,7 +124,7 @@ na nim elementów znajduje się w ww. rozdziałach.
   \\
 
   Wyżej wymienione powody wymagały wykorzystania zewnętrznej biblioteki \textit{LittleFS}. Pozwala ona stworzyć osobną partycję w 
-  pamięci flash urządzenia dla systemu plików. Zapisane w ten sposób dane nie ulegają usunięciu po odłączeniu zasilania urządzenia.
+  pamięci flash urządzenia dla systemu plików \cite{bib:littlefs}. Zapisane w ten sposób dane nie ulegają usunięciu po odłączeniu zasilania urządzenia.
   
 
   Urządzenie przechowuje w pamięci plik z konfiguracją kolorów w formacie \textit{json}. Podczas uruchamiania urządzenia konfiguracja

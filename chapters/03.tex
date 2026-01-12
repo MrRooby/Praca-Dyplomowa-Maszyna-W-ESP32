@@ -4,7 +4,7 @@
 \section{System mikrokontrolerowy}
 \label{sec:esp32}
   Ze względu na wymaganą komunikację sieciową projektu, wysoką złożoność rozwiązania oraz zapotrzebowanie 
-  na wiele portów wejścia/wyjścia należało wybrać system mikrokontrolerowy zapewniający poniższe możliwości:
+  na wiele portów wejścia/wyjścia należało wybrać system mikrokontrolerowy zapewniający poniższą funkcjonalność:
   \begin{itemize}
     \item obsługa dwóch kanałów dla adresowalnych diod LED RGB,
     \item obsługa 17 przycisków wraz z enkoderem,
@@ -45,7 +45,7 @@
   \begin{itemize}
     \item dwurdzeniowy 32-bitowy mikrokontroler \textit{Xtensa LX7},
     \item 16~MB pamięci flash, 16MB pamięci PSRAM,
-    \item 512~MB pamięci SRAM,
+    \item 512~KB pamięci SRAM,
     \item 36 portów GPIO,
     \item komunikacja 2.4~GHz WiFi (802.11b/g/n) oraz Bluetooth 5,
     \item wbudowana antena,
@@ -93,7 +93,7 @@
 \label{sec:przyciski}
   W celu zapewnienia pełnej obsługi Maszyny W potrzebne jest wykorzystanie 17 przycisków.
   Symulator w wersji podstawowej udostępnia użytkownikowi 16 możliwych sygnałów: 
-  \textit{czyt, wys, wei, il, wyad, weak, pisz, przep, wel, wyl, dod, ode, wes, weja, wyak, wea}. Do wymienionych sygnałów 
+  \textit{czyt, wys, wei, il, wyad, weak, pisz, przep, wel, wyl, dod, ode, wes, weja, wyak, wea} \cite{bib:cwiczenia-tutaj}. Do wymienionych sygnałów 
   należy również wliczyć przycisk \textit{takt}, który zapewni możliwość wykonania zadanego rozkazu.
 
   Zdecydowano się na wykorzystanie przełączników \textit{MX Blue} firmy \textit{Cherry}. Według dokumentacji producenta
@@ -119,8 +119,6 @@
   Poniższa tabela (Tab. \ref{tab:mux-truth-table}) prawdy przedstawia odczyt stanu przycisków.
   \begin{table}[H]
     \centering
-    \caption{Tablica prawdy multipleksera}
-    \label{tab:mux-truth-table}
     \begin{tabular}{|c|c|c|c|c|c|}
       \hline
       \textbf{S0} & \textbf{S1} & \textbf{S2} & \textbf{S3} & \textbf{COM} & \textbf{Kanał} \\ \hline
@@ -141,6 +139,8 @@
       0  & 1 & 1 & 1 & 1 & 14 \\ \hline
       1  & 1 & 1 & 1 & 1 & 15 \\ \hline
     \end{tabular}
+    \caption{Tablica prawdy multipleksera}
+    \label{tab:mux-truth-table}
   \end{table}
 
 \clearpage
@@ -166,8 +166,8 @@
 
   Zamierzone działanie enkodera:
   \begin{itemize}
-    \item zwiększanie/zmniejszanie wartości liczbowych w zależności od kierunku obrotu,
-    \item aktywacja trybu wprowadzania danych poprzez przytrzymanie przycisku,
+    \item zwiększanie/zmniejszanie wartości liczbowych w zależności od kierunku obrotu;
+    \item aktywacja trybu wprowadzania danych poprzez przytrzymanie przycisku;
     \item przełączanie między polami wprowadzania danych przy użyciu szybkich kliknięć.
   \end{itemize}
 
@@ -179,54 +179,106 @@
   przedstawiają sposób odczytu obrotu w prawo (Rys. \ref{fig:enc-cw}, Tab. \ref{tab:enc-cw}) oraz w lewo 
   (Rys. \ref{fig:enc-ccw}, Tab. \ref{tab:enc-ccw}).
 
-  \begin{figure}[H]
+\begin{figure}[H]
+  \centering
+  % --- Pierwsza sekcja (Obrót w prawo) ---
+  \begin{minipage}[t]{0.58\textwidth} % Zwiększona szerokość dla rysunku
     \centering
-    % \textemdash{}- OBRÓT W PRAWO (CW) \textemdash{}-
-    \begin{minipage}[c]{0.60\textwidth}
-      \centering
-      \includegraphics[width=\textwidth]{./graf/enc-graph-cw.pdf}
-      \caption{Wykres stanów przy obrocie w prawo}
-      \label{fig:enc-cw}
-    \end{minipage}%
-    \hfill
-    \begin{minipage}[c]{0.4\textwidth}
-      \centering
-      \begin{tabular}{|c|c|c|}
-        \hline
-        \textbf{Krok (t)} & \textbf{A} & \textbf{B} \\ \hline
-        1 & 0 & 1 \\ \hline
-        2 & 0 & 0 \\ \hline
-        3 & 1 & 0 \\ \hline
-        4 & 1 & 1 \\ \hline
-      \end{tabular}
-      \captionof{table}{Tablica prawdy dla obrotu w prawo}
-      \label{tab:enc-cw}
-    \end{minipage}
-    
-    \vspace{1cm} % Odstęp między sekcjami
+    \vfill
+    \includegraphics[width=\textwidth]{./graf/enc-graph-cw.pdf}
+    \caption{Wykres stanów przy obrocie w prawo}
+    \label{fig:enc-cw}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.38\textwidth} % Zmniejszona szerokość dla tabeli
+    \centering
+    \vspace{0pt} % Trick, aby góra tabeli zrównała się z górą rysunku
+    \begin{tabular}{|c|c|c|}
+      \hline
+      \textbf{Krok} & \textbf{A} & \textbf{B} \\ \hline
+      1 & 0 & 1 \\ \hline
+      2 & 0 & 0 \\ \hline
+      3 & 1 & 0 \\ \hline
+      4 & 1 & 1 \\ \hline
+    \end{tabular}
+    \captionof{table}{Tablica prawdy dla obrotu w prawo}
+    \label{tab:enc-cw}
+  \end{minipage}
 
-    % \textemdash{}- OBRÓT W LEWO (CCW) \textemdash{}-
-    \begin{minipage}[c]{0.60\textwidth}
-      \centering
-      \includegraphics[width=\textwidth]{./graf/enc-graph-ccw.pdf} % Upewnij się, że masz ten plik
-      \caption{Wykres stanów przy obrocie w lewo}
-      \label{fig:enc-ccw}
-    \end{minipage}%
-    \hfill
-    \begin{minipage}[c]{0.4\textwidth}
-      \centering
-      \begin{tabular}{|c|c|c|}
-        \hline
-        \textbf{Krok (t)} & \textbf{A} & \textbf{B} \\ \hline
-        1 & 1 & 0 \\ \hline
-        2 & 0 & 0 \\ \hline
-        3 & 0 & 1 \\ \hline
-        4 & 1 & 1 \\ \hline
-      \end{tabular}
-      \captionof{table}{Tablica prawdy dla obrotu w lewo}
-      \label{tab:enc-ccw}
-    \end{minipage}
-  \end{figure}
+  \vspace{0.8cm}
+
+  % --- Druga sekcja (Obrót w lewo) ---
+  \begin{minipage}[t]{0.58\textwidth}
+    \centering
+    \vfill
+    \includegraphics[width=\textwidth]{./graf/enc-graph-ccw.pdf}
+    \caption{Wykres stanów przy obrocie w lewo}
+    \label{fig:enc-ccw}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.38\textwidth}
+    \centering
+    \vspace{0pt}
+    \begin{tabular}{|c|c|c|}
+      \hline
+      \textbf{Krok} & \textbf{A} & \textbf{B} \\ \hline
+      1 & 1 & 0 \\ \hline
+      2 & 0 & 0 \\ \hline
+      3 & 0 & 1 \\ \hline
+      4 & 1 & 1 \\ \hline
+    \end{tabular}
+    \captionof{table}{Tablica prawdy dla obrotu w lewo}
+    \label{tab:enc-ccw}
+  \end{minipage}
+\end{figure}
+  % \begin{figure}[H]
+  %   \centering
+  %   % \textemdash{}- OBRÓT W PRAWO (CW) \textemdash{}-
+  %   \begin{minipage}[c]{0.60\textwidth}
+  %     \centering
+  %     \includegraphics[width=\textwidth]{./graf/enc-graph-cw.pdf}
+  %     \caption{Wykres stanów przy obrocie w prawo}
+  %     \label{fig:enc-cw}
+  %   \end{minipage}%
+  %   \hfill
+  %   \begin{minipage}[c]{0.4\textwidth}
+  %     \centering
+  %     \begin{tabular}{|c|c|c|}
+  %       \hline
+  %       \textbf{Krok (t)} & \textbf{A} & \textbf{B} \\ \hline
+  %       1 & 0 & 1 \\ \hline
+  %       2 & 0 & 0 \\ \hline
+  %       3 & 1 & 0 \\ \hline
+  %       4 & 1 & 1 \\ \hline
+  %     \end{tabular}
+  %     \captionof{table}{Tablica prawdy dla obrotu w prawo}
+  %     \label{tab:enc-cw}
+  %   \end{minipage}
+  %
+  %   \vspace{1cm} % Odstęp między sekcjami
+  %
+  %   % \textemdash{}- OBRÓT W LEWO (CCW) \textemdash{}-
+  %   \begin{minipage}[c]{0.60\textwidth}
+  %     \centering
+  %     \includegraphics[width=\textwidth]{./graf/enc-graph-ccw.pdf} % Upewnij się, że masz ten plik
+  %     \caption{Wykres stanów przy obrocie w lewo}
+  %     \label{fig:enc-ccw}
+  %   \end{minipage}%
+  %   \hfill
+  %   \begin{minipage}[c]{0.4\textwidth}
+  %     \centering
+  %     \begin{tabular}{|c|c|c|}
+  %       \hline
+  %       \textbf{Krok (t)} & \textbf{A} & \textbf{B} \\ \hline
+  %       1 & 1 & 0 \\ \hline
+  %       2 & 0 & 0 \\ \hline
+  %       3 & 0 & 1 \\ \hline
+  %       4 & 1 & 1 \\ \hline
+  %     \end{tabular}
+  %     \captionof{table}{Tablica prawdy dla obrotu w lewo}
+  %     \label{tab:enc-ccw}
+  %   \end{minipage}
+  % \end{figure}
 
 \section{Przełącznik trybów}
 \label{sec:przel_tryb}
@@ -265,7 +317,7 @@
 
 \section{Punkt dostępowy}
   Wykorzystanie urządzenia sieciowego wymaga zabezpieczenia rozwiązania przed niechcianym dostępem oraz atakami.
-  Spośród dwóch możliwych rozwiązań \textemdash udostępniania strony internetowej w sieci globalnej bądź lokalnej \textemdash wybrano rozwiązanie w pełni lokalne.
+  Spośród dwóch możliwych rozwiązań \textemdash{} udostępniania strony internetowej w sieci globalnej bądź lokalnej \textemdash{} wybrano rozwiązanie w pełni lokalne.
   Aby było to możliwe mikrokontroler tworzy własną sieć internetową na której następnie serwuje stronę internetową.  
   
 
@@ -285,7 +337,7 @@
   \begin{figure}[H]
   \centering
   \includegraphics[width=1\textwidth]{./graf/maszyna-web.png}
-  \caption{Strona główna sieciowego symulatora Maszyny W}
+    \caption{Strona główna sieciowego symulatora Maszyny W. Źródło: \url{https://maszynaw.aei.polsl.pl}}
   \label{fig:maszyna-web}
   \end{figure}
 
@@ -301,12 +353,12 @@
   
   Standardowa implementacja serwera posiada jedynie możliwość komunikacji za pomocą protokołu \textit{HTTP}. Wykorzystanie
   takiego rozwiązania wymagałoby wysyłania cyklicznych żądań do serwera co powodowałoby wysokie zużycie zasobów oraz opóźnienia w działaniu.  
-  W celu zapewnienia wydajnej oraz szybkiej komunikacji pomiędzy stroną internetową a serwerem wykorzystano technologię \textit{Websocketów}.
+  W celu zapewnienia wydajnej oraz szybkiej komunikacji pomiędzy stroną internetową a serwerem wykorzystano technologię \textit{WebSocket}.
   \\
 
   \textit{Websocket} jest dwukierunkowym protokołem komunikacyjnym. Działa zarówno w warstwie aplikacji (strona internetowa) oraz 
   na serwerze (mikrokontroler). Umożliwia wymianę danych w czasie rzeczywistym, bez konieczności każdorazowego inicjowania żądania przez użytkownika.
-  Wykorzystuje asynchroniczną komunikację, co pozwala na nieblokujące odbieranie i nadawanie złożonych informacji.
+  Wykorzystuje asynchroniczną komunikację, co pozwala na nieblokujące odbieranie i nadawanie złożonych informacji \cite{bib:websocket}.
 
 
   Poniższy schemat ilustruje przebieg komunikacji \textit{WebSocket}, pomiędzy klientem (stroną internetową), a serwerem.
@@ -327,7 +379,7 @@
   \begin{itemize}
     \item dla linii diod LED WS2815B-V1, przy założeniu pełnej jasności każdej z trzech diod RGB oraz wykorzystaniu 600 elementów, przewidziano maksymalny pobór prądu na poziomie około 9~A,
     \item dla podświetlenia LED przewidziano pobór prądu rzędu 0,5~A, uwzględniając wszystkie elementy podświetlane jednocześnie,
-    \item dla mikrokontrolera ESP32-S3 oraz układów towarzyszących przewidziano pobór prądu około 600mA przy pełnym obciążeniu interfejsów peryferyjnych i aktywnym WiFi.
+    \item dla mikrokontrolera ESP32-S3 oraz układów towarzyszących przewidziano pobór prądu około 600~mA przy pełnym obciążeniu interfejsów peryferyjnych i aktywnym WiFi.
   \end{itemize}
 
 Na podstawie powyższych obliczeń dobrano zasilacz impulsowy o napięciu wyjściowym 12~V i mocy minimalnej 330~W, co zapewniało bezpieczny 
