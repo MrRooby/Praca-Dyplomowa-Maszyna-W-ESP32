@@ -25,7 +25,7 @@
     \begin{figure}[H]
       \centering
       \includegraphics[scale=0.5]{./graf/plyta-glowna-pcb-front.pdf}
-      \caption{Widok warstwy górnej płyty głównej}
+      \caption{Widok warstwy górnej płyty głównej. Źródło: opracowanie własne.}
       \label{fig:plyta-glowna-pcb-front}
     \end{figure}
 
@@ -36,7 +36,7 @@
     \begin{figure}[H]
       \centering
       \includegraphics[scale=0.5]{./graf/plyta-glowna-pcb-back.pdf}
-      \caption{Widok warstwy dolnej płyty głównej}
+      \caption{Widok warstwy dolnej płyty głównej. Źródło: opracowanie własne.}
       \label{fig:plyta-glowna-pcb-rewers}
     \end{figure}
 
@@ -55,7 +55,7 @@
     \begin{figure}[H]
     \centering
     \includegraphics[scale=1]{./graf/wysw-trzy-back.pdf}
-    \caption{Widok warstwy górnej wyświetlacza trzycyfrowego}
+    \caption{Widok warstwy górnej wyświetlacza trzycyfrowego. Źródło: opracowanie własne.}
     \label{fig:wysw-trzy-front}
     \end{figure}
 
@@ -64,7 +64,7 @@
     \begin{figure}[H]
     \centering
     \includegraphics[scale=1]{./graf/wysw-trzy-front.pdf}
-    \caption{Widok warstwy dolnej wyświetlacza trzycyfrowego}
+    \caption{Widok warstwy dolnej wyświetlacza trzycyfrowego. Źródło: opracowanie własne.}
     \label{fig:wysw-trzy-rewers}
     \end{figure}
 
@@ -79,7 +79,7 @@
     \begin{figure}[H]
     \centering
     \includegraphics[scale=1]{./graf/wysw-dwu-back.pdf}
-    \caption{Widok warstwy górnej wyświetlacza dwucyfrowego}
+    \caption{Widok warstwy górnej wyświetlacza dwucyfrowego. Źródło: opracowanie własne.}
     \label{fig:wysw-dwu-front}
     \end{figure}
 
@@ -88,7 +88,7 @@
     \begin{figure}[H]
     \centering
     \includegraphics[scale=1]{./graf/wysw-dwu-front.pdf}
-    \caption{Widok warstwy dolnej wyświetlacza dwucyfrowego}
+    \caption{Widok warstwy dolnej wyświetlacza dwucyfrowego. Źródło: opracowanie własne.}
     \label{fig:wysw-dwu-rewers}
     \end{figure}
 
@@ -97,23 +97,25 @@
   \subsection{Płyta główna}
 
     \subsubsection{Złącze zasilania}
-      Urządzenie jest wyposażone w 2-wyprowadzeniową listwę zaciskową typu \textit{ARK}. 
+      Urządzenie jest wyposażone w 2-wyprowadzeniową listwę zaciskową typu \textit{ARK}.
       Złącze pełni funkcję głównego wejścia zasilania i przyjmuje napięcie 12~V. 
       Układ elektryczny wyposażono w zabezpieczenie przed odwrotną polaryzacją, 
       uniemożliwiające uszkodzenie płytki w przypadku błędnego podłączenia przewodów.
 
-    \subsubsection{Złącze USB-C}
+    \subsubsection{Złącze \textit{USB-C}}
       W celu umożliwienia łatwego programowania i komunikacji z mikrokontrolerem, 
-      płytkę wyposażono w złącze USB typu C (tryb USB 2.0).
+      płytkę wyposażono w złącze \textit{USB} (z ang. \textit{Universal Media Bus}) typu \textit{C} 
+      (tryb \textit{USB 2.0}).
       Na złącze wyprowadzono jedynie linie \textit{D+} oraz \textit{D−}. Linie zasilania 
       \textit{VBUS} są wykorzystywane do zasilania sekcji USB oraz wykrywania 
       podłączenia komputera. Aby zapewnić zabezpieczenie przed prądem wstecznym
       wykorzystano diodę \textit{Schottky'ego} połączoną w kierunku zaporowym na linii zasilania.
-      Pozostałe wyprowadzenia USB-C niewykorzystywane przez układ 
-      zostały pozostawione niepodłączone, zgodnie ze specyfikacją.
+      Pozostałe wyprowadzenia \textit{USB-C} niewykorzystywane przez układ 
+      zostały pozostawione niepodłączone, zgodnie ze specyfikacją \cite{bib:usb-c}.
 
     \subsubsection{Złącze enkodera}
-      Do podłączenia impulsatora zastosowano 5-wyprowadzeniowe złącze typu \textit{JST-ZH} o rastrze 1.5mm.
+      Do podłączenia impulsatora zastosowano 5-wyprowadzeniowe złącze typu \textit{JST-ZH}
+      o rastrze 1.5~mm.
       Wyprowadzone sygnały:
       \begin{itemize}
         \item \textit{+3V3} \textemdash{} zasilanie elementu,
@@ -126,19 +128,21 @@
       zapewniono z poziomu oprogramowania.
 
     \subsubsection{Złącza przycisków}
-      Każdy przycisk posiada dedykowane 2-wyprowadzeniowe złącze typu \textit{JST-ZH} o rastrze 1.5mm. 
+      Każdy przycisk posiada dedykowane 2-wyprowadzeniowe złącze typu \textit{JST-ZH} o rastrze 1.5~mm. 
       Jedno wyprowadzenie każdego złącza podłączone jest do masy \textit{GND}, drugie \textemdash{} do wejścia cyfrowego mikrokontrolera.
       Linie sygnałowe wyposażono w rezystor polaryzujący do zasilania z poziomu wbudowanych w mikrokontroler 
       rezystorów. Filtrację sygnałów zapewniono od strony oprogramowania.
 
     \subsubsection{Złącze przełącznika trybów}
-      Przełącznik trybów posiada dedykowane 2-wyprowadzeniowe złącze typu \textit{JST-ZH} o rastrze 1.5mm.
+      Przełącznik trybów posiada dedykowane 2-wyprowadzeniowe złącze typu \textit{JST-ZH} o 
+      rastrze 1.5~mm.
       Jedno wyprowadzenie złącza podłączone jest do masy \textit{GND}, drugie \textemdash{} do wejścia cyfrowego mikrokontrolera 
       wykorzystującego wbudowany w mikrokontroler rezystor polaryzujący do zasilania. 
       Filtrację sygnałów zrealizowano programowo.
 
     \subsubsection{Złącza linii LED}
-      Dwa wyprowadzenia linii LED wykorzystują 3-wyprowadzeniowe złącza typu \textit{JST-XH} o rastrze 2.5mm, 
+      Dwa wyprowadzenia linii LED wykorzystują 3-wyprowadzeniowe złącza typu \textit{JST-XH} o 
+      rastrze 2.5~mm, 
       prowadzące sygnały do linii diod LED typu \textit{WS2815B-V1}.
       Wyprowadzenia:
       \begin{itemize}
@@ -147,23 +151,23 @@
         \item \textit{GND} \textemdash{} masa układu.
       \end{itemize}
       Dodatkowo zastosowano kondensator filtrujący do masy na każdej z adresowalnych diod obecnych na płytkach
-      drukowanych, zgodnie z dokumentacją producenta.
+      drukowanych, zgodnie z dokumentacją producenta \cite{bib:led-doku}.
 
     \subsubsection{Złącza zasilania podświetlenia modelu}
-      Płytka zawiera dodatkowe dwa 2-wyprowadzeniowe złącza typu \textit{JST-XH} o rastrze 2.5mm. 
+      Płytka zawiera dodatkowe dwa 2-wyprowadzeniowe złącza typu \textit{JST-XH} o rastrze 2.5~mm. 
       Każde złącze wspiera kontrolę zasilania 12~V z poziomu mikrokontrolera. W
       tym celu
       zostały wykorzystane tranzystory typu \textit{MOSFET}.
     
     \subsubsection{Złącza dodatkowego wprowadzania zasilania}
       Projekt układu przewiduje potrzebę dodatkowego wprowadzania zasilania na linie adresowalnych diod LED. 
-      W tym celu płytkę wyposażono w 9 złącz typu \textit{JST-XH} o rastrze 2.5mm. Każde złącze zapewnia 
+      W tym celu płytkę wyposażono w 9 złącz typu \textit{JST-XH} o rastrze 2.5~mm. Każde złącze zapewnia 
       zasilanie 12~V.
 
   \subsection{Wyświetlacze segmentowe}
     \subsubsection{Złącza wejścia/wyjścia}
       Każdy z wyświetlaczy segmentowych (zarówno trzycyfrowe, jak i dwucyfrowe) posiadają dwa złącza \textit{JST\_IN} oraz \textit{JST\_OUT}
-      typu \textit{JST-XH} o rastrze 2.5mm. Złącza umożliwiają łączenie wyświetlaczy w ciągłe linie.
+      typu \textit{JST-XH} o rastrze 2.5~mm. Złącza umożliwiają łączenie wyświetlaczy w ciągłe linie.
       Wyprowadzenia:
       \begin{itemize}
         \item \textit{+12~V} \textemdash{} zasilanie diod,

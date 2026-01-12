@@ -35,13 +35,14 @@
   Poniższy rysunek (Rys. \ref{fig:schemat-blokowy-esp32}) z dokumentacji producenta przedstawia schemat funkcjonalny wybranego układu.
   \begin{figure}[H]
   \centering
-  \includegraphics[width=0.8\textwidth]{./graf/schemat-esp32.png}
-  \caption{Schemat blokowy funkcjonalny układu ESP32-S3}
+  \includegraphics[width=0.7\textwidth]{./graf/schemat-esp32.png}
+  \caption{Schemat blokowy funkcjonalny układu ESP32-S3. 
+    Źródło: \url{https://www.circuitstate.com/wp-content/uploads/2023/08/Espressif-ESP32-S3-Functional-Block-Diagram-CIRCUITSTATE-Electronics-1.png}}
   \label{fig:schemat-blokowy-esp32}
   \end{figure}
 
 
-  Własności wybranego układu zapożyczone z dokumentacji firmy \textit{Espressif Systems} \cite{bib:esp-doku}:
+  Własności układu zapożyczone z dokumentacji firmy \textit{Espressif Systems} \cite{bib:esp-doku}:
   \begin{itemize}
     \item dwurdzeniowy 32-bitowy mikrokontroler \textit{Xtensa LX7},
     \item 16~MB pamięci flash, 16MB pamięci PSRAM,
@@ -76,16 +77,17 @@
   \begin{figure}[H]
   \centering
   \includegraphics[width=0.4\textwidth]{./graf/led-rgb-schematic.png}
-  \caption{Schemat wyprowadzeń adresowalnej diody LED RGB \textit{WS2815B-V1}}
+  \caption{Schemat wyprowadzeń adresowalnej diody LED RGB \textit{WS2815B-V1}.
+    Źródło: \url{https://www.alldatasheet.com/htmldatasheet2/1134588/WORLDSEMI/WS2815B/1139/2/WS2815B.png}}
   \label{fig:schemat-LED-RGB}
   \end{figure}
 
   Własności elementu:
   \begin{itemize}
     \item napięcie pracy 12~V,
-    \item pobór prądu 15mA przy maksymalnej jasności każdej z 3 kolorowych diod,
-    \item montaż SMD,
-    \item częstotliwość odświeżania 4kHz.
+    \item pobór prądu 15~mA przy maksymalnej jasności każdej z 3 kolorowych diod,
+    \item montaż SMT (z ang. \textit{surface-mount technology}),
+    \item częstotliwość odświeżania 4~kHz.
   \end{itemize}
 
 \clearpage
@@ -97,7 +99,8 @@
   należy również wliczyć przycisk \textit{takt}, który zapewni możliwość wykonania zadanego rozkazu.
 
   Zdecydowano się na wykorzystanie przełączników \textit{MX Blue} firmy \textit{Cherry}. Według dokumentacji producenta
-  wyżej wymieniony przełącznik klawiaturowy pozwala na 50 milionów aktywacji. Pozwoli to na długoletnią, niezawodną działalność.
+  wyżej wymieniony przełącznik klawiaturowy pozwala na 50 milionów aktywacji \cite{bib:cherry}. 
+  Pozwoli to na długoletnią, niezawodną działalność.
   Wykorzystano przyciski typu \textit{Blue} oferujące słyszalny odgłos kliknięcia przy wciskaniu. Daje to użytkownikowi
   informację zwrotną o stanie przełącznika.
 
@@ -105,14 +108,15 @@
   W tym celu wybrano 16 kanałowy multiplekser z wyprowadzeniem \textit{COM}. Urządzenie to pozwala na odczyt stanu przycisku wprowadzając 
   na wejście multipleksera 4-bitowego sygnału. Cykliczny odczyt stanu wyprowadzenia \textit{COM} wraz z odpowiednią kombinacją 
   4-bitowego wejścia pozwala na odczyt aktualnego stanu przycisków. Zmiana kombinacji 4-bitów wejścia oraz odczyt stanu wyprowadzenia
-  \textit{COM} co cykl mikrokontrolera pozwala na odczyt aktualnego stanu przycisków. Z uwagi na niską cenę oraz niewielki wymiar 
+  \textit{COM} co cykl mikrokontrolera pozwala na odczyt aktualnego stanu przycisków. Z uwagi na niską cenę oraz niewielki rozmiar 
   wybrano model \textit{CD74HC4067M} firmy \textit{Texas Instruments}.
   
   Poniższy rysunek (Rys. \ref{fig:schemat-mux}) z dokumentacji producenta przedstawia diagram funkcjonalny układu \cite{bib:mux-doku}.
   \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{./graf/mux-schematic.png}
-    \caption{Diagram funkcjonalny multipleksera \textit{CD74HC4067M}}
+    \caption{Diagram funkcjonalny multipleksera \textit{CD74HC4067M}. 
+    Źródło: \url{https://www.alldatasheet.com/html-pdf/517535/TI/CD74HC4067M/62/2/CD74HC4067M.html}}
     \label{fig:schemat-mux}
   \end{figure}
   
@@ -155,10 +159,8 @@
   \end{itemize}
 
   Wykorzystano do tego 12~V linie diod LED.
-  Aby uniknąć zauważalnych dla użytkownika spadków jasności podświetlenia zdecydowano na podłączenie bezpośrednio do 
-  zasilacza 12~V.
-  % TODO czy tutaj napisać że mam tranzysotry na płytce których jednak nie będę wykorzystywał bo ledy gasną jak się zapalają
-  % wsy? Czy póżniej o tym wspomineć?
+  Aby uniknąć zauważalnych dla użytkownika spadków jasności podświetlenia zdecydowano na podłączenie 
+  bezpośrednio do zasilacza 12~V.
 
 \section{Enkoder}
   W celu zapewnienia możliwości wprowadzania wartości do: licznika rozkazów, akumulatora oraz rejestrów w lokalnym trybie
@@ -186,7 +188,7 @@
     \centering
     \vfill
     \includegraphics[width=\textwidth]{./graf/enc-graph-cw.pdf}
-    \caption{Wykres stanów przy obrocie w prawo}
+    \caption{Wykres stanów przy obrocie w prawo. Źródło: opracowanie własne.}
     \label{fig:enc-cw}
   \end{minipage}
   \hfill
@@ -212,7 +214,7 @@
     \centering
     \vfill
     \includegraphics[width=\textwidth]{./graf/enc-graph-ccw.pdf}
-    \caption{Wykres stanów przy obrocie w lewo}
+    \caption{Wykres stanów przy obrocie w lewo. Źródło: opracowanie własne.}
     \label{fig:enc-ccw}
   \end{minipage}
   \hfill
@@ -231,54 +233,6 @@
     \label{tab:enc-ccw}
   \end{minipage}
 \end{figure}
-  % \begin{figure}[H]
-  %   \centering
-  %   % \textemdash{}- OBRÓT W PRAWO (CW) \textemdash{}-
-  %   \begin{minipage}[c]{0.60\textwidth}
-  %     \centering
-  %     \includegraphics[width=\textwidth]{./graf/enc-graph-cw.pdf}
-  %     \caption{Wykres stanów przy obrocie w prawo}
-  %     \label{fig:enc-cw}
-  %   \end{minipage}%
-  %   \hfill
-  %   \begin{minipage}[c]{0.4\textwidth}
-  %     \centering
-  %     \begin{tabular}{|c|c|c|}
-  %       \hline
-  %       \textbf{Krok (t)} & \textbf{A} & \textbf{B} \\ \hline
-  %       1 & 0 & 1 \\ \hline
-  %       2 & 0 & 0 \\ \hline
-  %       3 & 1 & 0 \\ \hline
-  %       4 & 1 & 1 \\ \hline
-  %     \end{tabular}
-  %     \captionof{table}{Tablica prawdy dla obrotu w prawo}
-  %     \label{tab:enc-cw}
-  %   \end{minipage}
-  %
-  %   \vspace{1cm} % Odstęp między sekcjami
-  %
-  %   % \textemdash{}- OBRÓT W LEWO (CCW) \textemdash{}-
-  %   \begin{minipage}[c]{0.60\textwidth}
-  %     \centering
-  %     \includegraphics[width=\textwidth]{./graf/enc-graph-ccw.pdf} % Upewnij się, że masz ten plik
-  %     \caption{Wykres stanów przy obrocie w lewo}
-  %     \label{fig:enc-ccw}
-  %   \end{minipage}%
-  %   \hfill
-  %   \begin{minipage}[c]{0.4\textwidth}
-  %     \centering
-  %     \begin{tabular}{|c|c|c|}
-  %       \hline
-  %       \textbf{Krok (t)} & \textbf{A} & \textbf{B} \\ \hline
-  %       1 & 1 & 0 \\ \hline
-  %       2 & 0 & 0 \\ \hline
-  %       3 & 0 & 1 \\ \hline
-  %       4 & 1 & 1 \\ \hline
-  %     \end{tabular}
-  %     \captionof{table}{Tablica prawdy dla obrotu w lewo}
-  %     \label{tab:enc-ccw}
-  %   \end{minipage}
-  % \end{figure}
 
 \section{Przełącznik trybów}
 \label{sec:przel_tryb}
@@ -300,19 +254,22 @@
   Aby było to możliwe planowano wykorzystać biblioteki takie jak:
   \begin{itemize}
     \item \textit{WiFi} - obsługa połączeń i konfiguracji interfejsu sieci bezprzewodowej,
-    \item \textit{AsyncTCP} - asynchroniczna, nieblokująca komunikacja TCP,
-    \item \textit{AsyncWebServer} - asynchroniczna obsługa serwera HTTP,
-    \item \textit{LittleFS} - system plików dla pamięci flash mikrokontrolera,
-    \item \textit{DNSServer} - lokalna obsługa i przekierowywanie zapytań serwera nazw domen.
+    \item \textit{AsyncTCP} - asynchroniczna, nieblokująca komunikacja \textit{TCP} 
+      (z ang. \textit{Transmission Control Protocol}),
+    \item \textit{AsyncWebServer} - asynchroniczna obsługa serwera \textit{HTTP} 
+      (z ang. \textit{Hypertext Transfer Protocol}),
+    \item \textit{LittleFS} - system plików dla pamięci \textit{flash} mikrokontrolera,
+    \item \textit{DNSServer} - lokalna obsługa i przekierowywanie zapytań DNS 
+      (z ang. \textit{Domain Name Server}).
   \end{itemize} 
 
 
   Wykorzystanie owych bibliotek pozwala na:
   \begin{itemize}
     \item kontrolę połączeń z użytkownikami oraz ograniczenie ich liczby,
-    \item komunikację przy wykorzystaniu protokołu sieciowego TCP,
-    \item przechowywanie złożonej strony internetowej Maszyny W bezpośrednio w pamięci flash mikrokontrolera,
-    \item wykorzystanie portalu przechwytującego zapytania DNS w celu przekierowania użytkowników na wybraną stronę.
+    \item komunikację przy wykorzystaniu protokołu sieciowego \textit{TCP},
+    \item przechowywanie złożonej strony internetowej Maszyny W bezpośrednio w pamięci \textit{flash} mikrokontrolera,
+    \item wykorzystanie portalu przechwytującego zapytania \textit{DNS} w celu przekierowania użytkowników na wybraną stronę.
   \end{itemize} 
 
 \section{Punkt dostępowy}
@@ -325,7 +282,8 @@
   Bibioteki wymienione w rozdziale \ref{sec:serwer} umożliwiają zadanie hasła punktowi dostępu oraz ograniczenie liczby połączonych na raz użytkowników.
 
 \section{Strona internetowa}
-  Bieżąca praca dyplomowa wykorzystuje wykonaną na potrzeby projektu PBL, którego SWIM również był częścią, stronę 
+  Bieżąca praca dyplomowa wykorzystuje wykonaną na potrzeby projektu PBL 
+  (z ang. \textit{Project-Based Learning}), którego SWIM również był częścią, stronę 
   modernizującą symulator Maszyny W. Niezwykle ważnym jest zaznaczyć, iż projekt oraz wykonanie ww. strony internetowej
   nie są częścią bieżącej pracy dyplomowej. Została ona stworzona przez członków projektu naukowego zajmującego się 
   modernizacją Maszyny W \cite{bib:aei-maszynaw}. Mając na uwadze autorów tej części projektu należy zrozumieć jej działanie,
@@ -347,8 +305,8 @@
 
 \clearpage
 \section{Interfejs komunikacyjny}
-  Niezbędnym elementem bieżącego projektu jest możliwość komunikacji pomiędzy mikrokontrolerem, a serwowaną na nim stroną w czasie rzeczywistym.
-  Wyjściowo, nie jest możliwe przesyłanie informacji o aktualnie znajdujących się wartościach w polach tekstowych strony internetowej, lub o
+  Niezbędnym elementem bieżącego projektu jest możliwość komunikacji pomiędzy mikrokontrolerem, a udostępnianą na nim stroną w czasie rzeczywistym.
+  Wyjściowo, nie jest możliwe przesyłanie informacji o aktualnie znajdujących się wartościach w polach tekstowych strony internetowej lub o
   aktualnie wybranych sygnałach. 
   
   Standardowa implementacja serwera posiada jedynie możliwość komunikacji za pomocą protokołu \textit{HTTP}. Wykorzystanie
@@ -365,28 +323,29 @@
   \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{./graf/websocket-graph.pdf}
-    \caption{Schemat komunikacji przy wykorzystaniu protokołu \textit{Websocket}} %https://www.scaler.com/topics/computer-network/websocket/
+    \caption{Schemat komunikacji przy wykorzystaniu protokołu \textit{Websocket}. Źródło: opracowanie własne.}
     \label{fig:websocket-graph}
   \end{figure} 
 
 \clearpage
 \section{Zasilanie}
   Mając na uwadze wszystkie wymienione w powyższym rozdziale elementy SWIM, dokonano analizy wymagań energetycznych układu w celu dobrania 
-  odpowiedniego zasilacza. Adresowalne diody LED oraz podświetlenie wymagały zasilania napięciem 12~V, natomiast mikrokontroler ESP32 
+  odpowiedniego zasilacza. Adresowalne diody LED oraz podświetlenie wymagały zasilania napięciem 12~V, natomiast mikrokontroler \textit{ESP32} 
   oraz multiplekser korzystały z napięcia 3,3~V.
+  \\
 
   Przeprowadzono szacunkowe obliczenia maksymalnego poboru prądu:
   \begin{itemize}
-    \item dla linii diod LED WS2815B-V1, przy założeniu pełnej jasności każdej z trzech diod RGB oraz wykorzystaniu 600 elementów, przewidziano maksymalny pobór prądu na poziomie około 9~A,
+    \item dla linii diod LED \textit{WS2815B-V1}, przy założeniu pełnej jasności każdej z trzech diod RGB oraz wykorzystaniu 600 elementów, przewidziano maksymalny pobór prądu na poziomie około 9~A,
     \item dla podświetlenia LED przewidziano pobór prądu rzędu 0,5~A, uwzględniając wszystkie elementy podświetlane jednocześnie,
-    \item dla mikrokontrolera ESP32-S3 oraz układów towarzyszących przewidziano pobór prądu około 600~mA przy pełnym obciążeniu interfejsów peryferyjnych i aktywnym WiFi.
+    \item dla mikrokontrolera \textit{ESP32-S3} oraz układów towarzyszących przewidziano pobór prądu około 600~mA przy pełnym obciążeniu interfejsów peryferyjnych i aktywnym WiFi.
   \end{itemize}
 
 Na podstawie powyższych obliczeń dobrano zasilacz impulsowy o napięciu wyjściowym 12~V i mocy minimalnej 330~W, co zapewniało bezpieczny 
 margines względem przewidywanego maksymalnego poboru prądu. Zastosowanie zasilacza o większej mocy umożliwiało również stabilne działanie 
 układu przy chwilowych skokach poboru prądu przez linie LED.
 
-Zasilanie mikrokontrolera ESP32 oraz innych układów niskonapięciowych realizowano przy użyciu przetwornicy DC-DC obniżającej napięcie z 12~V do 3,3~V.
+Zasilanie mikrokontrolera \textit{ESP32} oraz innych układów niskonapięciowych realizowano przy użyciu przetwornicy DC-DC obniżającej napięcie z 12~V do 3,3~V.
 Rozwiązanie to zapewniało izolację układów niskonapięciowych od wysokoprądowych linii LED oraz stabilne napięcie zasilania, eliminując spadki i 
 zakłócenia w pracy mikrokontrolera. Dodatkowo, w celu ochrony układu przed odwrotną polaryzacją, należy zapewnić odpowiednią ochronę. 
 Takie podejście zapewniło bezpieczne i niezawodne działanie całego systemu SWIM.

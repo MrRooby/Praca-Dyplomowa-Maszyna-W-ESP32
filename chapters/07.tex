@@ -51,8 +51,8 @@ automatycznie zainicjuje oraz zmieni swój tryb działania.
         \item Wciśnięcie przycisku \textit{Wyślij wszystkie kolory do ESP32}.
       \end{enumerate}
     Po przesłaniu wartości kolorów wyświetlacze SWIM zmienią kolor na wybrany przez użytkownika. Konfiguracja
-    kolorów zostaje zapisana w pamięci urządzenia. (W przypadku ponownego uruchomienia SWIM zostanie
-    odczytana wcześniej zapisana konfiguracja)
+    kolorów zostaje zapisana w pamięci urządzenia. W przypadku ponownego uruchomienia SWIM zostanie
+    odczytana wcześniej zapisana konfiguracja.
 
   \end{enumerate}
 
@@ -68,24 +68,25 @@ automatycznie zainicjuje oraz zmieni swój tryb działania.
     \begin{itemize}
       
       \item \textbf{Przewijanie wyświetlanego fragmentu \textit{PaO}} \textemdash{} wykonując obrót enkoderem 
-      w lewo/prawo zmieni wyświetlany na 4 wierszach \textit{PaO} fragment pamięci operacyjnej.
+        w lewo/prawo zmieni wyświetlany na 4 wierszach \textit{PaO} fragment pamięci operacyjnej.
 
-      \item \textbf{Skok do aktywnego adresu w \textit{PaO} } \textemdash{} wciskając przycisk enkodera
-      wyświetlacz \textit{PaO} pokaże fragment pamięci operacyjnej zawierający adres zapiany w rejestrze \textit{A}.
+      \item \textbf{Skok do aktywnego adresu w \textit{PaO}} \textemdash{} wciskając przycisk enkodera
+        wyświetlacz \textit{PaO} pokaże fragment pamięci operacyjnej zawierający adres zapiany w rejestrze
+        \textit{A}.
 
       \item \textbf{Tryb wprowadzania} \textemdash{} aktywacja/dezaktywacja trybu następuje poprzez przytrzymanie 
-      1s przycisku enkodera. Aktywny tryb wprowadzania jest sygnalizowany miganiem jednego z rejestrów.
-      Obrót enkodera w lewo/prawo zmniejszymy/zwiększymy wartość w wybranym (migającym) rejestrze. 
-      Wciskając przycisk enkodera następuje zmiana wybranego wyświetlacza.
+        przez 1~s przycisku enkodera. Aktywny tryb wprowadzania jest sygnalizowany miganiem jednego z rejestrów.
+        Obrót enkodera w lewo/prawo zmniejsza/zwiększa wartość w wybranym (migającym) rejestrze. 
+        Wciśnięcie przycisku enkodera spowoduje zmianę wybranego wyświetlacza.
 
       \item \textbf{Aktywacja rozkazów} \textemdash{} aktywacja/dezaktywacja rozkazów następuje poprzez
-      wciśnięcie odpowiedniego przyciska rozkazu. Aktywacja jest sygnalizowana podświetleniem linii rozkazu.
-      Wybrany rozkaz zostaje dodany do listy rozkazów do wykonania w takcie. Wybór niedozwolonej kombinacji
-      rozkazów skutkuje brakiem aktywacji rozkazu.
+        wciśnięcie odpowiedniego przyciska rozkazu. Aktywacja jest sygnalizowana podświetleniem linii rozkazu.
+        Wybrany rozkaz zostaje dodany do listy rozkazów do wykonania w takcie. Wybór niedozwolonej kombinacji
+        rozkazów skutkuje brakiem aktywacji rozkazu.
 
       \item \textbf{Wykonanie taktu} \textemdash{} wciśnięcie przycisku \textit{TAKT} skutkuje wykonaniem
-      wybranych przez użytkownika rozkazów. Przypisane im operacje (czyt, wys, wei, itp.) zostają wykonane
-      w kolejności ich wyboru.
+        wybranych przez użytkownika rozkazów. Przypisane im operacje (\textit{czyt, wys, wei}, itp.) zostają 
+        wykonane w kolejności ich wyboru.
 
     \end{itemize}
 

@@ -3,10 +3,11 @@
 
 \section{Cel pracy}
   Celem niniejszej pracy jest opracowanie systemu wizualizacji danych pochodzących z sieciowego interfejsu Maszyny W 
-  z wykorzystaniem mikrokontrolera ESP32.
+  z wykorzystaniem mikrokontrolera \textit{ESP32}.
 
   Opracowane w ramach pracy dyplomowej urządzenie umożliwia odwzorowanie, w czasie rzeczywistym, wartości 
-  liczbowych oraz sygnałów sterujących symulatorem Maszyny W na adresowalnych diodach RGB.
+  liczbowych oraz sygnałów sterujących symulatorem Maszyny W na adresowalnych diodach LED 
+  (z ang. \textit{Light-Emitting Diode}) typu RGB (z ang. \textit{Red, Green, Blue}).
 
   Urządzenie pozwala na zdalne sterowanie funkcjami symulatora zarówno za pomocą przycisków 
   fizycznych, jak i interfejsu internetowego. System obsługuje udostępnianie strony internetowej bezpośrednio 
@@ -20,12 +21,8 @@
   sprzętowej, jak i warstwy programowej. Pomimo tego, podstawowe zasady ich działania pozostają zgodne z klasycznymi 
   założeniami architektury von Neumanna, sformułowanymi w połowie XX wieku \cite{bib:von-neumann}. 
 
-  % W celu ułatwienia zrozumienia tych zasad w procesie dydaktycznym stosowane są uproszczone modele komputerów, 
-  % których zadaniem jest eksponowanie kluczowych mechanizmów przetwarzania informacji przy jednoczesnym ograniczeniu 
-  % liczby elementów składowych. Jednym z takich modeli jest Maszyna W.  
-  
   Maszyna W została zaprojektowana w latach siedemdziesiątych XX wieku na Politechnice Śląskiej przez zespół kierowany 
-  przez prof. Stefana Węgrzyna jako uproszczony model komputera, przeznaczony do nauki podstaw architektury 
+  przez prof. zw. dr inż. Stefana Węgrzyna jako uproszczony model komputera, przeznaczony do nauki podstaw architektury 
   komputerów oraz zasad działania procesora \cite{bib:minut-tutaj-momot}.
 
   Konstrukcja stanowi uproszczenie rzeczywistych jednostek obliczeniowych, przy jednoczesnym zachowaniu 
@@ -56,7 +53,7 @@
   \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{./graf/rysunek-maszyny.pdf}
-    \caption{Schemat Maszyny W}
+    \caption{Schemat Maszyny W. Źródło: opracowanie własne na podstawie \cite{bib:cwiczenia-tutaj}.}
     \label{fig:rysunek-maszyny}
   \end{figure}
   
@@ -69,7 +66,7 @@
   
   Istotnym elementem Maszyny W jest sposób sterowania przepływem danych pomiędzy jej komponentami. Komunikacja 
   realizowana jest za pomocą magistrali adresowej i magistrali słowa, przebieg operacji kontrolowany jest przez 
-  zestaw sygnałów mikrosterujących (np. czyt, wys, wei, il). Sygnały te, umożliwiają precyzyjne sterowanie 
+  zestaw sygnałów mikrosterujących (np. \textit{czyt, wys, wei, il}). Sygnały te, umożliwiają precyzyjne sterowanie 
   przesyłami międzypamięciowymi i międzypamięciowo-rejestrowymi w kolejnych taktach zegara \cite{bib:minut-tutaj-momot}. 
   Dzięki temu możliwe jest szczegółowe śledzenie procesu realizacji pojedynczego rozkazu na poziomie mikrooperacji.
 

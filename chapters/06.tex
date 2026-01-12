@@ -1,8 +1,8 @@
 \chapter{Opis oprogramowania}
 \label{ch:06}
-Program mikrokontrolera ESP32 został napisany w języku \textit{C++} za pomocą aplikacji
+Program mikrokontrolera \textit{ESP32} został napisany w języku \textit{C++} za pomocą aplikacji
 \textit{Visual Studio Code} wykorzystującej, dedykowane programowaniu mikrokontrolerów,
-rozszerzenie \textit{PlatformIO}. Kod wynikowy zajmuje około 900kB. 
+rozszerzenie \textit{PlatformIO}. Kod wynikowy zajmuje około 900~kB. 
 Mikrokontroler ma do zrealizowania następujące zadania:
 \begin{itemize}
   \item obsługa adresowalnych diod LED,
@@ -26,7 +26,7 @@ na nim elementów znajduje się w ww. rozdziałach.
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.6\textwidth]{./graf/schemat-ogolny-kodu.pdf}
-  \caption{Ogólny diagram sekwencji działania oprogramowania}
+  \caption{Ogólny diagram sekwencji działania oprogramowania. Źródło: opracowanie własne.}
   \label{fig:schemat-ogolny-kodu}
 \end{figure}
 
@@ -64,7 +64,7 @@ na nim elementów znajduje się w ww. rozdziałach.
   \begin{figure}[H]
     \centering
     \includegraphics[scale=1]{./graf/display-manager-flow-chart.pdf}
-    \caption{Diagram sekwencji działania menadżera diod LED}
+    \caption{Diagram sekwencji działania menadżera diod LED. Źródło: opracowanie własne.}
     \label{fig:display-manager-flow-chart}
   \end{figure}
 
@@ -82,7 +82,7 @@ na nim elementów znajduje się w ww. rozdziałach.
   \begin{figure}[H]
     \centering
     \includegraphics[width=0.65\textwidth]{./graf/segment-display.pdf}
-    \caption{Wizualizacja schematu działania wyświetlaczy segmentowych}
+    \caption{Wizualizacja schematu działania wyświetlaczy segmentowych. Źródło: opracowanie własne.}
     \label{fig:segment-display}
   \end{figure} 
 
@@ -124,7 +124,7 @@ na nim elementów znajduje się w ww. rozdziałach.
   \\
 
   Wyżej wymienione powody wymagały wykorzystania zewnętrznej biblioteki \textit{LittleFS}. Pozwala ona stworzyć osobną partycję w 
-  pamięci flash urządzenia dla systemu plików \cite{bib:littlefs}. Zapisane w ten sposób dane nie ulegają usunięciu po odłączeniu zasilania urządzenia.
+  pamięci \textit{flash} urządzenia dla systemu plików \cite{bib:littlefs}. Zapisane w ten sposób dane nie ulegają usunięciu po odłączeniu zasilania urządzenia.
   
 
   Urządzenie przechowuje w pamięci plik z konfiguracją kolorów w formacie \textit{json}. Podczas uruchamiania urządzenia konfiguracja
@@ -149,7 +149,7 @@ na nim elementów znajduje się w ww. rozdziałach.
   \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{./graf/web-mode-graph.pdf}
-    \caption{Uproszczony diagram sekwencji działania trybu sieciowego}
+    \caption{Uproszczony diagram sekwencji działania trybu sieciowego. Źródło: opracowanie własne.}
     \label{fig:schemat-web-mode}
   \end{figure}
 
@@ -167,13 +167,13 @@ na nim elementów znajduje się w ww. rozdziałach.
   \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{./graf/local-mode-graph.pdf}
-    \caption{Uproszczony diagram sekwencji działania trybu lokalnego}
+    \caption{Uproszczony diagram sekwencji działania trybu lokalnego. Źródło: opracowanie własne.}
     \label{fig:schemat-local-mode}
   \end{figure}
 
   Sygnały wybierane poprzez naciśnięcie odpowiednich przycisków zostają dodane do listy sygnałów. Obiekt posiada funkcję 
   wykrywającą, czy Maszyna W pozwala na daną kombinację rozkazów. Przykładem wykluczających się wzajemnie rozkazów są: 
-  czyt/pisz, wyak/wys lub wyl/wyad. W przypadku wykrycia wciśnięcia niedozwolonego przycisku urządzenie nie doda rozkazu do listy.
+  \textit{czyt/pisz}, \textit{wyak/wys} lub \textit{wyl/wyad}. W przypadku wykrycia wciśnięcia niedozwolonego przycisku urządzenie nie doda rozkazu do listy.
   Po wciśnięciu przycisku \textit{takt} obiekt wykona rozkazy z listy w kolejności dodania. 
 
   
