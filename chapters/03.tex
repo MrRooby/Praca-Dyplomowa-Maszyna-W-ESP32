@@ -30,7 +30,7 @@
   \clearpage
   Po rozważeniu obu opcji zdecydowano się na użycie mikrokontrolera z rodziny ESP32. Wybór został podyktowany pozwalającym na pełną 
   kontrolę urządzenia językiem \textit{C++}, niższą ceną, brakiem systemu operacyjnego, dostępnością oraz bogatą dokumentacją. 
-  Z katalogu firmy \textit{Espressif Systems} wybrano urządzenie \textit{ESP32-S3-WROOM-1}.
+  Z katalogu firmy \textit{Espressif Systems} wybrano urządzenie ESP32-S3-WROOM-1.
 
   Poniższy rysunek (Rys. \ref{fig:schemat-blokowy-esp32}) z dokumentacji producenta przedstawia schemat funkcjonalny wybranego układu.
   \begin{figure}[H]
@@ -63,13 +63,13 @@
   Przewidywana liczba pojedynczych diod LED podłączonych do SWIM przekracza 600. Znaczna liczba elementów może doprowadzać do
   wpływających na poprawne działanie układu spadków napięcia.
 
-  Spośród aktualnie dostępnych na rynku wersji elementu wyróżniły się dwa modele: \textit{WS2812B} oraz \textit{WS2815B} firmy
+  Spośród aktualnie dostępnych na rynku wersji elementu wyróżniły się dwa modele: WS2812B oraz WS2815B firmy
   \textit{WORLDSEMI}.
-  Podczas wstępnych testów obu elementów zaobserwowano następujące cechy. Diody \textit{WS2812B} zasilane napięciem 5~V wykazywały
+  Podczas wstępnych testów obu elementów zaobserwowano następujące cechy. Diody WS2812B zasilane napięciem 5~V wykazywały
   zauważalny spadek jakości odwzorowania kolorów przy liczbie elementów przekraczającej 100 (w ciągłej linii). Wykorzystanie 
-  ww. elementów niosłoby za sobą potrzebę dodatkowego wprowadzania napięcia do linii diod. Diody \textit{WS2815B} zasilane napięciem 
+  ww. elementów niosłoby za sobą potrzebę dodatkowego wprowadzania napięcia do linii diod. Diody WS2815B zasilane napięciem 
   12~V nie wykazały zauważalnych spadków napięcia przy tej samej liczbie elementów. Cecha ta zadecydowała o ostatecznym wyborze 
-  modelu \textit{WS2815B-V1}, jego jedyną wadą jest nieznacznie większa cena w porównaniu do 5~V odpowiednika. 
+  modelu WS2815B-V1, jego jedyną wadą jest nieznacznie większa cena w porównaniu do 5~V odpowiednika. 
   \\
 
 
@@ -77,7 +77,7 @@
   \begin{figure}[H]
   \centering
   \includegraphics[width=0.4\textwidth]{./graf/led-rgb-schematic.png}
-  \caption{Schemat wyprowadzeń adresowalnej diody LED RGB \textit{WS2815B-V1}.
+  \caption{Schemat wyprowadzeń adresowalnej diody LED RGB WS2815B-V1.
     Źródło: \url{https://www.alldatasheet.com/htmldatasheet2/1134588/WORLDSEMI/WS2815B/1139/2/WS2815B.png}}
   \label{fig:schemat-LED-RGB}
   \end{figure}
@@ -109,13 +109,13 @@
   na wejście multipleksera 4-bitowego sygnału. Cykliczny odczyt stanu wyprowadzenia \textit{COM} wraz z odpowiednią kombinacją 
   4-bitowego wejścia pozwala na odczyt aktualnego stanu przycisków. Zmiana kombinacji 4-bitów wejścia oraz odczyt stanu wyprowadzenia
   \textit{COM} co cykl mikrokontrolera pozwala na odczyt aktualnego stanu przycisków. Z uwagi na niską cenę oraz niewielki rozmiar 
-  wybrano model \textit{CD74HC4067M} firmy \textit{Texas Instruments}.
+  wybrano model CD74HC4067M firmy \textit{Texas Instruments}.
   
   Poniższy rysunek (Rys. \ref{fig:schemat-mux}) z dokumentacji producenta przedstawia diagram funkcjonalny układu \cite{bib:mux-doku}.
   \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{./graf/mux-schematic.png}
-    \caption{Diagram funkcjonalny multipleksera \textit{CD74HC4067M}. 
+    \caption{Diagram funkcjonalny multipleksera CD74HC4067M. 
     Źródło: \url{https://www.alldatasheet.com/html-pdf/517535/TI/CD74HC4067M/62/2/CD74HC4067M.html}}
     \label{fig:schemat-mux}
   \end{figure}
@@ -283,7 +283,7 @@
 
 \section{Strona internetowa}
   Bieżąca praca dyplomowa wykorzystuje wykonaną na potrzeby projektu PBL 
-  (z ang. \textit{Project-Based Learning}), którego SWIM również był częścią, stronę 
+  (z ang. \textit{project-based learning}), którego SWIM również był częścią, stronę 
   modernizującą symulator Maszyny W. Niezwykle ważnym jest zaznaczyć, iż projekt oraz wykonanie ww. strony internetowej
   nie są częścią bieżącej pracy dyplomowej. Została ona stworzona przez członków projektu naukowego zajmującego się 
   modernizacją Maszyny W \cite{bib:aei-maszynaw}. Mając na uwadze autorów tej części projektu należy zrozumieć jej działanie,
@@ -314,7 +314,7 @@
   W celu zapewnienia wydajnej oraz szybkiej komunikacji pomiędzy stroną internetową a serwerem wykorzystano technologię \textit{WebSocket}.
   \\
 
-  \textit{Websocket} jest dwukierunkowym protokołem komunikacyjnym. Działa zarówno w warstwie aplikacji (strona internetowa) oraz 
+  \textit{WebSocket} jest dwukierunkowym protokołem komunikacyjnym. Działa zarówno w warstwie aplikacji (strona internetowa) oraz 
   na serwerze (mikrokontroler). Umożliwia wymianę danych w czasie rzeczywistym, bez konieczności każdorazowego inicjowania żądania przez użytkownika.
   Wykorzystuje asynchroniczną komunikację, co pozwala na nieblokujące odbieranie i nadawanie złożonych informacji \cite{bib:websocket}.
 
@@ -336,7 +336,7 @@
 
   Przeprowadzono szacunkowe obliczenia maksymalnego poboru prądu:
   \begin{itemize}
-    \item dla linii diod LED \textit{WS2815B-V1}, przy założeniu pełnej jasności każdej z trzech diod RGB oraz wykorzystaniu 600 elementów, przewidziano maksymalny pobór prądu na poziomie około 9~A,
+    \item dla linii diod LED WS2815B-V1, przy założeniu pełnej jasności każdej z trzech diod RGB oraz wykorzystaniu 600 elementów, przewidziano maksymalny pobór prądu na poziomie około 9~A,
     \item dla podświetlenia LED przewidziano pobór prądu rzędu 0,5~A, uwzględniając wszystkie elementy podświetlane jednocześnie,
     \item dla mikrokontrolera ESP32-S3 oraz układów towarzyszących przewidziano pobór prądu około 600~mA przy pełnym obciążeniu interfejsów peryferyjnych i aktywnym WiFi.
   \end{itemize}
